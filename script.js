@@ -35,3 +35,12 @@ const revealOnScroll = () => {
 
 window.addEventListener('scroll', revealOnScroll);
 revealOnScroll();
+// ORIVO — Product Linking
+document.querySelectorAll('.product-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const product = card.getAttribute('data-product');
+    if (product) {
+      window.location.href = `product.html?item=${product}`;
+    }
+  });
+});
