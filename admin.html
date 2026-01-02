@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ORIVO — Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-main);
+    }
+
+    .admin-box {
+      background: var(--bg-card);
+      border-radius: 18px;
+      padding: 32px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .admin-box h2 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 12px;
+    }
+
+    .admin-box p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .admin-box input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    .admin-box button {
+      width: 100%;
+    }
+
+    .error {
+      color: #d9534f;
+      font-size: 13px;
+      margin-top: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-box">
+    <h2>ORIVO Admin</h2>
+    <p>Enter PIN to manage content</p>
+
+    <input
+      type="password"
+      id="pinInput"
+      placeholder="Enter admin PIN"
+    />
+
+    <button class="btn btn-primary" onclick="checkPIN()">
+      Unlock Panel
+    </button>
+
+    <div class="error" id="pinError">
+      Incorrect PIN
+    </div>
+  </div>
+
+<script>
+  const ADMIN_PIN = "panado"; // ← CHANGE THIS PIN
+
+  function checkPIN() {
+    const input = document.getElementById("pinInput").value;
+
+    if (input === ADMIN_PIN) {
+      localStorage.setItem("orivo_admin", "unlocked");
+      window.location.href = "admin-panel.html";
+    } else {
+      document.getElementById("pinError").style.display = "block";
+    }
+  }
+</script>
+
+</body>
+</html>
