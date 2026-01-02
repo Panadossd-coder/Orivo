@@ -276,6 +276,7 @@ section h2 {
 /* ===============================
    RESPONSIVE — MOBILE & TABLET
    =============================== */
+
 @media (max-width: 900px) {
   .shop-layout {
     grid-template-columns: 1fr;
