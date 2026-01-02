@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ORIVO — Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body {
+      background: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .admin-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .admin-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .admin-card {
+      background: var(--bg-card);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow-soft);
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    .admin-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .admin-card h3 {
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .admin-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .logout-btn {
+      font-size: 13px;
+      border: 1px solid var(--border);
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-wrapper">
+
+    <div class="admin-header">
+      <h2>ORIVO Admin Panel</h2>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="admin-grid">
+
+      <div class="admin-card">
+        <h3>Hero Section</h3>
+        <p>Edit headline, text & hero image</p>
+      </div>
+
+      <div class="admin-card">
+        <h3>Shop Products</h3>
+        <p>Change images, names & prices</p>
+      </div>
+
+      <div class="admin-card">
+        <h3>Featured Pieces</h3>
+        <p>Select homepage featured products</p>
+      </div>
+
+      <div class="admin-card">
+        <h3>Theme & Appearance</h3>
+        <p>Accent colors & dark mode defaults</p>
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  // 🔐 ACCESS GUARD
+  if (localStorage.getItem("orivo_admin") !== "unlocked") {
+    window.location.href = "admin.html";
+  }
+
+  function logout() {
+    localStorage.removeItem("orivo_admin");
+    window.location.href = "admin.html";
+  }
+</script>
+
+</body>
+</html>
