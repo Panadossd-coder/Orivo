@@ -21,12 +21,9 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <h1>Wear Your Identity</h1>
-    <p>
-      A modern fashion brand focused on presence, confidence,
-      and timeless expression.
-    </p>
+  <section class="hero" id="heroSection">
+    <h1 id="heroTitle">Wear Your Identity</h1>
+    <p id="heroSubtitle">A modern fashion brand focused on presence...</p>
 
     <div style="display:flex; gap:16px; justify-content:center;">
       <a href="shop.html" class="btn btn-primary">Explore Collection</a>
@@ -70,5 +67,23 @@
     <p>© 2026 ORIVO. All rights reserved.</p>
   </footer>
 <script src="script.js"></script>
+<script>
+  const heroTitle = localStorage.getItem("orivo_hero_title");
+  const heroSubtitle = localStorage.getItem("orivo_hero_subtitle");
+  const heroImage = localStorage.getItem("orivo_hero_image");
+
+  if (heroTitle) {
+    document.getElementById("heroTitle").textContent = heroTitle;
+  }
+
+  if (heroSubtitle) {
+    document.getElementById("heroSubtitle").textContent = heroSubtitle;
+  }
+
+  if (heroImage) {
+    document.getElementById("heroSection").style.background =
+      `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('${heroImage}') center / cover no-repeat`;
+  }
+</script>
 </body>
 </html>
