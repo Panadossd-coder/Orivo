@@ -55,3 +55,33 @@ document.querySelectorAll('.product-card.is-clickable').forEach(card => {
     window.location.href = `product.html?item=${slug}`;
   });
 });
+/* ORIVO — hero lights parallax (small, safe enhancement) */
+(function () {
+  const root = document.documentElement;
+  const hero = document.querySelector('.hero');
+  const lights = document.querySelectorAll('.hero-light');
+  const img = document.getElementById('heroFigure');
+  if (!hero || lights.length === 0 || !img) return;
+
+  let lastX = 0, lastY = 0;
+  hero.addEventListener('mousemove', (e) => {
+    const r = hero.getBoundingClientRect();
+    const cx = (e.clientX - r.left) / r.width - 0.5;
+    const cy = (e.clientY - r.top) / r.height - 0.5;
+
+    // small translate for each light
+    lights.forEach((el, i) => {
+      const depth = (i + 1) * 6; // 6,12,18 px
+      el.style.transform = `translate3d(${cx * depth}px, ${cy * depth}px, 0) scale(1)`;
+    });
+
+    // subtle image parallax
+    img.style.transform = `translate3d(${cx * -8}px, ${cy * -6}px, 0)`;
+  });
+
+  // reset on leave
+  hero.addEventListener('mouseleave', () => {
+    lights.forEach((el) => el.style.transform = '');
+    img.style.transform = '';
+  });
+})();
