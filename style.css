@@ -483,3 +483,51 @@ section h2 {
     font-size: 13px;
   }
 }
+/* ===============================
+   FEATURED SLIDER (MODERN)
+   =============================== */
+
+.featured-slider {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 20px 0 40px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.featured-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-card {
+  min-width: 260px;
+  background: var(--bg-card);
+  border-radius: 22px;
+  padding: 16px;
+  scroll-snap-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.35s ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.featured-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 14px;
+}
+
+.featured-card h4 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.featured-card span {
+  font-size: 14px;
+  color: var(--text-muted);
+}
