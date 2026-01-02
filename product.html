@@ -61,6 +61,17 @@
   <footer class="footer">
     <p>© 2026 ORIVO. All rights reserved.</p>
   </footer>
+<script src="script.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const item = params.get('item');
 
+  if (item) {
+    const title = document.querySelector('h2');
+    if (title) {
+      title.textContent = item.replace(/-/g, ' ').toUpperCase();
+    }
+  }
+</script>
 </body>
 </html>
