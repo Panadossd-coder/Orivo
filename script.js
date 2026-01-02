@@ -44,3 +44,14 @@ document.querySelectorAll('.product-card').forEach(card => {
     }
   });
 });
+// ===============================
+// ORIVO — Product Navigation
+// ===============================
+document.querySelectorAll('.product-card.is-clickable').forEach(card => {
+  card.addEventListener('click', () => {
+    const slug = card.dataset.product;
+    if (!slug) return;
+
+    window.location.href = `product.html?item=${slug}`;
+  });
+});
