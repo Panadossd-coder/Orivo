@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-main: #f7f7f5;
+  --text-main: #111;
+  --text-muted: #6b6b6b;
+  --accent: #8fa99b;
+  --border-light: #e5e5e5;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--border-light);
+  background: #fff;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.nav a.active {
+  border-bottom: 2px solid var(--accent);
+}
+
+/* HERO */
+.hero {
+  padding: 80px 40px;
+  text-align: center;
+  background: #fff;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.hero button {
+  padding: 12px 30px;
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* SECTIONS */
+section {
+  padding: 60px 40px;
+}
+
+section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+/* PRODUCT GRID */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.product-card {
+  background: #fff;
+  border: 1px solid var(--border-light);
+  padding: 15px;
+  cursor: pointer;
+}
+
+.product-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.product-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 30px;
+  border-top: 1px solid var(--border-light);
+  background: #fff;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ADMIN */
+.admin-container {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid var(--border-light);
+}
+
+.admin-container h2 {
+  margin-bottom: 20px;
+}
+
+.admin-container input,
+.admin-container select,
+.admin-container button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.admin-container button {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
