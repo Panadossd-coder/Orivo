@@ -284,3 +284,63 @@ section h2 {
     padding: 60px 24px;
   }
 }
+/* ===============================
+   ORIVO — ANIMATIONS & MOTION
+   Premium, subtle, calm
+   =============================== */
+
+/* Fade-up reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero soft glow */
+.hero h1 {
+  animation: heroFade 1.2s ease forwards;
+}
+
+.hero p {
+  animation: heroFade 1.4s ease forwards;
+}
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button hover polish */
+.btn-primary:hover {
+  box-shadow: 0 18px 40px var(--accent-soft);
+}
+
+/* Card hover refinement */
+.product-card {
+  will-change: transform;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.01);
+}
+
+/* Filter hover (shop sidebar) */
+.filters p {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.filters p:hover {
+  color: var(--accent);
+}
