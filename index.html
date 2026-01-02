@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ORIVO</title>
+  <title>ORIVO — Wear Your Identity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="dark">
 
   <!-- HEADER -->
   <header class="header">
@@ -16,31 +16,58 @@
     <nav class="nav">
       <a href="index.html" class="active">Home</a>
       <a href="shop.html">Shop</a>
-      <a href="categories.html">Categories</a>
     </nav>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>Wear Your Identity</h1>
-      <p>Modern fashion curated for bold expression.</p>
-      <button id="viewAllBtn">View All Products</button>
+    <h1>Wear Your Identity</h1>
+    <p>
+      A modern fashion brand focused on presence, confidence,
+      and timeless expression.
+    </p>
+
+    <div style="display:flex; gap:16px; justify-content:center;">
+      <a href="shop.html" class="btn btn-primary">Explore Collection</a>
+      <a href="shop.html" class="btn btn-outline">View Lookbook</a>
     </div>
   </section>
 
   <!-- FEATURED -->
-  <section class="featured">
-    <h2>Featured Picks</h2>
-    <div id="featuredGrid" class="product-grid"></div>
+  <section>
+    <h2>Featured Pieces</h2>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://via.placeholder.com/400x520?text=ORIVO" alt="">
+        </div>
+        <h4>Classic Ivory Shirt</h4>
+        <span>$45</span>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://via.placeholder.com/400x520?text=ORIVO" alt="">
+        </div>
+        <h4>Minimal Black Tee</h4>
+        <span>$30</span>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">
+          <img src="https://via.placeholder.com/400x520?text=ORIVO" alt="">
+        </div>
+        <h4>Tailored Sand Trousers</h4>
+        <span>$60</span>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>&copy; 2026 ORIVO. All rights reserved.</p>
+    <p>© 2026 ORIVO. All rights reserved.</p>
   </footer>
 
-  <!-- Scripts -->
-  <script src="script.js"></script>
 </body>
 </html>
