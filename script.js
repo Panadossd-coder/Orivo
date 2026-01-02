@@ -21,3 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// ORIVO — Scroll Reveal
+const reveals = document.querySelectorAll('.reveal');
+
+const revealOnScroll = () => {
+  reveals.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 80) {
+      el.classList.add('show');
+    }
+  });
+};
+
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll();
