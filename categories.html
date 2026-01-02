@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ORIVO — Categories</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">ORIVO</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="categories.html" class="active">Categories</a>
+    </nav>
+  </header>
+
+  <!-- CATEGORIES -->
+  <section>
+    <h2>Shop by Category</h2>
+
+    <div class="category-list">
+      <button class="category-btn" data-category="all">All</button>
+      <button class="category-btn" data-category="tops">Tops</button>
+      <button class="category-btn" data-category="bottoms">Bottoms</button>
+      <button class="category-btn" data-category="accessories">Accessories</button>
+    </div>
+
+    <div id="categoryGrid" class="product-grid"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 ORIVO. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
