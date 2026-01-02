@@ -82,10 +82,10 @@
 
     <div class="admin-grid">
 
-      <div class="admin-card">
-        <h3>Hero Section</h3>
-        <p>Edit headline, text & hero image</p>
-      </div>
+      <div class="admin-card" onclick="openHeroEditor()">
+  <h3>Hero Section</h3>
+  <p>Edit headline, text & hero image</p>
+</div>
 
       <div class="admin-card">
         <h3>Shop Products</h3>
@@ -116,6 +116,78 @@
     window.location.href = "admin.html";
   }
 </script>
+<!-- HERO EDITOR MODAL -->
+<div id="heroEditor" style="
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+">
 
+  <div style="
+    background:var(--bg-card);
+    border-radius:18px;
+    padding:32px;
+    width:100%;
+    max-width:420px;
+  ">
+
+    <h3 style="margin-bottom:20px;">Edit Hero Section</h3>
+
+    <label style="font-size:13px;">Hero Title</label>
+    <input id="heroTitle" style="width:100%; margin:8px 0 16px; padding:12px;" />
+
+    <label style="font-size:13px;">Hero Subtitle</label>
+    <textarea id="heroSubtitle" style="width:100%; margin:8px 0 16px; padding:12px;"></textarea>
+
+    <label style="font-size:13px;">Hero Background Image URL</label>
+    <input id="heroImage" placeholder="https://..." style="width:100%; margin:8px 0 20px; padding:12px;" />
+
+    <div style="display:flex; gap:12px;">
+      <button class="btn btn-primary" onclick="saveHero()">Save</button>
+      <button class="btn btn-outline" onclick="closeHeroEditor()">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function openHeroEditor() {
+    document.getElementById("heroEditor").style.display = "flex";
+
+    document.getElementById("heroTitle").value =
+      localStorage.getItem("orivo_hero_title") || "";
+
+    document.getElementById("heroSubtitle").value =
+      localStorage.getItem("orivo_hero_subtitle") || "";
+
+    document.getElementById("heroImage").value =
+      localStorage.getItem("orivo_hero_image") || "";
+  }
+
+  function closeHeroEditor() {
+    document.getElementById("heroEditor").style.display = "none";
+  }
+
+  function saveHero() {
+    localStorage.setItem("orivo_hero_title",
+      document.getElementById("heroTitle").value
+    );
+
+    localStorage.setItem("orivo_hero_subtitle",
+      document.getElementById("heroSubtitle").value
+    );
+
+    localStorage.setItem("orivo_hero_image",
+      document.getElementById("heroImage").value
+    );
+
+    alert("Hero updated successfully");
+    closeHeroEditor();
+  }
+</script>
 </body>
 </html>
