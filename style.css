@@ -223,7 +223,7 @@ section h2 {
    =============================== */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 28px;
 }
 
@@ -283,6 +283,10 @@ section h2 {
   section {
     padding: 60px 24px;
   }
+  .product-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
 }
 /* ===============================
    ORIVO — ANIMATIONS & MOTION
@@ -343,4 +347,17 @@ section h2 {
 
 .filters p:hover {
   color: var(--accent);
+}
+@media (max-width: 600px) {
+  .product-card {
+    padding: 14px;
+  }
+
+  .product-card h4 {
+    font-size: 14px;
+  }
+
+  .product-card span {
+    font-size: 13px;
+  }
 }
