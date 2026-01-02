@@ -29,18 +29,30 @@
 
       <!-- IMAGE -->
       <div class="product-image">
-        <img src="https://via.placeholder.com/600x760?text=ORIVO" alt="Product image">
+        <img
+          id="productImage"
+          src="https://via.placeholder.com/600x760?text=ORIVO"
+          alt="Product image"
+        >
       </div>
 
       <!-- DETAILS -->
       <div>
-        <h2 style="margin-bottom:12px;">Minimal Black Sweatshirt</h2>
-        <p style="color:var(--text-muted); margin-bottom:24px;">
+        <h2 id="productTitle" style="margin-bottom:12px;">
+          Minimal Black Sweatshirt
+        </h2>
+
+        <p
+          id="productDescription"
+          style="color:var(--text-muted); margin-bottom:24px;"
+        >
           Crafted with precision and intention, this piece blends
           comfort with a refined silhouette for everyday wear.
         </p>
 
-        <h3 style="margin-bottom:24px;">$75</h3>
+        <h3 id="productPrice" style="margin-bottom:24px;">
+          $75
+        </h3>
 
         <div style="display:flex; gap:16px;">
           <button class="btn btn-primary">Add to Cart</button>
@@ -61,17 +73,9 @@
   <footer class="footer">
     <p>© 2026 ORIVO. All rights reserved.</p>
   </footer>
-<script src="script.js"></script>
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const item = params.get('item');
 
-  if (item) {
-    const title = document.querySelector('h2');
-    if (title) {
-      title.textContent = item.replace(/-/g, ' ').toUpperCase();
-    }
-  }
-</script>
+  <!-- GLOBAL SCRIPT -->
+  <script src="script.js"></script>
+
 </body>
 </html>
