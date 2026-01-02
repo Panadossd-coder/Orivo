@@ -235,6 +235,10 @@ section h2 {
   box-shadow: var(--shadow-soft);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+/* Clickable cards (SHOP ONLY) */
+.product-card.is-clickable {
+  cursor: pointer;
+}
 .product-card {
   display: flex;
   flex-direction: column;
