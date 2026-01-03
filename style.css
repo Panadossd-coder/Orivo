@@ -707,15 +707,7 @@ section h2 {
   from { opacity: 0; }
   to   { opacity: 0.42; }
 }
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-6px) scale(1.015);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
-}
+    
 
 /* text entrance refinement */
 .hero h1,
@@ -742,25 +734,7 @@ section h2 {
     transform: translateY(0);
   }
 }
-#heroImage {
-  animation: heroDrift 18s ease-in-out infinite;
-}
 
-@keyframes heroDrift {
-  0%   { transform: scale(0.95) translateY(18%); }
-  50%  { transform: scale(0.96) translateY(16%); }
-  100% { transform: scale(0.95) translateY(18%); }
-}
-#heroBadgeWrap {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 80px;            /* 👈 pushes it into the empty space */
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 2;
-}
 #heroBadge {
   width: calc(100% - 48px); /* 👈 almost edge-to-edge */
   max-width: 640px;
