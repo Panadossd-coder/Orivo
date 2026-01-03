@@ -205,5 +205,23 @@
     closeHeroEditor();
   }
 </script>
+<script>
+  const heroImageInput = document.getElementById("heroImageInput");
+  const heroPreview = document.getElementById("heroPreview");
+
+  heroImageInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      heroPreview.src = e.target.result;
+      heroPreview.style.display = "block";
+    };
+
+    reader.readAsDataURL(file);
+  });
+</script>
 </body>
 </html>
