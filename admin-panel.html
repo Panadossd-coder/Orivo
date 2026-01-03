@@ -51,16 +51,6 @@
       transform: translateY(-4px);
     }
 
-    .admin-card h3 {
-      margin-bottom: 8px;
-      font-size: 16px;
-    }
-
-    .admin-card p {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
     .logout-btn {
       font-size: 13px;
       border: 1px solid var(--border);
@@ -69,8 +59,49 @@
       cursor: pointer;
       background: transparent;
     }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border-radius: 18px;
+      padding: 32px;
+      width: 100%;
+      max-width: 420px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-box label {
+      font-size: 13px;
+    }
+
+    .modal-box input,
+    .modal-box textarea {
+      width: 100%;
+      margin: 8px 0 16px;
+      padding: 12px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .modal-actions button {
+      flex: 1;
+    }
   </style>
 </head>
+
 <body>
 
 <div class="admin-wrapper">
@@ -81,28 +112,12 @@
   </div>
 
   <div class="admin-grid">
-
     <div class="admin-card" onclick="openHeroEditor()">
       <h3>Hero Section</h3>
       <p>Edit headline, text & hero image</p>
     </div>
-
-    <div class="admin-card">
-      <h3>Shop Products</h3>
-      <p>Change images, names & prices</p>
-    </div>
-
-    <div class="admin-card">
-      <h3>Featured Pieces</h3>
-      <p>Select homepage featured products</p>
-    </div>
-
-    <div class="admin-card">
-      <h3>Theme & Appearance</h3>
-      <p>Accent colors & dark mode defaults</p>
-    </div>
-
   </div>
+
 </div>
 
 <!-- ACCESS GUARD -->
@@ -118,48 +133,34 @@
 </script>
 
 <!-- HERO MODAL -->
-<div id="heroEditor" style="
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:999;
-">
+<div id="heroEditor" class="modal">
+  <div class="modal-box">
 
-  <div style="
-    background:var(--bg-card);
-    border-radius:18px;
-    padding:32px;
-    width:100%;
-    max-width:420px;
-    max-height:90vh;
-    overflow-y:auto;
-  ">
-
-    <h3 style="margin-bottom:20px;">Edit Hero Section</h3>
+    <h3>Edit Hero Section</h3>
 
     <label>Hero Title</label>
-    <input id="heroTitle" style="width:100%; margin:8px 0 16px; padding:12px;" />
+    <input id="heroTitle" />
 
     <label>Hero Subtitle</label>
-    <textarea id="heroSubtitle" style="width:100%; margin:8px 0 16px; padding:12px;"></textarea>
+    <textarea id="heroSubtitle"></textarea>
 
     <label>Hero Background Image</label>
     <input type="file" id="heroImageInput" accept="image/*" />
 
-    <img id="heroPreview" style="
-      width:100%;
-      max-height:220px;
-      object-fit:cover;
-      border-radius:14px;
-      display:none;
-      margin:16px 0;
-    " />
+    <img
+      id="heroPreview"
+      style="
+        width:100%;
+        max-height:220px;
+        object-fit:cover;
+        border-radius:14px;
+        display:none;
+        margin-bottom:16px;
+      "
+    />
 
-    <div style="display:flex; gap:12px;">
-      <button class="btn btn-primary" onclick="saveHero()">Save</button>
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="saveHeroBtn" onclick="saveHero()">Save</button>
       <button class="btn btn-outline" onclick="closeHeroEditor()">Cancel</button>
     </div>
 
@@ -168,25 +169,52 @@
 
 <!-- HERO LOGIC -->
 <script>
+  const heroEditor = document.getElementById("heroEditor");
+  const heroTitle = document.getElementById("heroTitle");
+  const heroSubtitle = document.getElementById("heroSubtitle");
+  const heroImageInput = document.getElementById("heroImageInput");
+  const heroPreview = document.getElementById("heroPreview");
+  const saveHeroBtn = document.getElementById("saveHeroBtn");
+
   let uploadedHeroImage = null;
 
   function openHeroEditor() {
-    document.getElementById("heroEditor").style.display = "flex";
+    heroEditor.style.display = "flex";
 
     heroTitle.value = localStorage.getItem("orivo_hero_title") || "";
     heroSubtitle.value = localStorage.getItem("orivo_hero_subtitle") || "";
 
     const savedImage = localStorage.getItem("orivo_hero_image");
+
     if (savedImage) {
       uploadedHeroImage = savedImage;
       heroPreview.src = savedImage;
       heroPreview.style.display = "block";
+    } else {
+      uploadedHeroImage = null;
+      heroPreview.style.display = "none";
     }
+
+    heroImageInput.value = "";
   }
 
   function closeHeroEditor() {
-    document.getElementById("heroEditor").style.display = "none";
+    heroEditor.style.display = "none";
+    heroImageInput.value = "";
   }
+
+  heroImageInput.addEventListener("change", () => {
+    const file = heroImageInput.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      uploadedHeroImage = reader.result;
+      heroPreview.src = uploadedHeroImage;
+      heroPreview.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+  });
 
   function saveHero() {
     if (!uploadedHeroImage) {
@@ -201,25 +229,6 @@
     alert("Hero updated successfully");
     closeHeroEditor();
   }
-</script>
-
-<!-- IMAGE UPLOAD (BASE64) -->
-<script>
-  const heroImageInput = document.getElementById("heroImageInput");
-  const heroPreview = document.getElementById("heroPreview");
-
-  heroImageInput.addEventListener("change", () => {
-    const file = heroImageInput.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function () {
-      uploadedHeroImage = reader.result;
-      heroPreview.src = uploadedHeroImage;
-      heroPreview.style.display = "block";
-    };
-    reader.readAsDataURL(file);
-  });
 </script>
 
 </body>
