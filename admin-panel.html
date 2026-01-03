@@ -83,9 +83,9 @@
     <div class="admin-grid">
 
       <div class="admin-card" onclick="openHeroEditor()">
-  <h3>Hero Section</h3>
-  <p>Edit headline, text & hero image</p>
-</div>
+        <h3>Hero Section</h3>
+        <p>Edit headline, text & hero image</p>
+      </div>
 
       <div class="admin-card">
         <h3>Shop Products</h3>
@@ -105,127 +105,157 @@
     </div>
   </div>
 
-<script>
-  // 🔐 ACCESS GUARD
-  if (localStorage.getItem("orivo_admin") !== "unlocked") {
-    window.location.href = "admin.html";
-  }
+  <!-- 🔐 ACCESS GUARD -->
+  <script>
+    if (localStorage.getItem("orivo_admin") !== "unlocked") {
+      window.location.href = "admin.html";
+    }
 
-  function logout() {
-    localStorage.removeItem("orivo_admin");
-    window.location.href = "admin.html";
-  }
-</script>
-<!-- HERO EDITOR MODAL -->
-<div id="heroEditor" style="
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:999;
-">
+    function logout() {
+      localStorage.removeItem("orivo_admin");
+      window.location.href = "admin.html";
+    }
+  </script>
 
-  <div style="
-  background:var(--bg-card);
-  border-radius:18px;
-  padding:32px;
-  width:100%;
-  max-width:420px;
-  max-height:90vh;
-  overflow-y:auto;
-">
-
-    <h3 style="margin-bottom:20px;">Edit Hero Section</h3>
-
-    <label style="font-size:13px;">Hero Title</label>
-    <input id="heroTitle" style="width:100%; margin:8px 0 16px; padding:12px;" />
-
-    <label style="font-size:13px;">Hero Subtitle</label>
-    <textarea id="heroSubtitle" style="width:100%; margin:8px 0 16px; padding:12px;"></textarea>
-
-<label style="font-size:13px;">Hero Background Image</label>
-
-<input
-  type="file"
-  accept="image/*"
-  id="heroImageInput"
-  style="margin:8px 0 12px;"
-/>
-
-<img
-  id="heroPreview"
-  style="
-    width:100%;
-    max-height:220px;
-    object-fit:cover;
-    border-radius:14px;
+  <!-- =========================
+       HERO EDITOR MODAL
+       ========================= -->
+  <div id="heroEditor" style="
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
     display:none;
-    margin-bottom:16px;
-  "
-/>
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  ">
 
-    <div style="display:flex; gap:12px;">
-      <button class="btn btn-primary" onclick="saveHero()">Save</button>
-      <button class="btn btn-outline" onclick="closeHeroEditor()">Cancel</button>
+    <div style="
+      background:var(--bg-card);
+      border-radius:18px;
+      padding:32px;
+      width:100%;
+      max-width:420px;
+      max-height:90vh;
+      overflow-y:auto;
+    ">
+
+      <h3 style="margin-bottom:20px;">Edit Hero Section</h3>
+
+      <label style="font-size:13px;">Hero Title</label>
+      <input
+        id="heroTitle"
+        style="width:100%; margin:8px 0 16px; padding:12px;"
+      />
+
+      <label style="font-size:13px;">Hero Subtitle</label>
+      <textarea
+        id="heroSubtitle"
+        style="width:100%; margin:8px 0 16px; padding:12px;"
+      ></textarea>
+
+      <label style="font-size:13px;">Hero Background Image</label>
+
+      <input
+        type="file"
+        accept="image/*"
+        id="heroImageInput"
+        style="margin:8px 0 12px;"
+      />
+
+      <img
+        id="heroPreview"
+        style="
+          width:100%;
+          max-height:220px;
+          object-fit:cover;
+          border-radius:14px;
+          display:none;
+          margin-bottom:16px;
+        "
+      />
+
+      <div style="display:flex; gap:12px;">
+        <button class="btn btn-primary" onclick="saveHero()">Save</button>
+        <button class="btn btn-outline" onclick="closeHeroEditor()">Cancel</button>
+      </div>
+
     </div>
-
   </div>
-</div>
 
-<script>
-  function openHeroEditor() {
-    document.getElementById("heroEditor").style.display = "flex";
+  <!-- =========================
+       HERO LOGIC
+       ========================= -->
+  <script>
+    let uploadedHeroImage = null;
 
-    document.getElementById("heroTitle").value =
-      localStorage.getItem("orivo_hero_title") || "";
+    function openHeroEditor() {
+      document.getElementById("heroEditor").style.display = "flex";
 
-    document.getElementById("heroSubtitle").value =
-      localStorage.getItem("orivo_hero_subtitle") || "";
+      document.getElementById("heroTitle").value =
+        localStorage.getItem("orivo_hero_title") || "";
 
-    document.getElementById("heroImage").value =
-      localStorage.getItem("orivo_hero_image") || "";
-  }
+      document.getElementById("heroSubtitle").value =
+        localStorage.getItem("orivo_hero_subtitle") || "";
 
-  function closeHeroEditor() {
-    document.getElementById("heroEditor").style.display = "none";
-  }
+      const savedImage = localStorage.getItem("orivo_hero_image");
 
-  function saveHero() {
-    localStorage.setItem("orivo_hero_title",
-      document.getElementById("heroTitle").value
-    );
+      if (savedImage) {
+        heroPreview.src = savedImage;
+        heroPreview.style.display = "block";
+        uploadedHeroImage = savedImage;
+      }
+    }
 
-    localStorage.setItem("orivo_hero_subtitle",
-      document.getElementById("heroSubtitle").value
-    );
+    function closeHeroEditor() {
+      document.getElementById("heroEditor").style.display = "none";
+    }
 
-    localStorage.setItem("orivo_hero_image",
-      document.getElementById("heroImage").value
-    );
+    function saveHero() {
+      localStorage.setItem(
+        "orivo_hero_title",
+        document.getElementById("heroTitle").value
+      );
 
-    alert("Hero updated successfully");
-    closeHeroEditor();
-  }
-</script>
-<script>
-  const heroImageInput = document.getElementById("heroImageInput");
-  const heroPreview = document.getElementById("heroPreview");
+      localStorage.setItem(
+        "orivo_hero_subtitle",
+        document.getElementById("heroSubtitle").value
+      );
 
-  heroImageInput.addEventListener("change", function () {
-    const file = this.files[0];
-    if (!file) return;
+      if (uploadedHeroImage) {
+        localStorage.setItem(
+          "orivo_hero_image",
+          uploadedHeroImage
+        );
+      }
 
-    const reader = new FileReader();
+      alert("Hero updated successfully");
+      closeHeroEditor();
+    }
+  </script>
 
-    reader.onload = function (e) {
-      heroPreview.src = e.target.result;
-      heroPreview.style.display = "block";
-    };
+  <!-- =========================
+       IMAGE UPLOAD HANDLER
+       ========================= -->
+  <script>
+    const heroImageInput = document.getElementById("heroImageInput");
+    const heroPreview = document.getElementById("heroPreview");
 
-    reader.readAsDataURL(file);
-  });
-</script>
+    heroImageInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        uploadedHeroImage = e.target.result;
+        heroPreview.src = uploadedHeroImage;
+        heroPreview.style.display = "block";
+      };
+
+      reader.readAsDataURL(file);
+    });
+  </script>
+
 </body>
 </html>
