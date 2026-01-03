@@ -576,3 +576,69 @@ section h2 {
   );
   margin-bottom: 12px;
 }
+/* ===============================
+   HERO — SUBTLE LIFE (2025 MOTION)
+   =============================== */
+
+/* soft animated background glow */
+.hero {
+  background:
+    radial-gradient(
+      1200px 500px at 50% -10%,
+      rgba(209,108,138,0.12),
+      transparent 60%
+    );
+  animation: heroGlow 14s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlow {
+  from {
+    background-position: 50% -10%;
+  }
+  to {
+    background-position: 50% 10%;
+  }
+}
+
+/* hero image micro-movement (very subtle) */
+#heroImage {
+  animation: heroFloat 10s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.015);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* text entrance refinement */
+.hero h1,
+.hero p,
+.hero .btn {
+  animation: heroTextIn 0.9s ease both;
+}
+
+.hero p {
+  animation-delay: 0.15s;
+}
+
+.hero .btn {
+  animation-delay: 0.25s;
+}
+
+@keyframes heroTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
