@@ -712,3 +712,6 @@ section h2 {
   50%  { transform: translateY(-12px) perspective(1000px) rotateY(-4deg); }
   100% { transform: translateY(0) perspective(1000px) rotateY(-8deg); }
 }
+.hero-particles {
+  display: none;
+}
