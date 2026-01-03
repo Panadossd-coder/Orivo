@@ -125,6 +125,8 @@ img {
 .hero {
   min-height: 72vh;       /* 🔑 smaller */
   height: 90vh;
+  max-height: 900px;      /* 🔒 prevents Safari over-expansion */
+
   padding: 80px 24px 80px; /* 🔑 equal padding */
   display: flex;
   flex-direction: column;
@@ -143,9 +145,8 @@ img {
   left: 0;
   right: 0;
 
-  /* anchor relative to hero content, not viewport */
-  top: 50%;
-  transform: translateY(140px);
+  /* ✅ SAFARI-SAFE ANCHOR */
+  bottom: 160px;
 
   display: flex;
   justify-content: center;
