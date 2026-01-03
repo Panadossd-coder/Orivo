@@ -149,14 +149,37 @@ img {
   overflow: hidden;
 }
 
-.hero-image {
+/* ===============================
+   HERO IMAGE — CORRECT SCALE + BLEND
+   =============================== */
+#heroImage {
+  position: relative;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+
+  margin: 0 auto 32px;
+  object-fit: contain;
+
+  /* visual blending */
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.18));
+}
+
+/* soft fade at bottom to blend with bg */
+.hero::after {
+  content: "";
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.35;
-  z-index: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 140px;
+  background: linear-gradient(
+    to bottom,
+    rgba(246,246,244,0),
+    var(--bg-main)
+  );
+  pointer-events: none;
 }
 
 .hero h1,
