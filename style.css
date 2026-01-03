@@ -145,8 +145,8 @@ img {
   left: 0;
   right: 0;
 
-  /* ✅ SAFARI-SAFE ANCHOR */
-  bottom: calc(160px + env(safe-area-inset-bottom));
+  inset-block-end: 0;
+  transform: translateY(-80px);
 
   display: flex;
   justify-content: center;
