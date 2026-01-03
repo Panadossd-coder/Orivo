@@ -1,112 +1,555 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>ORIVO — Wear Your Identity</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+Style.css
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body class="dark">
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="logo">ORIVO</div>
-    <nav class="nav">
-      <a href="index.html" class="active">Home</a>
-      <a href="shop.html">Shop</a>
-    </nav>
-    <button id="themeToggle" class="btn btn-outline" style="padding:8px 18px;">Theme</button>
-  </header>
+/* ===============================
+   ORIVO — DESIGN SYSTEM
+   Luxury × Modern Commerce
+   =============================== */
 
-  <!-- HERO -->
- <!-- REPLACE current hero section with this -->
-<section class="hero hero-v2" id="heroSection">
-  <div class="hero-bg" aria-hidden="true">
-    <div class="bg-gradient"></div>
-    <canvas id="heroParticles" class="hero-particles" aria-hidden="true"></canvas>
-  </div>
+/* ---------- FONTS ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="eyebrow">ORIVO Hero</div>
+/* ---------- RESET ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-      <!-- big headline -->
-      <h1 id="heroTitle" class="reveal-line">Wear Your Identity</h1>
+html {
+  scroll-behavior: smooth;
+}
 
-      <!-- supporting line -->
-      <p id="heroSubtitle" class="reveal-line small">
-        A modern fashion brand focused on presence...
-      </p>
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
-      <div class="hero-ctas">
-        <a href="shop.html" class="btn btn-primary">Explore Collection</a>
-        <a href="shop.html" class="btn btn-outline">View Lookbook</a>
-      </div>
-    </div>
+/* ===============================
+   THEME VARIABLES
+   =============================== */
+:root {
+  /* Light Mode */
+  --bg-main: #f6f6f4;
+  --bg-card: #ffffff;
+  --text-main: #111111;
+  --text-muted: #6b6b6b;
+  --border: #e5e5e5;
 
-    <div class="hero-visual-wrap">
-      <!-- floating visual card -->
-      <div id="visualCard" class="visual-card" aria-hidden="true">
-        <div class="visual-frame">
-          <img id="heroImage" alt="ORIVO Hero" />
-        </div>
-        <div class="card-reflection"></div>
-        <div class="visual-badge">New • 2025</div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- END hero -->
+  /* Accent */
+  --accent: #d16c8a;
+  --accent-soft: rgba(209, 108, 138, 0.15);
 
-  <!-- FEATURED -->
- <section class="reveal">
-  <h2>Featured Pieces</h2>
+  /* Effects */
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.06);
+}
 
-  <div class="featured-slider">
-    <div class="featured-card">
-      <img src="images/hero.jpg" alt="Classic Ivory Shirt">
-      <h4>Classic Ivory Shirt</h4>
-      <span>$45</span>
-    </div>
+body.dark {
+  --bg-main: #0f0f12;
+  --bg-card: #16161b;
+  --text-main: #f5f5f5;
+  --text-muted: #a1a1aa;
+  --border: #2a2a2f;
 
-    <div class="featured-card">
-      <img src="images/hero.jpg" alt="Minimal Black Tee">
-      <h4>Minimal Black Tee</h4>
-      <span>$30</span>
-    </div>
+  --accent: #e58aa5;
+  --accent-soft: rgba(229, 138, 165, 0.18);
 
-    <div class="featured-card">
-      <img src="images/hero.jpg" alt="Structured Overshirt">
-      <h4>Structured Overshirt</h4>
-      <span>$95</span>
-    </div>
-  </div>
-</section>
+  --shadow-soft: 0 20px 50px rgba(0,0,0,0.4);
+}
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>© 2026 ORIVO. All rights reserved.</p>
-  </footer>
-<script src="script.js"></script>
+/* ===============================
+   GLOBAL
+   =============================== */
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
 
-<script>
-  const heroTitle = localStorage.getItem("orivo_hero_title");
-  const heroSubtitle = localStorage.getItem("orivo_hero_subtitle");
-  const heroImage = localStorage.getItem("orivo_hero_image");
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-  if (heroTitle) {
-    document.getElementById("heroTitle").textContent = heroTitle;
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ===============================
+   HEADER / NAV
+   =============================== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 48px;
+  background: var(--bg-main);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.nav a {
+  margin-left: 28px;
+  font-size: 14px;
+  font-weight: 500;
+  position: relative;
+  color: var(--text-muted);
+}
+
+.nav a.active,
+.nav a:hover {
+  color: var(--text-main);
+}
+
+.nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+/* ===============================
+   HERO (HOME)
+   =============================== */
+.hero {
+  min-height: 80vh;
+  padding: 120px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  max-width: 520px;
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  z-index: 0;
+}
+
+.hero h1,
+.hero p,
+.hero div {
+  position: relative;
+  z-index: 1;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background:
+    radial-gradient(
+      circle at 70% 30%,
+      rgba(209, 108, 138, 0.45),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 30% 70%,
+      rgba(120, 120, 255, 0.35),
+      transparent 50%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.6),
+      rgba(0,0,0,0.85)
+    );
+}
+/* ===============================
+   BUTTONS
+   =============================== */
+.btn {
+  padding: 14px 38px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #f2a1b8);
+  color: #fff;
+  border: none;
+  box-shadow: 0 10px 30px var(--accent-soft);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-main);
+}
+
+/* ===============================
+   SECTION
+   =============================== */
+section {
+  padding: 80px 48px;
+}
+
+section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* ===============================
+   SHOP LAYOUT
+   =============================== */
+.shop-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+}
+
+/* ---------- FILTER SIDEBAR ---------- */
+.filters {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.filters h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  margin-bottom: 24px;
+}
+
+.filter-group label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+/* ===============================
+   PRODUCT GRID
+   =============================== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* ---------- PRODUCT CARD ---------- */
+.product-card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+/* Clickable cards (SHOP ONLY) */
+.product-card.is-clickable {
+  cursor: pointer;
+}
+.product-card {
+  display: flex;
+  flex-direction: column;
+}
+/* ---------- CARD ACTIONS (HOVER UI) ---------- */
+.card-actions {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.05)
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  border-radius: 18px;
+}
+
+/* Enable overlay context */
+.product-card {
+  position: relative;
+}
+
+/* Show on hover (desktop only) */
+@media (hover: hover) {
+  .product-card:hover .card-actions {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Buttons */
+.action-btn {
+  border-radius: 999px;
+  font-size: 13px;
+  padding: 10px 18px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, var(--accent), #f2a1b8);
+  color: #fff;
+}
+
+.action-btn.ghost {
+  background: rgba(255,255,255,0.9);
+  color: #111;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+}
+
+.product-image {
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 14px;
+
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #ececec;
+}
+
+.product-card h4 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.product-card span {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ===============================
+   FOOTER
+   =============================== */
+.footer {
+  padding: 40px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ===============================
+   RESPONSIVE — MOBILE & TABLET
+   =============================== */
+
+@media (max-width: 900px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
   }
 
-  if (heroSubtitle) {
-    document.getElementById("heroSubtitle").textContent = heroSubtitle;
+  .header {
+    padding: 20px 24px;
   }
 
-  if (heroImage) {
-    document.getElementById("heroImage").src = heroImage;
+  section {
+    padding: 60px 24px;
   }
-</script>
-</body>
-</html>
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-card {
+    padding: 14px;
+  }
+
+  .product-card h4 {
+    font-size: 14px;
+  }
+
+  .product-card span {
+    font-size: 13px;
+  }
+}
+/* ===============================
+   ORIVO — ANIMATIONS & MOTION
+   Premium, subtle, calm
+   =============================== */
+
+/* Fade-up reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero soft glow */
+.hero h1 {
+  animation: heroFade 1.2s ease forwards;
+}
+
+.hero p {
+  animation: heroFade 1.4s ease forwards;
+}
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button hover polish */
+.btn-primary:hover {
+  box-shadow: 0 18px 40px var(--accent-soft);
+}
+
+/* Card hover refinement */
+.product-card {
+  will-change: transform;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.01);
+}
+
+/* Filter hover (shop sidebar) */
+.filters p {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.filters p:hover {
+  color: var(--accent);
+}
+@media (max-width: 600px) {
+  .product-card {
+    padding: 14px;
+  }
+
+  .product-card h4 {
+    font-size: 14px;
+  }
+
+  .product-card span {
+    font-size: 13px;
+  }
+}
+/* ===============================
+   FEATURED SLIDER (MODERN)
+   =============================== */
+
+.featured-slider {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 20px 0 40px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.featured-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-card {
+  min-width: 260px;
+  background: var(--bg-card);
+  border-radius: 22px;
+  padding: 16px;
+  scroll-snap-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.35s ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.featured-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 14px;
+}
+
+.featured-card h4 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.featured-card span {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.featured-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+.featured-image-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.02)
+  );
+  margin-bottom: 12px;
+}
