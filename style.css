@@ -124,6 +124,7 @@ img {
    =============================== */
 .hero {
   min-height: 72vh;       /* 🔑 smaller */
+  height: 90vh;
   padding: 80px 24px 80px; /* 🔑 equal padding */
   display: flex;
   flex-direction: column;
@@ -162,34 +163,32 @@ img {
   height: 100%;
 
   object-fit: contain;
-  object-position: center 40%;
+  object-position: center 55%;
 
-  /* positioning */
-  transform: scale(0.82) translateY(10%);
+  /* move image DOWN to fill space */
+  transform: scale(0.95) translateY(18%);
 
-  /* blend */
   opacity: 0.42;
   filter: saturate(0.95) contrast(0.98);
 
   pointer-events: none;
 
-  /* fade bottom */
+  /* soft bottom fade */
   -webkit-mask-image: linear-gradient(
     to bottom,
-    rgba(0,0,0,1) 55%,
-    rgba(0,0,0,0.85) 70%,
-    rgba(0,0,0,0.4) 85%,
+    rgba(0,0,0,1) 60%,
+    rgba(0,0,0,0.8) 75%,
+    rgba(0,0,0,0.4) 88%,
     rgba(0,0,0,0) 100%
   );
   mask-image: linear-gradient(
     to bottom,
-    rgba(0,0,0,1) 55%,
-    rgba(0,0,0,0.85) 70%,
-    rgba(0,0,0,0.4) 85%,
+    rgba(0,0,0,1) 60%,
+    rgba(0,0,0,0.8) 75%,
+    rgba(0,0,0,0.4) 88%,
     rgba(0,0,0,0) 100%
   );
 
-  /* iOS safety */
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
