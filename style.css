@@ -146,7 +146,8 @@ img {
   overflow: hidden;
 }
 
-.hero-image {
+/* Hero background image (base64 safe) */
+#heroImage {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -154,6 +155,11 @@ img {
   object-fit: cover;
   opacity: 0.35;
   z-index: 0;
+
+  /* iOS Safari base64 fix */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .hero h1,
