@@ -80,6 +80,57 @@
       max-height: 90vh;
       overflow-y: auto;
     }
+<!-- FEATURED MODAL -->
+<div id="featuredEditor" style="
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+">
+  <div style="
+    background:white;
+    border-radius:18px;
+    padding:32px;
+    width:100%;
+    max-width:440px;
+    max-height:90vh;
+    overflow-y:auto;
+  ">
+
+    <h3 style="margin-bottom:16px;">Featured Pieces (Max 4)</h3>
+
+    <div id="featuredList" style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px;"></div>
+
+    <hr style="margin:24px 0;" />
+
+    <label>Product Name</label>
+    <input id="featuredTitle" style="width:100%; padding:12px; margin:8px 0 12px;" />
+
+    <label>Price ($)</label>
+    <input id="featuredPrice" type="number" style="width:100%; padding:12px; margin:8px 0 12px;" />
+
+    <label>Product Image</label>
+    <input type="file" id="featuredImageInput" accept="image/*" />
+
+    <img id="featuredPreview" style="
+      width:100%;
+      max-height:240px;
+      object-fit:cover;
+      border-radius:14px;
+      display:none;
+      margin:16px 0;
+    " />
+
+    <div style="display:flex; gap:12px;">
+      <button class="btn btn-primary" onclick="addFeatured()">Add</button>
+      <button class="btn btn-outline" onclick="closeFeaturedEditor()">Close</button>
+    </div>
+
+  </div>
+</div>
 
     #heroPreview {
       width: 100%;
@@ -112,6 +163,12 @@
       <h3>Shop Products</h3>
       <p>Change images, names & prices</p>
     </div>
+    
+    <div class="admin-card" onclick="openFeaturedEditor()">
+  <h3>Featured Pieces</h3>
+  <p>Select homepage featured products</p>
+</div>
+    
 
     <div class="admin-card">
       <h3>Featured Pieces</h3>
@@ -221,6 +278,109 @@ function saveHero() {
   closeHeroEditor();
 }
 </script>
+<script>
+/* =========================
+   FEATURED STATE
+   ========================= */
+let featuredImageBase64 = null;
+let featuredItems = JSON.parse(localStorage.getItem("orivo_featured")) || [];
 
+/* =========================
+   OPEN / CLOSE
+   ========================= */
+function openFeaturedEditor() {
+  document.getElementById("featuredEditor").style.display = "flex";
+  renderFeaturedList();
+}
+
+function closeFeaturedEditor() {
+  document.getElementById("featuredEditor").style.display = "none";
+  featuredPreview.style.display = "none";
+  featuredImageBase64 = null;
+}
+
+/* =========================
+   IMAGE → BASE64
+   ========================= */
+featuredImageInput.addEventListener("change", () => {
+  const file = featuredImageInput.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    featuredImageBase64 = reader.result;
+    featuredPreview.src = featuredImageBase64;
+    featuredPreview.style.display = "block";
+  };
+  reader.readAsDataURL(file);
+});
+
+/* =========================
+   ADD FEATURED
+   ========================= */
+function addFeatured() {
+  if (featuredItems.length >= 4) {
+    alert("Maximum 4 featured items allowed");
+    return;
+  }
+
+  if (!featuredTitle.value || !featuredPrice.value || !featuredImageBase64) {
+    alert("All fields are required");
+    return;
+  }
+
+  const item = {
+    id: Date.now(),
+    title: featuredTitle.value,
+    price: featuredPrice.value,
+    image: featuredImageBase64
+  };
+
+  featuredItems.push(item);
+  localStorage.setItem("orivo_featured", JSON.stringify(featuredItems));
+
+  featuredTitle.value = "";
+  featuredPrice.value = "";
+  featuredImageInput.value = "";
+  featuredPreview.style.display = "none";
+  featuredImageBase64 = null;
+
+  renderFeaturedList();
+}
+
+/* =========================
+   DELETE FEATURED
+   ========================= */
+function deleteFeatured(id) {
+  featuredItems = featuredItems.filter(item => item.id !== id);
+  localStorage.setItem("orivo_featured", JSON.stringify(featuredItems));
+  renderFeaturedList();
+}
+
+/* =========================
+   RENDER LIST
+   ========================= */
+function renderFeaturedList() {
+  featuredList.innerHTML = "";
+
+  featuredItems.forEach(item => {
+    const div = document.createElement("div");
+    div.style.display = "flex";
+    div.style.alignItems = "center";
+    div.style.gap = "12px";
+
+    div.innerHTML = `
+      <img src="${item.image}" style="width:56px; height:56px; object-fit:cover; border-radius:8px;" />
+      <div style="flex:1;">
+        <strong>${item.title}</strong><br/>
+        $${item.price}
+      </div>
+      <button onclick="deleteFeatured(${item.id})" style="border:none;background:none;color:red;cursor:pointer;">✕</button>
+    `;
+
+    featuredList.appendChild(div);
+  });
+}
+</script>
 </body>
 </html>
