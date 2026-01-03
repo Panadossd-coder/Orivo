@@ -143,8 +143,24 @@
     <label style="font-size:13px;">Hero Subtitle</label>
     <textarea id="heroSubtitle" style="width:100%; margin:8px 0 16px; padding:12px;"></textarea>
 
-    <label style="font-size:13px;">Hero Background Image URL</label>
-    <input id="heroImage" placeholder="https://..." style="width:100%; margin:8px 0 20px; padding:12px;" />
+<label style="font-size:13px;">Hero Background Image</label>
+
+<input
+  type="file"
+  accept="image/*"
+  id="heroImageInput"
+  style="margin:8px 0 12px;"
+/>
+
+<img
+  id="heroPreview"
+  style="
+    width:100%;
+    border-radius:14px;
+    display:none;
+    margin-bottom:20px;
+  "
+/>
 
     <div style="display:flex; gap:12px;">
       <button class="btn btn-primary" onclick="saveHero()">Save</button>
