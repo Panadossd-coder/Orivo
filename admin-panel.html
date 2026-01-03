@@ -71,6 +71,15 @@
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+  const SUPABASE_URL = "https://cuzlhmjgzcquarrtyybo.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_nOXT4Vuw9iQ4HXB6QaPBjw_a6VYFyYQ";
+
+  const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+</script>
 </head>
 <body>
 
@@ -238,11 +247,9 @@
   <!-- =========================
        IMAGE UPLOAD HANDLER
        ========================= -->
-  <script>
+ <script>
   const heroImageInput = document.getElementById("heroImageInput");
   const heroPreview = document.getElementById("heroPreview");
-
-  let uploadedHeroImage = null;
 
   heroImageInput.addEventListener("change", async function () {
     const file = this.files[0];
@@ -251,7 +258,8 @@
     const fileExt = file.name.split(".").pop();
     const fileName = `hero-${Date.now()}.${fileExt}`;
 
-    const { data, error } = await supabase.storage
+    const { error } = await supabase
+      .storage
       .from("hero-images")
       .upload(fileName, file, {
         cacheControl: "3600",
@@ -264,11 +272,12 @@
       return;
     }
 
-    const { data: publicURL } = supabase.storage
+    const { data } = supabase
+      .storage
       .from("hero-images")
       .getPublicUrl(fileName);
 
-    uploadedHeroImage = publicURL.publicUrl;
+    uploadedHeroImage = data.publicUrl;
 
     heroPreview.src = uploadedHeroImage;
     heroPreview.style.display = "block";
