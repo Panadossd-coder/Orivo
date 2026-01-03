@@ -1,6 +1,3 @@
-Style.css
-
-
 /* ===============================
    ORIVO — DESIGN SYSTEM
    Luxury × Modern Commerce
@@ -16,32 +13,26 @@ Style.css
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
-  transition: background 0.3s ease, color 0.3s ease;
+  background: var(--bg-main);
+  color: var(--text-main);
 }
 
 /* ===============================
    THEME VARIABLES
    =============================== */
 :root {
-  /* Light Mode */
   --bg-main: #f6f6f4;
   --bg-card: #ffffff;
   --text-main: #111111;
   --text-muted: #6b6b6b;
   --border: #e5e5e5;
-
-  /* Accent */
   --accent: #d16c8a;
-  --accent-soft: rgba(209, 108, 138, 0.15);
-
-  /* Effects */
+  --accent-soft: rgba(209,108,138,0.15);
   --shadow-soft: 0 10px 30px rgba(0,0,0,0.06);
 }
 
@@ -51,40 +42,19 @@ body.dark {
   --text-main: #f5f5f5;
   --text-muted: #a1a1aa;
   --border: #2a2a2f;
-
   --accent: #e58aa5;
-  --accent-soft: rgba(229, 138, 165, 0.18);
-
+  --accent-soft: rgba(229,138,165,0.18);
   --shadow-soft: 0 20px 50px rgba(0,0,0,0.4);
 }
 
 /* ===============================
-   GLOBAL
-   =============================== */
-body {
-  background: var(--bg-main);
-  color: var(--text-main);
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-/* ===============================
-   HEADER / NAV
+   HEADER
    =============================== */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 22px 48px;
-  background: var(--bg-main);
   border-bottom: 1px solid var(--border);
 }
 
@@ -92,187 +62,59 @@ img {
   font-family: 'Playfair Display', serif;
   font-size: 26px;
   font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.nav a {
-  margin-left: 28px;
-  font-size: 14px;
-  font-weight: 500;
-  position: relative;
-  color: var(--text-muted);
-}
-
-.nav a.active,
-.nav a:hover {
-  color: var(--text-main);
-}
-
-.nav a.active::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), transparent);
 }
 
 /* ===============================
-   HERO (HOME)
+   HERO (TEXT FIRST)
    =============================== */
 .hero {
-  min-height: 72vh;       /* 🔑 smaller */
-  padding: 80px 24px 80px; /* 🔑 equal padding */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  padding: 80px 24px 40px;
   text-align: center;
   position: relative;
-  overflow: hidden;
 }
 
 .hero h1 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(42px, 6vw, 72px);
-  font-weight: 700;
   margin-bottom: 20px;
 }
 
 .hero p {
   max-width: 520px;
-  font-size: 16px;
+  margin: 0 auto 40px;
   color: var(--text-muted);
-  margin-bottom: 40px;
-}
-.hero {
-  position: relative;
-  overflow: hidden;
 }
 
 /* ===============================
-   HERO IMAGE — FINAL CORRECT VERSION
+   HERO IMAGE (LAYOUT-FLOW)
+   THIS IS THE KEY FIX
    =============================== */
 #heroImage {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
-  height: 100%;
+  max-width: 460px;
+  height: auto;
+
+  margin: 40px auto 0;
 
   object-fit: contain;
   object-position: center 40%;
 
-  /* positioning */
-  transform: scale(0.82) translateY(10%);
-
-  /* blend */
+  transform: scale(0.82);
   opacity: 0.42;
   filter: saturate(0.95) contrast(0.98);
 
   pointer-events: none;
-
-  /* fade bottom */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0,0,0,1) 55%,
-    rgba(0,0,0,0.85) 70%,
-    rgba(0,0,0,0.4) 85%,
-    rgba(0,0,0,0) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0,0,0,1) 55%,
-    rgba(0,0,0,0.85) 70%,
-    rgba(0,0,0,0.4) 85%,
-    rgba(0,0,0,0) 100%
-  );
-
-  /* iOS safety */
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 
-  /* visual blend */
-  opacity: 0.42;
-  filter: saturate(0.95) contrast(0.98);
-
-  /* soft fade at bottom (editorial look) */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0,0,0,1) 55%,
-    rgba(0,0,0,0.85) 70%,
-    rgba(0,0,0,0.4) 85%,
-    rgba(0,0,0,0) 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0,0,0,1) 55%,
-    rgba(0,0,0,0.85) 70%,
-    rgba(0,0,0,0.4) 85%,
-    rgba(0,0,0,0) 100%
-  );
-
-  /* iOS stability */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* soft fade at bottom to blend with bg */
-.hero::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 140px;
-  background: linear-gradient(
-    to bottom,
-    rgba(246,246,244,0),
-    var(--bg-main)
-  );
-  pointer-events: none;
-}
-
-.hero h1,
-.hero p,
-.hero div {
-  position: relative;
-  z-index: 1;
-}
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-
-  background:
-    radial-gradient(
-      circle at 70% 30%,
-      rgba(209, 108, 138, 0.45),
-      transparent 45%
-    ),
-    radial-gradient(
-      circle at 30% 70%,
-      rgba(120, 120, 255, 0.35),
-      transparent 50%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,0.6),
-      rgba(0,0,0,0.85)
-    );
-}
 /* ===============================
    BUTTONS
    =============================== */
 .btn {
   padding: 14px 38px;
   font-size: 14px;
-  font-weight: 500;
   border-radius: 999px;
   cursor: pointer;
-  transition: all 0.25s ease;
 }
 
 .btn-primary {
@@ -282,14 +124,9 @@ img {
   box-shadow: 0 10px 30px var(--accent-soft);
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-}
-
 .btn-outline {
   background: transparent;
   border: 1px solid var(--border);
-  color: var(--text-main);
 }
 
 /* ===============================
@@ -306,40 +143,6 @@ section h2 {
 }
 
 /* ===============================
-   SHOP LAYOUT
-   =============================== */
-.shop-layout {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 40px;
-}
-
-/* ---------- FILTER SIDEBAR ---------- */
-.filters {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px;
-}
-
-.filters h3 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.filter-group {
-  margin-bottom: 24px;
-}
-
-.filter-group label {
-  display: block;
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: 10px;
-}
-
-/* ===============================
    PRODUCT GRID
    =============================== */
 .product-grid {
@@ -348,98 +151,42 @@ section h2 {
   gap: 28px;
 }
 
-/* ---------- PRODUCT CARD ---------- */
 .product-card {
   background: var(--bg-card);
   border-radius: 18px;
   padding: 16px;
   box-shadow: var(--shadow-soft);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-/* Clickable cards (SHOP ONLY) */
-.product-card.is-clickable {
-  cursor: pointer;
-}
-.product-card {
-  display: flex;
-  flex-direction: column;
-}
-/* ---------- CARD ACTIONS (HOVER UI) ---------- */
-.card-actions {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.45),
-    rgba(0,0,0,0.05)
-  );
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 12px;
-  padding: 20px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-  border-radius: 18px;
+  transition: transform .25s ease;
 }
 
-/* Enable overlay context */
-.product-card {
-  position: relative;
-}
-
-/* Show on hover (desktop only) */
-@media (hover: hover) {
-  .product-card:hover .card-actions {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-/* Buttons */
-.action-btn {
-  border-radius: 999px;
-  font-size: 13px;
-  padding: 10px 18px;
-  cursor: pointer;
-  border: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.action-btn.primary {
-  background: linear-gradient(135deg, var(--accent), #f2a1b8);
-  color: #fff;
-}
-
-.action-btn.ghost {
-  background: rgba(255,255,255,0.9);
-  color: #111;
-}
-
-.action-btn:hover {
-  transform: translateY(-2px);
+.product-card:hover {
+  transform: translateY(-6px);
 }
 
 .product-image {
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 14px;
-
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 3/4;
   background: #ececec;
+  border-radius: 14px;
+  margin-bottom: 14px;
 }
 
-.product-card h4 {
-  font-size: 15px;
-  font-weight: 500;
-  margin-bottom: 6px;
+/* ===============================
+   FEATURED SLIDER
+   =============================== */
+.featured-slider {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 40px;
 }
 
-.product-card span {
-  font-size: 14px;
-  color: var(--text-muted);
+.featured-card {
+  min-width: 260px;
+  background: var(--bg-card);
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: var(--shadow-soft);
 }
 
 /* ===============================
@@ -450,249 +197,16 @@ section h2 {
   text-align: center;
   border-top: 1px solid var(--border);
   color: var(--text-muted);
-  font-size: 14px;
 }
 
 /* ===============================
-   RESPONSIVE — MOBILE & TABLET
+   RESPONSIVE
    =============================== */
-
 @media (max-width: 900px) {
-  .shop-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .header {
-    padding: 20px 24px;
-  }
-
-  section {
-    padding: 60px 24px;
-  }
-
-  .product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-  }
+  section { padding: 60px 24px; }
+  .product-grid { grid-template-columns: repeat(2,1fr); }
 }
 
 @media (max-width: 600px) {
-  .product-card {
-    padding: 14px;
-  }
-
-  .product-card h4 {
-    font-size: 14px;
-  }
-
-  .product-card span {
-    font-size: 13px;
-  }
-}
-/* ===============================
-   ORIVO — ANIMATIONS & MOTION
-   Premium, subtle, calm
-   =============================== */
-
-/* Fade-up reveal */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Hero soft glow */
-.hero h1 {
-  animation: heroFade 1.2s ease forwards;
-}
-
-.hero p {
-  animation: heroFade 1.4s ease forwards;
-}
-
-@keyframes heroFade {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Button hover polish */
-.btn-primary:hover {
-  box-shadow: 0 18px 40px var(--accent-soft);
-}
-
-/* Card hover refinement */
-.product-card {
-  will-change: transform;
-}
-
-.product-card:hover {
-  transform: translateY(-8px) scale(1.01);
-}
-
-/* Filter hover (shop sidebar) */
-.filters p {
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.filters p:hover {
-  color: var(--accent);
-}
-@media (max-width: 600px) {
-  .product-card {
-    padding: 14px;
-  }
-
-  .product-card h4 {
-    font-size: 14px;
-  }
-
-  .product-card span {
-    font-size: 13px;
-  }
-}
-/* ===============================
-   FEATURED SLIDER (MODERN)
-   =============================== */
-
-.featured-slider {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  padding: 20px 0 40px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.featured-slider::-webkit-scrollbar {
-  display: none;
-}
-
-.featured-card {
-  min-width: 260px;
-  background: var(--bg-card);
-  border-radius: 22px;
-  padding: 16px;
-  scroll-snap-align: center;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.35s ease;
-}
-
-.featured-card:hover {
-  transform: translateY(-6px) scale(1.02);
-}
-
-.featured-card img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: 16px;
-  margin-bottom: 14px;
-}
-
-.featured-card h4 {
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-
-.featured-card span {
-  font-size: 14px;
-  color: var(--text-muted);
-}
-
-.featured-card img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: 14px;
-  margin-bottom: 12px;
-}
-.featured-image-placeholder {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  border-radius: 14px;
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.06),
-    rgba(255,255,255,0.02)
-  );
-  margin-bottom: 12px;
-}
-/* ===============================
-   HERO — SUBTLE LIFE (2025 MOTION)
-   =============================== */
-
-/* soft animated background glow */
-.hero {
-  background:
-    radial-gradient(
-      1200px 500px at 50% -10%,
-      rgba(209,108,138,0.12),
-      transparent 60%
-    );
-  animation: heroGlow 14s ease-in-out infinite alternate;
-}
-
-@keyframes heroGlow {
-  from {
-    background-position: 50% -10%;
-  }
-  to {
-    background-position: 50% 10%;
-  }
-}
-
-#heroImage {
-  animation: heroFadeIn 1.2s ease forwards;
-}
-
-@keyframes heroFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 0.42; }
-}
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-6px) scale(1.015);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* text entrance refinement */
-.hero h1,
-.hero p,
-.hero .btn {
-  animation: heroTextIn 0.9s ease both;
-}
-
-.hero p {
-  animation-delay: 0.15s;
-}
-
-.hero .btn {
-  animation-delay: 0.25s;
-}
-
-@keyframes heroTextIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .product-grid { grid-template-columns: 1fr; }
 }
