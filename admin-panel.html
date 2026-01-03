@@ -70,18 +70,6 @@
       background: transparent;
     }
   </style>
-
-  <!-- SUPABASE -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    const SUPABASE_URL = "https://cuzlhmjgzcquarrtyybo.supabase.co";
-    const SUPABASE_ANON_KEY = "sb_publishable_nOXT4Vuw9iQ4HXB6QaPBjw_a6VYFyYQ";
-
-    window.supabase = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY
-    );
-  </script>
 </head>
 <body>
 
@@ -180,7 +168,7 @@
 
 <!-- HERO LOGIC -->
 <script>
-  let uploadedHeroImage = localStorage.getItem("orivo_hero_image") || null;
+  let uploadedHeroImage = null;
 
   function openHeroEditor() {
     document.getElementById("heroEditor").style.display = "flex";
@@ -188,8 +176,10 @@
     heroTitle.value = localStorage.getItem("orivo_hero_title") || "";
     heroSubtitle.value = localStorage.getItem("orivo_hero_subtitle") || "";
 
-    if (uploadedHeroImage) {
-      heroPreview.src = uploadedHeroImage;
+    const savedImage = localStorage.getItem("orivo_hero_image");
+    if (savedImage) {
+      uploadedHeroImage = savedImage;
+      heroPreview.src = savedImage;
       heroPreview.style.display = "block";
     }
   }
@@ -198,7 +188,7 @@
     document.getElementById("heroEditor").style.display = "none";
   }
 
-  async function saveHero() {
+  function saveHero() {
     if (!uploadedHeroImage) {
       alert("Please upload a hero image");
       return;
@@ -213,36 +203,22 @@
   }
 </script>
 
-<!-- IMAGE UPLOAD -->
+<!-- IMAGE UPLOAD (BASE64) -->
 <script>
   const heroImageInput = document.getElementById("heroImageInput");
   const heroPreview = document.getElementById("heroPreview");
 
-  heroImageInput.addEventListener("change", async () => {
+  heroImageInput.addEventListener("change", () => {
     const file = heroImageInput.files[0];
     if (!file) return;
 
-    const ext = file.name.split(".").pop();
-    const fileName = `hero-${Date.now()}.${ext}`;
-
-    const { error } = await window.supabase
-      .storage
-      .from("hero-images")
-      .upload(fileName, file, { upsert: true });
-
-    if (error) {
-      alert("Upload failed");
-      return;
-    }
-
-    const { data } = window.supabase
-      .storage
-      .from("hero-images")
-      .getPublicUrl(fileName);
-
-    uploadedHeroImage = data.publicUrl;
-    heroPreview.src = uploadedHeroImage;
-    heroPreview.style.display = "block";
+    const reader = new FileReader();
+    reader.onload = function () {
+      uploadedHeroImage = reader.result;
+      heroPreview.src = uploadedHeroImage;
+      heroPreview.style.display = "block";
+    };
+    reader.readAsDataURL(file);
   });
 </script>
 
