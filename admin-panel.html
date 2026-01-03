@@ -70,231 +70,181 @@
       background: transparent;
     }
   </style>
+
+  <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-  const SUPABASE_URL = "https://cuzlhmjgzcquarrtyybo.supabase.co";
-  const SUPABASE_ANON_KEY = "sb_publishable_nOXT4Vuw9iQ4HXB6QaPBjw_a6VYFyYQ";
+    const SUPABASE_URL = "https://cuzlhmjgzcquarrtyybo.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_nOXT4Vuw9iQ4HXB6QaPBjw_a6VYFyYQ";
 
-  const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
-</script>
+    window.supabase = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+  </script>
 </head>
 <body>
 
-  <div class="admin-wrapper">
+<div class="admin-wrapper">
 
-    <div class="admin-header">
-      <h2>ORIVO Admin Panel</h2>
-      <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
-
-    <div class="admin-grid">
-
-      <div class="admin-card" onclick="openHeroEditor()">
-        <h3>Hero Section</h3>
-        <p>Edit headline, text & hero image</p>
-      </div>
-
-      <div class="admin-card">
-        <h3>Shop Products</h3>
-        <p>Change images, names & prices</p>
-      </div>
-
-      <div class="admin-card">
-        <h3>Featured Pieces</h3>
-        <p>Select homepage featured products</p>
-      </div>
-
-      <div class="admin-card">
-        <h3>Theme & Appearance</h3>
-        <p>Accent colors & dark mode defaults</p>
-      </div>
-
-    </div>
+  <div class="admin-header">
+    <h2>ORIVO Admin Panel</h2>
+    <button class="logout-btn" onclick="logout()">Logout</button>
   </div>
 
-  <!-- 🔐 ACCESS GUARD -->
-  <script>
-    if (localStorage.getItem("orivo_admin") !== "unlocked") {
-      window.location.href = "admin.html";
-    }
+  <div class="admin-grid">
 
-    function logout() {
-      localStorage.removeItem("orivo_admin");
-      window.location.href = "admin.html";
-    }
-  </script>
+    <div class="admin-card" onclick="openHeroEditor()">
+      <h3>Hero Section</h3>
+      <p>Edit headline, text & hero image</p>
+    </div>
 
-  <!-- =========================
-       HERO EDITOR MODAL
-       ========================= -->
-  <div id="heroEditor" style="
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.6);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:999;
+    <div class="admin-card">
+      <h3>Shop Products</h3>
+      <p>Change images, names & prices</p>
+    </div>
+
+    <div class="admin-card">
+      <h3>Featured Pieces</h3>
+      <p>Select homepage featured products</p>
+    </div>
+
+    <div class="admin-card">
+      <h3>Theme & Appearance</h3>
+      <p>Accent colors & dark mode defaults</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ACCESS GUARD -->
+<script>
+  if (localStorage.getItem("orivo_admin") !== "unlocked") {
+    window.location.href = "admin.html";
+  }
+
+  function logout() {
+    localStorage.removeItem("orivo_admin");
+    window.location.href = "admin.html";
+  }
+</script>
+
+<!-- HERO MODAL -->
+<div id="heroEditor" style="
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+">
+
+  <div style="
+    background:var(--bg-card);
+    border-radius:18px;
+    padding:32px;
+    width:100%;
+    max-width:420px;
+    max-height:90vh;
+    overflow-y:auto;
   ">
 
-    <div style="
-      background:var(--bg-card);
-      border-radius:18px;
-      padding:32px;
+    <h3 style="margin-bottom:20px;">Edit Hero Section</h3>
+
+    <label>Hero Title</label>
+    <input id="heroTitle" style="width:100%; margin:8px 0 16px; padding:12px;" />
+
+    <label>Hero Subtitle</label>
+    <textarea id="heroSubtitle" style="width:100%; margin:8px 0 16px; padding:12px;"></textarea>
+
+    <label>Hero Background Image</label>
+    <input type="file" id="heroImageInput" accept="image/*" />
+
+    <img id="heroPreview" style="
       width:100%;
-      max-width:420px;
-      max-height:90vh;
-      overflow-y:auto;
-    ">
+      max-height:220px;
+      object-fit:cover;
+      border-radius:14px;
+      display:none;
+      margin:16px 0;
+    " />
 
-      <h3 style="margin-bottom:20px;">Edit Hero Section</h3>
-
-      <label style="font-size:13px;">Hero Title</label>
-      <input
-        id="heroTitle"
-        style="width:100%; margin:8px 0 16px; padding:12px;"
-      />
-
-      <label style="font-size:13px;">Hero Subtitle</label>
-      <textarea
-        id="heroSubtitle"
-        style="width:100%; margin:8px 0 16px; padding:12px;"
-      ></textarea>
-
-      <label style="font-size:13px;">Hero Background Image</label>
-
-      <input
-        type="file"
-        accept="image/*"
-        id="heroImageInput"
-        style="margin:8px 0 12px;"
-      />
-
-      <img
-        id="heroPreview"
-        style="
-          width:100%;
-          max-height:220px;
-          object-fit:cover;
-          border-radius:14px;
-          display:none;
-          margin-bottom:16px;
-        "
-      />
-
-      <div style="display:flex; gap:12px;">
-        <button class="btn btn-primary" onclick="saveHero()">Save</button>
-        <button class="btn btn-outline" onclick="closeHeroEditor()">Cancel</button>
-      </div>
-
+    <div style="display:flex; gap:12px;">
+      <button class="btn btn-primary" onclick="saveHero()">Save</button>
+      <button class="btn btn-outline" onclick="closeHeroEditor()">Cancel</button>
     </div>
+
   </div>
+</div>
 
-  <!-- =========================
-       HERO LOGIC
-       ========================= -->
-  <script>
-    let uploadedHeroImage = null;
+<!-- HERO LOGIC -->
+<script>
+  let uploadedHeroImage = localStorage.getItem("orivo_hero_image") || null;
 
-    function openHeroEditor() {
-      document.getElementById("heroEditor").style.display = "flex";
+  function openHeroEditor() {
+    document.getElementById("heroEditor").style.display = "flex";
 
-      document.getElementById("heroTitle").value =
-        localStorage.getItem("orivo_hero_title") || "";
+    heroTitle.value = localStorage.getItem("orivo_hero_title") || "";
+    heroSubtitle.value = localStorage.getItem("orivo_hero_subtitle") || "";
 
-      document.getElementById("heroSubtitle").value =
-        localStorage.getItem("orivo_hero_subtitle") || "";
-
-      const savedImage = localStorage.getItem("orivo_hero_image");
-
-      if (savedImage) {
-        heroPreview.src = savedImage;
-        heroPreview.style.display = "block";
-        uploadedHeroImage = savedImage;
-      }
+    if (uploadedHeroImage) {
+      heroPreview.src = uploadedHeroImage;
+      heroPreview.style.display = "block";
     }
+  }
 
-    function closeHeroEditor() {
-      document.getElementById("heroEditor").style.display = "none";
-    }
+  function closeHeroEditor() {
+    document.getElementById("heroEditor").style.display = "none";
+  }
 
-    function saveHero() {
-      localStorage.setItem(
-        "orivo_hero_title",
-        document.getElementById("heroTitle").value
-      );
-
-      localStorage.setItem(
-        "orivo_hero_subtitle",
-        document.getElementById("heroSubtitle").value
-      );
-
-      if (uploadedHeroImage) {
-        localStorage.setItem(
-          "orivo_hero_image",
-          uploadedHeroImage
-        );
-      }
-
-      alert("Hero updated successfully");
-      closeHeroEditor();
-    }
-  </script>
-
-  <!-- =========================
-       IMAGE UPLOAD HANDLER
-       ========================= -->
- <script>
-  const heroImageInput = document.getElementById("heroImageInput");
-  const heroPreview = document.getElementById("heroPreview");
-
-  heroImageInput.addEventListener("change", async function () {
-    const file = this.files[0];
-    if (!file) return;
-
-    const fileExt = file.name.split(".").pop();
-    const fileName = `hero-${Date.now()}.${fileExt}`;
-
-    const { error } = await supabase
-      .storage
-      .from("hero-images")
-      .upload(fileName, file, {
-        cacheControl: "3600",
-        upsert: true
-      });
-
-    if (error) {
-      alert("Image upload failed");
-      console.error(error);
+  async function saveHero() {
+    if (!uploadedHeroImage) {
+      alert("Please upload a hero image");
       return;
     }
 
-    const { data } = supabase
+    localStorage.setItem("orivo_hero_title", heroTitle.value);
+    localStorage.setItem("orivo_hero_subtitle", heroSubtitle.value);
+    localStorage.setItem("orivo_hero_image", uploadedHeroImage);
+
+    alert("Hero updated successfully");
+    closeHeroEditor();
+  }
+</script>
+
+<!-- IMAGE UPLOAD -->
+<script>
+  const heroImageInput = document.getElementById("heroImageInput");
+  const heroPreview = document.getElementById("heroPreview");
+
+  heroImageInput.addEventListener("change", async () => {
+    const file = heroImageInput.files[0];
+    if (!file) return;
+
+    const ext = file.name.split(".").pop();
+    const fileName = `hero-${Date.now()}.${ext}`;
+
+    const { error } = await window.supabase
+      .storage
+      .from("hero-images")
+      .upload(fileName, file, { upsert: true });
+
+    if (error) {
+      alert("Upload failed");
+      return;
+    }
+
+    const { data } = window.supabase
       .storage
       .from("hero-images")
       .getPublicUrl(fileName);
 
     uploadedHeroImage = data.publicUrl;
-
     heroPreview.src = uploadedHeroImage;
     heroPreview.style.display = "block";
   });
 </script>
-<script>
-  // =========================
-  // SUPABASE CONFIG
-  // =========================
 
-  const SUPABASE_URL = "https://cuzlhmjgzcquarrtyybo.supabase.co";
-  const SUPABASE_ANON_KEY = "sb_publishable_nOXT4Vuw9iQ4HXB6QaPBjw_a6VYFyYQ";
-
-  const supabase = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
-</script>
 </body>
 </html>
