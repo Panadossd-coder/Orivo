@@ -60,8 +60,9 @@
       background: transparent;
     }
 
-    /* MODAL */
-    #heroEditor {
+    /* HERO MODAL */
+    #heroEditor,
+    #featuredEditor {
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.6);
@@ -71,70 +72,20 @@
       z-index: 999;
     }
 
-    #heroEditor .modal {
+    .modal {
       background: white;
       border-radius: 18px;
       padding: 32px;
       width: 100%;
-      max-width: 420px;
+      max-width: 440px;
       max-height: 90vh;
       overflow-y: auto;
     }
-<!-- FEATURED MODAL -->
-<div id="featuredEditor" style="
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:999;
-">
-  <div style="
-    background:white;
-    border-radius:18px;
-    padding:32px;
-    width:100%;
-    max-width:440px;
-    max-height:90vh;
-    overflow-y:auto;
-  ">
 
-    <h3 style="margin-bottom:16px;">Featured Pieces (Max 4)</h3>
-
-    <div id="featuredList" style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px;"></div>
-
-    <hr style="margin:24px 0;" />
-
-    <label>Product Name</label>
-    <input id="featuredTitle" style="width:100%; padding:12px; margin:8px 0 12px;" />
-
-    <label>Price ($)</label>
-    <input id="featuredPrice" type="number" style="width:100%; padding:12px; margin:8px 0 12px;" />
-
-    <label>Product Image</label>
-    <input type="file" id="featuredImageInput" accept="image/*" />
-
-    <img id="featuredPreview" style="
-      width:100%;
-      max-height:240px;
-      object-fit:cover;
-      border-radius:14px;
-      display:none;
-      margin:16px 0;
-    " />
-
-    <div style="display:flex; gap:12px;">
-      <button class="btn btn-primary" onclick="addFeatured()">Add</button>
-      <button class="btn btn-outline" onclick="closeFeaturedEditor()">Close</button>
-    </div>
-
-  </div>
-</div>
-
-    #heroPreview {
+    #heroPreview,
+    #featuredPreview {
       width: 100%;
-      max-height: 260px;
+      max-height: 240px;
       object-fit: cover;
       border-radius: 14px;
       display: none;
@@ -163,14 +114,8 @@
       <h3>Shop Products</h3>
       <p>Change images, names & prices</p>
     </div>
-    
-    <div class="admin-card" onclick="openFeaturedEditor()">
-  <h3>Featured Pieces</h3>
-  <p>Select homepage featured products</p>
-</div>
-    
 
-    <div class="admin-card">
+    <div class="admin-card" onclick="openFeaturedEditor()">
       <h3>Featured Pieces</h3>
       <p>Select homepage featured products</p>
     </div>
@@ -183,7 +128,7 @@
   </div>
 </div>
 
-<!-- HERO MODAL -->
+<!-- ================= HERO MODAL ================= -->
 <div id="heroEditor">
   <div class="modal">
 
@@ -208,10 +153,37 @@
   </div>
 </div>
 
+<!-- ================= FEATURED MODAL ================= -->
+<div id="featuredEditor">
+  <div class="modal">
+
+    <h3>Featured Pieces (Max 4)</h3>
+
+    <div id="featuredList" style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px;"></div>
+
+    <hr style="margin:24px 0;" />
+
+    <label>Product Name</label>
+    <input id="featuredTitle" style="width:100%; padding:12px; margin:8px 0 12px;" />
+
+    <label>Price ($)</label>
+    <input id="featuredPrice" type="number" style="width:100%; padding:12px; margin:8px 0 12px;" />
+
+    <label>Product Image</label>
+    <input type="file" id="featuredImageInput" accept="image/*" />
+
+    <img id="featuredPreview" />
+
+    <div style="display:flex; gap:12px;">
+      <button class="btn btn-primary" onclick="addFeatured()">Add</button>
+      <button class="btn btn-outline" onclick="closeFeaturedEditor()">Close</button>
+    </div>
+
+  </div>
+</div>
+
 <script>
-/* =========================
-   ACCESS GUARD
-   ========================= */
+/* ACCESS GUARD */
 if (localStorage.getItem("orivo_admin") !== "unlocked") {
   window.location.href = "admin.html";
 }
@@ -221,20 +193,13 @@ function logout() {
   window.location.href = "admin.html";
 }
 
-/* =========================
-   HERO STATE
-   ========================= */
+/* HERO STATE */
 let heroImageBase64 = localStorage.getItem("orivo_hero_image");
 
-/* =========================
-   OPEN MODAL
-   ========================= */
 function openHeroEditor() {
-  document.getElementById("heroEditor").style.display = "flex";
-
+  heroEditor.style.display = "flex";
   heroTitle.value = localStorage.getItem("orivo_hero_title") || "";
   heroSubtitle.value = localStorage.getItem("orivo_hero_subtitle") || "";
-
   if (heroImageBase64) {
     heroPreview.src = heroImageBase64;
     heroPreview.style.display = "block";
@@ -242,16 +207,12 @@ function openHeroEditor() {
 }
 
 function closeHeroEditor() {
-  document.getElementById("heroEditor").style.display = "none";
+  heroEditor.style.display = "none";
 }
 
-/* =========================
-   IMAGE → BASE64
-   ========================= */
 heroImageInput.addEventListener("change", () => {
   const file = heroImageInput.files[0];
   if (!file) return;
-
   const reader = new FileReader();
   reader.onload = () => {
     heroImageBase64 = reader.result;
@@ -261,51 +222,34 @@ heroImageInput.addEventListener("change", () => {
   reader.readAsDataURL(file);
 });
 
-/* =========================
-   SAVE HERO
-   ========================= */
 function saveHero() {
-  if (!heroImageBase64) {
-    alert("Please upload a hero image");
-    return;
-  }
-
   localStorage.setItem("orivo_hero_title", heroTitle.value);
   localStorage.setItem("orivo_hero_subtitle", heroSubtitle.value);
   localStorage.setItem("orivo_hero_image", heroImageBase64);
-
-  alert("Hero updated successfully");
+  alert("Hero updated");
   closeHeroEditor();
 }
 </script>
+
 <script>
-/* =========================
-   FEATURED STATE
-   ========================= */
+/* FEATURED STATE */
 let featuredImageBase64 = null;
 let featuredItems = JSON.parse(localStorage.getItem("orivo_featured")) || [];
 
-/* =========================
-   OPEN / CLOSE
-   ========================= */
 function openFeaturedEditor() {
-  document.getElementById("featuredEditor").style.display = "flex";
+  featuredEditor.style.display = "flex";
   renderFeaturedList();
 }
 
 function closeFeaturedEditor() {
-  document.getElementById("featuredEditor").style.display = "none";
+  featuredEditor.style.display = "none";
   featuredPreview.style.display = "none";
   featuredImageBase64 = null;
 }
 
-/* =========================
-   IMAGE → BASE64
-   ========================= */
 featuredImageInput.addEventListener("change", () => {
   const file = featuredImageInput.files[0];
   if (!file) return;
-
   const reader = new FileReader();
   reader.onload = () => {
     featuredImageBase64 = reader.result;
@@ -315,30 +259,19 @@ featuredImageInput.addEventListener("change", () => {
   reader.readAsDataURL(file);
 });
 
-/* =========================
-   ADD FEATURED
-   ========================= */
 function addFeatured() {
-  if (featuredItems.length >= 4) {
-    alert("Maximum 4 featured items allowed");
-    return;
-  }
+  if (featuredItems.length >= 4) return alert("Max 4 items");
+  if (!featuredTitle.value || !featuredPrice.value || !featuredImageBase64)
+    return alert("All fields required");
 
-  if (!featuredTitle.value || !featuredPrice.value || !featuredImageBase64) {
-    alert("All fields are required");
-    return;
-  }
-
-  const item = {
+  featuredItems.push({
     id: Date.now(),
     title: featuredTitle.value,
     price: featuredPrice.value,
     image: featuredImageBase64
-  };
+  });
 
-  featuredItems.push(item);
   localStorage.setItem("orivo_featured", JSON.stringify(featuredItems));
-
   featuredTitle.value = "";
   featuredPrice.value = "";
   featuredImageInput.value = "";
@@ -348,39 +281,30 @@ function addFeatured() {
   renderFeaturedList();
 }
 
-/* =========================
-   DELETE FEATURED
-   ========================= */
 function deleteFeatured(id) {
-  featuredItems = featuredItems.filter(item => item.id !== id);
+  featuredItems = featuredItems.filter(i => i.id !== id);
   localStorage.setItem("orivo_featured", JSON.stringify(featuredItems));
   renderFeaturedList();
 }
 
-/* =========================
-   RENDER LIST
-   ========================= */
 function renderFeaturedList() {
   featuredList.innerHTML = "";
-
   featuredItems.forEach(item => {
     const div = document.createElement("div");
     div.style.display = "flex";
     div.style.alignItems = "center";
     div.style.gap = "12px";
-
     div.innerHTML = `
-      <img src="${item.image}" style="width:56px; height:56px; object-fit:cover; border-radius:8px;" />
-      <div style="flex:1;">
-        <strong>${item.title}</strong><br/>
-        $${item.price}
+      <img src="${item.image}" style="width:56px;height:56px;border-radius:8px;object-fit:cover">
+      <div style="flex:1">
+        <strong>${item.title}</strong><br>$${item.price}
       </div>
-      <button onclick="deleteFeatured(${item.id})" style="border:none;background:none;color:red;cursor:pointer;">✕</button>
+      <button onclick="deleteFeatured(${item.id})" style="border:none;background:none;color:red">✕</button>
     `;
-
     featuredList.appendChild(div);
   });
 }
 </script>
+
 </body>
 </html>
