@@ -85,3 +85,34 @@ document.querySelectorAll('.product-card.is-clickable').forEach(card => {
     img.style.transform = '';
   });
 })();
+/* =========================
+   FEATURED RENDER (HOMEPAGE)
+   ========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const featuredContainer = document.querySelector(".featured-slider");
+
+  if (!featuredContainer) return;
+
+  const featuredItems = JSON.parse(
+    localStorage.getItem("orivo_featured")
+  ) || [];
+
+  // Clear existing hardcoded cards
+  featuredContainer.innerHTML = "";
+
+  // If no featured items, do nothing
+  if (featuredItems.length === 0) return;
+
+  featuredItems.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "featured-card";
+
+    card.innerHTML = `
+      <img src="${item.image}" alt="${item.title}">
+      <h4>${item.title}</h4>
+      <span>$${item.price}</span>
+    `;
+
+    featuredContainer.appendChild(card);
+  });
+});
