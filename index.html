@@ -21,20 +21,44 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero" id="heroSection">
+ <!-- REPLACE current hero section with this -->
+<section class="hero hero-v2" id="heroSection">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="bg-gradient"></div>
+    <canvas id="heroParticles" class="hero-particles" aria-hidden="true"></canvas>
+  </div>
 
-  <img id="heroImage" alt="ORIVO Hero" />
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="eyebrow">ORIVO Hero</div>
 
-  <div class="hero-overlay"></div>
+      <!-- big headline -->
+      <h1 id="heroTitle" class="reveal-line">Wear Your Identity</h1>
 
-  <h1 id="heroTitle">Wear Your Identity</h1>
-  <p id="heroSubtitle">A modern fashion brand focused on presence...</p>
+      <!-- supporting line -->
+      <p id="heroSubtitle" class="reveal-line small">
+        A modern fashion brand focused on presence...
+      </p>
 
-  <div style="display:flex; gap:16px; justify-content:center;">
-    <a href="shop.html" class="btn btn-primary">Explore Collection</a>
-    <a href="shop.html" class="btn btn-outline">View Lookbook</a>
+      <div class="hero-ctas">
+        <a href="shop.html" class="btn btn-primary">Explore Collection</a>
+        <a href="shop.html" class="btn btn-outline">View Lookbook</a>
+      </div>
+    </div>
+
+    <div class="hero-visual-wrap">
+      <!-- floating visual card -->
+      <div id="visualCard" class="visual-card" aria-hidden="true">
+        <div class="visual-frame">
+          <img id="heroImage" alt="ORIVO Hero" />
+        </div>
+        <div class="card-reflection"></div>
+        <div class="visual-badge">New • 2025</div>
+      </div>
+    </div>
   </div>
 </section>
+<!-- END hero -->
 
   <!-- FEATURED -->
  <section class="reveal">
