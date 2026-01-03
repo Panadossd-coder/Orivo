@@ -123,10 +123,13 @@ img {
    =============================== */
 .hero {
   min-height: 80vh;
-  padding: 120px 24px;
+  padding: 96px 24px 140px; /* top | sides | bottom */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
+  /* 🔑 KEY CHANGE */
+  justify-content: flex-start;
+
   align-items: center;
   text-align: center;
 }
