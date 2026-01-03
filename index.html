@@ -66,18 +66,6 @@
     <p>© 2026 ORIVO. All rights reserved.</p>
   </footer>
 <script src="script.js"></script>
-<script>
-  const heroTitle = localStorage.getItem("orivo_hero_title");
-  const heroSubtitle = localStorage.getItem("orivo_hero_subtitle");
-  const heroImage = localStorage.getItem("orivo_hero_image");
-
-  if (heroTitle) {
-    document.getElementById("heroTitle").textContent = heroTitle;
-  }
-
-  if (heroSubtitle) {
-    document.getElementById("heroSubtitle").textContent = heroSubtitle;
-  }
 
 <script>
   const heroTitle = localStorage.getItem("orivo_hero_title");
@@ -96,6 +84,5 @@
     document.getElementById("heroImage").src = heroImage;
   }
 </script>
- 
 </body>
 </html>
