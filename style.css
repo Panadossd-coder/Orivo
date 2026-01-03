@@ -122,16 +122,15 @@ img {
    HERO (HOME)
    =============================== */
 .hero {
-  min-height: 80vh;
-  padding: 96px 24px 140px;/* top | sides | bottom */
+  min-height: 72vh;       /* 🔑 smaller */
+  padding: 80px 24px 80px; /* 🔑 equal padding */
   display: flex;
   flex-direction: column;
-
-  /* 🔑 KEY CHANGE */
   justify-content: flex-start;
-
   align-items: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero h1 {
@@ -153,20 +152,41 @@ img {
 }
 
 /* ===============================
-   HERO IMAGE — CORRECT SCALE + BLEND
+   HERO IMAGE — FINAL CORRECT VERSION
    =============================== */
 #heroImage {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+
   object-fit: contain;
-
   object-position: center 40%;
-transform: scale(0.82) translateY(10%);
 
-  opacity: 0.35;
+  /* positioning */
+  transform: scale(0.82) translateY(10%);
+
+  /* blend */
+  opacity: 0.42;
+  filter: saturate(0.95) contrast(0.98);
+
   pointer-events: none;
+
+  /* fade bottom */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 55%,
+    rgba(0,0,0,0.85) 70%,
+    rgba(0,0,0,0.4) 85%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 55%,
+    rgba(0,0,0,0.85) 70%,
+    rgba(0,0,0,0.4) 85%,
+    rgba(0,0,0,0) 100%
+  );
 
   /* iOS safety */
   backface-visibility: hidden;
