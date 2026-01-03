@@ -1,3 +1,5 @@
+Am not see it check my css
+
 /* ===============================
    ORIVO — DESIGN SYSTEM
    Luxury × Modern Commerce
@@ -146,23 +148,14 @@ img {
   overflow: hidden;
 }
 
-/* Hero v2 image (inside visual card) */
-.hero-v2 #heroImage {
-  position: relative;
+.hero-image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 1;
-
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-  /* iOS Safari base64 fix */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  opacity: 0.35;
+  z-index: 0;
 }
 
 .hero h1,
@@ -560,158 +553,3 @@ section h2 {
   margin-bottom: 12px;
 }
 
-/* =========================
-   Hero v2 — modern, animated
-   Append to end of style.css
-   ========================= */
-
-.hero-v2 {
-  position: relative;
-  padding: 64px 20px 96px;
-  overflow: hidden;
-  color: var(--text-main);
-  --hero-height: min(720px, 78vh);
-  display: flex;
-  align-items: center;
-  min-height: var(--hero-height);
-}
-
-/* background gradient + subtle blur */
-.hero-v2 .hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-.hero-v2 .bg-gradient {
-  position:absolute; inset:0;
-  background: linear-gradient(180deg, rgba(245,239,233,0.3), rgba(18,16,17,0.08) 60%);
-  filter: saturate(0.9) blur(6px);
-  mix-blend-mode: multiply;
-  animation: bgHue 20s linear infinite;
-  opacity: 0.95;
-}
-
-/* animated background hue shift */
-@keyframes bgHue {
-  0% { filter: hue-rotate(0deg) saturate(0.9) blur(4px); transform: scale(1); }
-  50% { filter: hue-rotate(12deg) saturate(1.05) blur(6px); transform: scale(1.02); }
-  100% { filter: hue-rotate(0deg) saturate(0.9) blur(4px); transform: scale(1); }
-}
-
-/* layout */
-.hero-v2 .hero-inner {
-  position: relative;
-  z-index: 4;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 520px;
-  gap: 28px;
-  align-items: center;
-}
-
-/* left text block */
-.hero-v2 .hero-left {
-  padding: 8px 8px;
-  align-self: start;
-}
-.hero-v2 .eyebrow {
-  font-size: 13px;
-  color: var(--text-muted);
-  display:inline-block;
-  background: rgba(255,255,255,0.06);
-  padding:6px 10px;
-  border-radius:12px;
-  margin-bottom:16px;
-}
-.hero-v2 h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 7.6vw, 72px);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
-  margin: 6px 0 14px;
-  color: var(--text-main);
-  transform: translateY(6px);
-}
-.hero-v2 p.small {
-  font-size:16px;
-  color: var(--text-muted);
-  max-width: 52ch;
-  margin-bottom:20px;
-}
-
-/* CTA */
-.hero-ctas { display:flex; gap:16px; align-items:center; }
-.hero-ctas .btn { padding: 16px 28px; border-radius: 999px; }
-
-/* visual card */
-.hero-visual-wrap { display:flex; justify-content:center; align-items:center; }
-/* =========================
-   Hero v2 — Visual Card
-   ========================= */
-
-.hero-v2 .hero-bg {
-  z-index: 0;
-}
-
-.hero-v2 .hero-inner {
-  position: relative;
-  z-index: 3;
-}
-
-/* floating visual card */
-.visual-card {
-  position: relative;
-  width: 320px;
-  height: 420px;
-  border-radius: 28px;
-  background: var(--bg-card);
-  box-shadow: 0 40px 90px rgba(0,0,0,0.35);
-  transform: perspective(1000px) rotateY(-8deg) rotateX(3deg);
-  animation: floatCard 6s ease-in-out infinite;
-}
-
-/* image frame */
-.visual-frame {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 28px;
-}
-
-/* reflection glow */
-.card-reflection {
-  position: absolute;
-  inset: 0;
-  border-radius: 28px;
-  background: linear-gradient(
-    120deg,
-    rgba(255,255,255,0.18),
-    transparent 60%
-  );
-  pointer-events: none;
-}
-
-/* badge */
-.visual-badge {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.6);
-  color: #fff;
-  backdrop-filter: blur(6px);
-}
-
-/* floating animation */
-@keyframes floatCard {
-  0%   { transform: translateY(0) perspective(1000px) rotateY(-8deg); }
-  50%  { transform: translateY(-12px) perspective(1000px) rotateY(-4deg); }
-  100% { transform: translateY(0) perspective(1000px) rotateY(-8deg); }
-}
-.hero-particles {
-  display: none;
-}
