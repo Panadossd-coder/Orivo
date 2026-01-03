@@ -146,15 +146,18 @@ img {
   overflow: hidden;
 }
 
-/* Hero background image (base64 safe) */
-#heroImage {
-  position: absolute;
-  inset: 0;
+/* Hero v2 image (inside visual card) */
+.hero-v2 #heroImage {
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.35;
-  z-index: 0;
+  opacity: 1;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
 
   /* iOS Safari base64 fix */
   transform: translateZ(0);
