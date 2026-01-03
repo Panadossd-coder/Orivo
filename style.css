@@ -653,13 +653,14 @@ section h2 {
   }
 }
 
-/* hero image micro-movement (very subtle) */
 #heroImage {
-  animation: heroFloat 10s ease-in-out infinite;
+  animation: heroFadeIn 1.2s ease forwards;
 }
 
-@keyframes heroFloat {
-  0% {
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 0.42; }
+}
     transform: translateY(0) scale(1);
   }
   50% {
