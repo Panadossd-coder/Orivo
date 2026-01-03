@@ -142,7 +142,10 @@ img {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 90px;          /* keeps it in same vertical spot */
+
+  /* anchor relative to hero content, not viewport */
+  top: 50%;
+  transform: translateY(140px);
 
   display: flex;
   justify-content: center;
