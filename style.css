@@ -153,17 +153,38 @@ img {
    HERO IMAGE — CORRECT SCALE + BLEND
    =============================== */
 #heroImage {
-  position: relative;
-  display: block;
-  width: auto;
-  max-width: 100%;
-  height: auto;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 0;
 
-  margin: 0 auto 32px;
-  object-fit: contain;
+  /* visual blend */
+  opacity: 0.42;
+  filter: saturate(0.95) contrast(0.98);
 
-  /* visual blending */
-  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.18));
+  /* soft fade at bottom (editorial look) */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 55%,
+    rgba(0,0,0,0.85) 70%,
+    rgba(0,0,0,0.4) 85%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 55%,
+    rgba(0,0,0,0.85) 70%,
+    rgba(0,0,0,0.4) 85%,
+    rgba(0,0,0,0) 100%
+  );
+
+  /* iOS stability */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 /* soft fade at bottom to blend with bg */
