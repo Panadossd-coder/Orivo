@@ -209,7 +209,6 @@ function openHeroEditor() {
   heroTitle.value = localStorage.getItem("orivo_hero_title") || "";
   heroSubtitle.value = localStorage.getItem("orivo_hero_subtitle") || "";
   heroBadge.value = localStorage.getItem("orivo_hero_badge") || "";
-
   if (heroImageBase64) {
     heroPreview.src = heroImageBase64;
     heroPreview.style.display = "block";
@@ -235,6 +234,7 @@ heroImageInput.addEventListener("change", () => {
 function saveHero() {
   localStorage.setItem("orivo_hero_title", heroTitle.value);
   localStorage.setItem("orivo_hero_subtitle", heroSubtitle.value);
+  localStorage.setItem("orivo_hero_badge", heroBadge.value);
   localStorage.setItem("orivo_hero_image", heroImageBase64);
   alert("Hero updated");
   closeHeroEditor();
