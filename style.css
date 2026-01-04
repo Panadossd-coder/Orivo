@@ -762,9 +762,17 @@ section h2 {
 }
 
 #heroBadgeText {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-main);
+  font-family: 'Playfair Display', serif;
+
+  /* 🔥 EXACT HERO TITLE SCALE */
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  /* 🌸 SAME PINK AS BUTTON */
+  color: var(--accent);
+
   white-space: nowrap;
 
   animation: badgeSlide 6s ease-in-out infinite;
