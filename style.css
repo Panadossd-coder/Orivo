@@ -123,11 +123,11 @@ img {
    HERO (HOME)
    =============================== */
 .hero {
-  min-height: 72vh;       /* 🔑 smaller */
-  height: 90vh;
-  max-height: 900px;      /* 🔒 prevents Safari over-expansion */
+  min-height: 72svh;        /* 🔒 Safari-safe viewport */
+  height: 90svh;
+  max-height: 900px;
 
-  padding: 80px 24px 80px; /* 🔑 equal padding */
+  padding: 120px 24px 120px; /* 🔒 locks button zone */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -136,6 +136,8 @@ img {
   position: relative;
   overflow: hidden;
 }
+
+
 /* ===============================
    HERO GLASS TAG (BADGE)
    =============================== */
@@ -144,7 +146,8 @@ img {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 24px; /* 🔒 exact distance from hero bottom */
+
+  bottom: 24px; /* ✅ THIS IS THE LINE YOU ASKED ABOUT */
 
   display: flex;
   justify-content: center;
@@ -235,17 +238,22 @@ img {
   height: 100%;
 
   object-fit: contain;
-  object-position: center 55%;
 
-  /* move image DOWN to fill space */
-  transform: scale(0.98) translateY(18%);
+  /* 🔒 LOCK POSITION */
+  object-position: center bottom;
 
-  opacity: 0.38;
+  opacity: 0.42;
   filter: saturate(0.95) contrast(0.98);
 
   pointer-events: none;
+  z-index: 0;
 
-  /* soft bottom fade */
+  /* 🔒 iOS stability */
+  will-change: opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  /* 🔥 soft bottom fade */
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0,0,0,1) 60%,
@@ -260,9 +268,6 @@ img {
     rgba(0,0,0,0.4) 88%,
     rgba(0,0,0,0) 100%
   );
-
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 
   /* visual blend */
@@ -309,9 +314,10 @@ img {
 
 .hero h1,
 .hero p,
+.hero .btn,
 .hero div {
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 .hero-overlay {
   position: absolute;
