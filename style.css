@@ -654,13 +654,30 @@ section h2 {
 }
 
 .featured-card {
-  min-width: 260px;
-  background: var(--bg-card);
+  min-width: 240px; /* more compact */
+  background: rgba(255,255,255,0.65);
   border-radius: 22px;
-  padding: 16px;
+  padding: 14px;
   scroll-snap-align: center;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.35s ease;
+
+  /* Glass effect */
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.08),
+    inset 0 0 0 1px rgba(255,255,255,0.35);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+body.dark .featured-card {
+  background: rgba(22,22,27,0.55);
+
+  box-shadow:
+    0 25px 50px rgba(0,0,0,0.5),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
 }
 
 .featured-card:hover {
