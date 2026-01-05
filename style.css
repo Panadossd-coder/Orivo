@@ -800,3 +800,95 @@ body.dark .featured-card {
   50%  { transform: translateX(14px);  opacity: 1; }
   100% { transform: translateX(-14px); opacity: 0.6; }
 }
+/* ===============================
+   CATEGORY SECTION — CARDBOARD STYLE
+   =============================== */
+
+.categories {
+  padding: 80px 48px;
+}
+
+.categories h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* GRID */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* CARD BASE */
+.category-card {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.95),
+    rgba(245,245,245,0.9)
+  );
+
+  border-radius: 28px;
+  padding: 26px 22px 30px;
+  min-height: 200px;
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.08),
+    inset 0 0 0 1px rgba(255,255,255,0.6);
+
+  overflow: visible;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* HOVER LIFT */
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.14),
+    inset 0 0 0 1px rgba(255,255,255,0.75);
+}
+
+/* IMAGE — FLOATING ABOVE CARD */
+.category-card img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+
+  position: relative;
+  z-index: 2;
+
+  transform: translateY(-36px);
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,0.22));
+
+  transition: transform 0.35s ease;
+}
+
+.category-card:hover img {
+  transform: translateY(-46px) scale(1.02);
+}
+
+/* LABEL */
+.category-label {
+  position: absolute;
+  bottom: 22px;
+  left: 22px;
+
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* SUBTLE CUT CORNER EFFECT */
+.category-card::after {
+  content: "";
+  position: absolute;
+  bottom: -14px;
+  right: -14px;
+  width: 42px;
+  height: 42px;
+
+  background: var(--bg-main);
+  border-radius: 50%;
+}
