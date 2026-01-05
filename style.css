@@ -648,6 +648,13 @@ section h2 {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
+.featured-card {
+  scroll-snap-align: center;
+}
+
+.featured-card:active {
+  transform: scale(1.04);
+}
 
 .featured-slider::-webkit-scrollbar {
   display: none;
@@ -706,9 +713,24 @@ body.dark .featured-card {
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 16px;
   margin-bottom: 12px;
+
+  /* depth */
+  transform: translateY(-8px);
+  box-shadow:
+    0 18px 30px rgba(0,0,0,0.18);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
+.featured-card:hover img {
+  transform: translateY(-14px) scale(1.02);
+  box-shadow:
+    0 28px 45px rgba(0,0,0,0.28);
+}
+
 .featured-image-placeholder {
   width: 100%;
   aspect-ratio: 3 / 4;
