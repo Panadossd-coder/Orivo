@@ -110,10 +110,10 @@
       <p>Edit headline, text & hero image</p>
     </div>
 
-    <div class="admin-card">
-      <h3>Shop Products</h3>
-      <p>Change images, names & prices</p>
-    </div>
+    <div class="admin-card" onclick="openProductEditor()">
+  <h3>Shop Products</h3>
+  <p>Change images, names & prices</p>
+</div>
 
     <div class="admin-card" onclick="openFeaturedEditor()">
       <h3>Featured Pieces</h3>
@@ -185,6 +185,31 @@
     <div style="display:flex; gap:12px;">
       <button class="btn btn-primary" onclick="addFeatured()">Add</button>
       <button class="btn btn-outline" onclick="closeFeaturedEditor()">Close</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= SHOP PRODUCTS MODAL ================= -->
+<div id="productEditor">
+  <div class="modal">
+
+    <h3>Add Product</h3>
+
+    <label>Product Name</label>
+    <input id="productName" style="width:100%; padding:12px; margin:8px 0 12px;" />
+
+    <label>Price</label>
+    <input id="productPrice" type="number" style="width:100%; padding:12px; margin:8px 0 12px;" />
+
+    <label>Product Image</label>
+    <input type="file" id="productImageInput" accept="image/*" />
+
+    <img id="productPreview" style="width:100%; max-height:200px; object-fit:contain; margin:16px 0; display:none;" />
+
+    <div style="display:flex; gap:12px;">
+      <button class="btn btn-primary" onclick="addProduct()">Add Product</button>
+      <button class="btn btn-outline" onclick="closeProductEditor()">Close</button>
     </div>
 
   </div>
@@ -315,6 +340,61 @@ function renderFeaturedList() {
   });
 }
 </script>
+</script>
 
+<!-- ================= SHOP PRODUCTS SCRIPT ================= -->
+<script>
+/* SHOP PRODUCTS STATE */
+let productImageBase64 = null;
+let products = JSON.parse(localStorage.getItem("orivo_products")) || [];
+
+function openProductEditor() {
+  productEditor.style.display = "flex";
+}
+
+function closeProductEditor() {
+  productEditor.style.display = "none";
+  productPreview.style.display = "none";
+  productImageBase64 = null;
+  productImageInput.value = "";
+}
+
+productImageInput.addEventListener("change", () => {
+  const file = productImageInput.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    productImageBase64 = reader.result;
+    productPreview.src = productImageBase64;
+    productPreview.style.display = "block";
+  };
+  reader.readAsDataURL(file);
+});
+
+function addProduct() {
+  if (!productName.value || !productPrice.value || !productImageBase64) {
+    alert("All fields required");
+    return;
+  }
+
+  products.push({
+    id: Date.now(),
+    name: productName.value,
+    price: productPrice.value,
+    image: productImageBase64
+  });
+
+  localStorage.setItem("orivo_products", JSON.stringify(products));
+
+  productName.value = "";
+  productPrice.value = "";
+  closeProductEditor();
+
+  alert("Product added");
+}
+</script>
+
+</body>
+</html>
 </body>
 </html>
