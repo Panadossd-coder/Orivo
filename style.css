@@ -951,3 +951,54 @@ body.dark .featured-card {
   color: #ffffff;
   text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
+
+/* ===============================
+   CATEGORY CARD — LIFE & DEPTH
+   =============================== */
+
+/* Base motion tuning */
+.category-card {
+  transition:
+    transform 0.45s cubic-bezier(.22,.61,.36,1),
+    box-shadow 0.45s cubic-bezier(.22,.61,.36,1);
+}
+
+/* Hover / tap lift */
+.category-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 35px 70px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.75);
+}
+
+/* Image parallax feel */
+.category-card img {
+  transition:
+    transform 0.45s cubic-bezier(.22,.61,.36,1),
+    filter 0.45s ease;
+}
+
+.category-card:hover img {
+  transform: translateY(-56px) scale(1.04);
+  filter: saturate(1.05);
+}
+
+/* Soft inner glow (glass polish) */
+.category-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at top,
+    rgba(255,255,255,0.35),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.category-card:hover::before {
+  opacity: 1;
+}
