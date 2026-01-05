@@ -892,3 +892,46 @@ body.dark .featured-card {
   background: var(--bg-main);
   border-radius: 50%;
 }
+/* ===============================
+   CATEGORY COLORS — SOFT IDENTITY
+   =============================== */
+
+/* CLOTHES */
+.category-card.clothes {
+  background: linear-gradient(
+    135deg,
+    #f5efe9,
+    #ede6de
+  );
+}
+
+/* PERFUMES */
+.category-card.perfumes {
+  background: linear-gradient(
+    135deg,
+    #f4e6ea,
+    #ecd7dd
+  );
+}
+
+/* SHOES */
+.category-card.shoes {
+  background: linear-gradient(
+    135deg,
+    #eef0f2,
+    #e3e6ea
+  );
+}
+
+/* HOODIES */
+.category-card.hoodies {
+  background: linear-gradient(
+    135deg,
+    #2a2a2f,
+    #1e1e23
+  );
+}
+
+.category-card.hoodies .category-label {
+  color: #ffffff;
+}
