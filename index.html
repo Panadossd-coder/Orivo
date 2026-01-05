@@ -53,27 +53,27 @@
 
   <div class="category-grid">
 
-    <div class="category-card" data-category="clothes">
-      <img id="catImageClothes" alt="Clothes category">
-      <div class="category-label" id="catLabelClothes">Clothes</div>
-    </div>
-
-    <div class="category-card" data-category="perfumes">
-      <img id="catImagePerfumes" alt="Perfumes category">
-      <div class="category-label" id="catLabelPerfumes">Perfumes</div>
-    </div>
-
-    <div class="category-card" data-category="shoes">
-      <img id="catImageShoes" alt="Shoes category">
-      <div class="category-label" id="catLabelShoes">Shoes</div>
-    </div>
-
-    <div class="category-card" data-category="hoodies">
-      <img id="catImageHoodies" alt="Hoodies category">
-      <div class="category-label" id="catLabelHoodies">Hoodies</div>
-    </div>
-
+  <div class="category-card clothes" data-category="clothes">
+    <img id="catImageClothes" alt="Clothes category">
+    <div class="category-label" id="catLabelClothes">Clothes</div>
   </div>
+
+  <div class="category-card perfumes" data-category="perfumes">
+    <img id="catImagePerfumes" alt="Perfumes category">
+    <div class="category-label" id="catLabelPerfumes">Perfumes</div>
+  </div>
+
+  <div class="category-card shoes" data-category="shoes">
+    <img id="catImageShoes" alt="Shoes category">
+    <div class="category-label" id="catLabelShoes">Shoes</div>
+  </div>
+
+  <div class="category-card hoodies" data-category="hoodies">
+    <img id="catImageHoodies" alt="Hoodies category">
+    <div class="category-label" id="catLabelHoodies">Hoodies</div>
+  </div>
+
+</div>
 
 </section>
 <!-- =============== END CATEGORY SECTION =============== -->
@@ -127,6 +127,15 @@
   }
     if (heroBadge) {
     document.getElementById("heroBadgeText").textContent = heroBadge;
+  }
+</script>
+<script>
+  if (!sessionStorage.getItem("orivo_css_refresh")) {
+    sessionStorage.setItem("orivo_css_refresh", "1");
+    const links = document.querySelectorAll("link[rel='stylesheet']");
+    links.forEach(link => {
+      link.href = link.href.split("?")[0] + "?v=" + Date.now();
+    });
   }
 </script>
 </body>
