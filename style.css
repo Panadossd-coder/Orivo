@@ -495,14 +495,26 @@ section h2 {
   transform: translateY(-2px);
 }
 
+/* ---------- PRODUCT IMAGE (FINAL FIX) ---------- */
 .product-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;       /* ✅ controls height */
   border-radius: 14px;
   overflow: hidden;
+  background: #ececec;
   margin-bottom: 14px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image img {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  background: #ececec;
+  height: 100%;
+  object-fit: cover;         /* ✅ THIS IS THE MISSING PIECE */
+  object-position: center;
+  display: block;
 }
 
 .product-card h4 {
