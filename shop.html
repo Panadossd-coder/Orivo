@@ -106,5 +106,22 @@
   });
 </script>
 
+<script>
+  const savedCategory = localStorage.getItem("orivo_selected_category");
+
+  if (savedCategory) {
+    document.querySelectorAll(".product-card").forEach(card => {
+      if (card.dataset.category === savedCategory) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    // optional: clear after use
+    localStorage.removeItem("orivo_selected_category");
+  }
+</script>
+
 </body>
 </html>
