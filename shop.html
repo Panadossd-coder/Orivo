@@ -35,10 +35,11 @@
 
         <div class="filter-group">
           <label>Category</label>
-          <p>Clothes</p>
-          <p>Perfumes</p>
-          <p>Shoes</p>
-          <p>Hoodies</p>
+          <p class="filter-btn" data-filter="all">All</p>
+<p class="filter-btn" data-filter="clothes">Clothes</p>
+<p class="filter-btn" data-filter="perfumes">Perfumes</p>
+<p class="filter-btn" data-filter="shoes">Shoes</p>
+<p class="filter-btn" data-filter="hoodies">Hoodies</p>
         </div>
       </aside>
 
@@ -67,7 +68,7 @@
     products.forEach(product => {
       const card = document.createElement("div");
       card.className = "product-card";
-
+      card.dataset.category = product.category;
       // ✅ FULL CARD CLICK
       card.onclick = () => {
         localStorage.setItem("orivo_active_product", JSON.stringify(product));
@@ -86,6 +87,24 @@
       productGrid.appendChild(card);
     });
   </script>
+  
+  <script>
+  const filterButtons = document.querySelectorAll(".filter-btn");
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const selected = button.dataset.filter;
+
+      document.querySelectorAll(".product-card").forEach(card => {
+        if (selected === "all" || card.dataset.category === selected) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
