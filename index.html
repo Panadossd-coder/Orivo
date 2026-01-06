@@ -138,5 +138,20 @@
     });
   }
 </script>
+
+<script>
+  document.querySelectorAll(".category-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const category = card.dataset.category;
+
+      // save selected category
+      localStorage.setItem("orivo_selected_category", category);
+
+      // go to shop
+      window.location.href = "shop.html";
+    });
+  });
+</script>
+
 </body>
 </html>
