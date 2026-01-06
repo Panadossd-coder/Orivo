@@ -6,6 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* 🔒 FIX IMAGE SIZE + CLICK */
+    .product-card {
+      cursor: pointer;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #f2f2f2;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* 🔥 THIS FIXES YOUR IMAGE ISSUE */
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
@@ -27,7 +49,7 @@
 
     <div class="shop-layout">
 
-      <!-- FILTERS (UI ONLY for now) -->
+      <!-- FILTERS (UI ONLY) -->
       <aside class="filters">
         <h3>Filter by</h3>
 
@@ -41,9 +63,7 @@
       </aside>
 
       <!-- PRODUCTS -->
-      <div class="product-grid" id="productGrid">
-        <!-- Products injected here -->
-      </div>
+      <div class="product-grid" id="productGrid"></div>
 
     </div>
   </section>
@@ -55,7 +75,7 @@
 
   <script src="script.js"></script>
 
-  <!-- ================= LOAD PRODUCTS FROM ADMIN ================= -->
+  <!-- ================= LOAD PRODUCTS ================= -->
   <script>
     const productGrid = document.getElementById("productGrid");
     const products = JSON.parse(localStorage.getItem("orivo_products")) || [];
@@ -66,17 +86,17 @@
 
     products.forEach(product => {
       const card = document.createElement("div");
-      card.className = "product-card is-clickable";
-      card.dataset.category = product.category;
+      card.className = "product-card";
+
+      // ✅ FULL CARD CLICK
+      card.onclick = () => {
+        localStorage.setItem("orivo_active_product", JSON.stringify(product));
+        window.location.href = "product.html";
+      };
 
       card.innerHTML = `
         <div class="product-image">
           <img src="${product.image}" alt="${product.name}">
-        </div>
-
-        <div class="card-actions">
-          <button class="action-btn primary">Add to Cart</button>
-          <button class="action-btn ghost">♡</button>
         </div>
 
         <h4>${product.name}</h4>
