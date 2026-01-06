@@ -381,7 +381,12 @@ productImageInput.addEventListener("change", () => {
 });
 
 function addProduct() {
-  if (!productName.value || !productPrice.value || !productImageBase64) {
+  if (
+    !productName.value ||
+    !productPrice.value ||
+    !productCategory.value ||
+    !productImageBase64
+  ) {
     alert("All fields required");
     return;
   }
@@ -390,13 +395,16 @@ function addProduct() {
     id: Date.now(),
     name: productName.value,
     price: productPrice.value,
+    category: productCategory.value,
     image: productImageBase64
   });
 
   localStorage.setItem("orivo_products", JSON.stringify(products));
 
+  // Reset fields
   productName.value = "";
   productPrice.value = "";
+  productCategory.value = "";
   closeProductEditor();
 
   alert("Product added");
