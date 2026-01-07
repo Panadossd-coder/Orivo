@@ -47,21 +47,19 @@ body {
 }
 
 body.dark {
-  /* 🌫 Soft Luxury Grey (NOT black) */
-  --bg-main: #18191d;      /* main background */
-  --bg-card: #202127;      /* cards & panels */
+  /* 🌫 Elegant charcoal (luxury, not black) */
+  --bg-main: #141519;      /* deeper page background */
+  --bg-card: #1f2026;      /* cards stand out more */
 
-  --text-main: #f2f2f3;    /* main text */
-  --text-muted: #b0b0b6;   /* secondary text */
+  --text-main: #f2f2f3;
+  --text-muted: #b3b3ba;
 
-  --border: #2f3036;
+  --border: #2e2f36;
 
-  /* Accent stays elegant */
   --accent: #e58aa5;
-  --accent-soft: rgba(229, 138, 165, 0.18);
+  --accent-soft: rgba(229, 138, 165, 0.22);
 
-  /* Softer shadow (no harsh black) */
-  --shadow-soft: 0 20px 50px rgba(0,0,0,0.28);
+  --shadow-soft: 0 24px 60px rgba(0,0,0,0.35);
 }
 
 /* ===============================
@@ -844,7 +842,7 @@ body.dark .featured-card {
   100% { transform: translateX(-14px); opacity: 0.6; }
 }
 /* ===============================
-   CATEGORY SECTION — CARDBOARD STYLE
+   CATEGORY SECTION — PREMIUM CONTRAST FIX
    =============================== */
 
 .categories {
@@ -855,6 +853,7 @@ body.dark .featured-card {
   font-family: 'Playfair Display', serif;
   font-size: 32px;
   margin-bottom: 40px;
+  color: var(--text-main);
 }
 
 /* GRID */
@@ -867,165 +866,141 @@ body.dark .featured-card {
 /* CARD BASE */
 .category-card {
   position: relative;
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.95),
-    rgba(245,245,245,0.9)
-  );
-
   border-radius: 28px;
-  padding: 26px 22px 30px;
-  min-height: 200px;
-
-  box-shadow:
-    0 20px 40px rgba(0,0,0,0.08),
-    inset 0 0 0 1px rgba(255,255,255,0.6);
+  padding: 28px 22px 32px;
+  min-height: 220px;
 
   overflow: hidden;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
 
-/* HOVER LIFT */
-.category-card:hover {
-  transform: translateY(-6px);
   box-shadow:
-    0 30px 60px rgba(0,0,0,0.14),
-    inset 0 0 0 1px rgba(255,255,255,0.75);
-}
+    0 22px 50px rgba(0,0,0,0.12),
+    inset 0 0 0 1px rgba(255,255,255,0.65);
 
-/* IMAGE — FLOATING ABOVE CARD */
-.category-card img {
-  width: 100%;
-  max-height: 150px;
-  object-fit: contain;
-
-  position: relative;
-  z-index: 2;
-
-  transform: translateY(-36px);
-  filter: drop-shadow(0 18px 28px rgba(0,0,0,0.22));
-
-  transition: transform 0.35s ease;
-}
-
-.category-card:hover img {
-  transform: translateY(-46px) scale(1.02);
-}
-
-/* LABEL */
-.category-label {
-  position: absolute;
-  bottom: 22px;
-  left: 22px;
-
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-main);
-}
-
-
-/* ===============================
-   CATEGORY COLORS — SOFT IDENTITY
-   =============================== */
-
-/* CLOTHES */
-.category-card.clothes {
-  background: linear-gradient(
-    135deg,
-    #f5efe9,
-    #ede6de
-  );
-}
-
-/* PERFUMES */
-.category-card.perfumes {
-  background: linear-gradient(
-    135deg,
-    #f4e6ea,
-    #ecd7dd
-  );
-}
-
-/* SHOES */
-.category-card.shoes {
-  background: linear-gradient(
-    135deg,
-    #eef0f2,
-    #e3e6ea
-  );
-}
-
-/* HOODIES */
-.category-card.hoodies {
-  background: linear-gradient(
-    135deg,
-    #2a2a2f,
-    #1e1e23
-  );
-}
-
-.category-card.hoodies .category-label {
-  color: #ffffff;
-}
-
-/* ===============================
-   CATEGORY LABEL — CONTRAST FIX
-   =============================== */
-
-/* Light cards (default) */
-.category-card .category-label {
-  color: rgba(0,0,0,0.65);
-  text-shadow: 0 1px 2px rgba(255,255,255,0.6);
-}
-
-/* Dark hoodie card override (already good, reinforce) */
-.category-card.hoodies .category-label {
-  color: #ffffff;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-}
-
-/* ===============================
-   CATEGORY CARD — LIFE & DEPTH
-   =============================== */
-
-/* Base motion tuning */
-.category-card {
   transition:
     transform 0.45s cubic-bezier(.22,.61,.36,1),
     box-shadow 0.45s cubic-bezier(.22,.61,.36,1);
 }
 
-/* Hover / tap lift */
+/* REMOVE TOP ARTIFACT COMPLETELY */
+.category-card::after {
+  display: none !important;
+}
+
+/* HOVER LIFT */
 .category-card:hover {
   transform: translateY(-10px);
   box-shadow:
-    0 35px 70px rgba(0,0,0,0.18),
-    inset 0 0 0 1px rgba(255,255,255,0.75);
+    0 36px 80px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.8);
 }
 
-/* Image parallax feel */
+/* IMAGE — CLEAN FLOAT (NO CLIP) */
 .category-card img {
+  width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+
+  position: relative;
+  z-index: 2;
+
+  transform: translateY(-32px);
+  filter: drop-shadow(0 22px 36px rgba(0,0,0,0.25));
+
   transition:
     transform 0.45s cubic-bezier(.22,.61,.36,1),
     filter 0.45s ease;
 }
 
 .category-card:hover img {
-  transform: translateY(-56px) scale(1.04);
-  filter: saturate(1.05);
+  transform: translateY(-46px) scale(1.04);
+  filter: drop-shadow(0 28px 44px rgba(0,0,0,0.3));
 }
 
-/* Soft inner glow (glass polish) */
+/* LABEL */
+.category-label {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ===============================
+   CATEGORY COLORS — CLASSY + CONTRAST
+   =============================== */
+
+/* CLOTHES — Warm Ivory */
+.category-card.clothes {
+  background: linear-gradient(
+    135deg,
+    #fbf6ef,
+    #efe6dc
+  );
+}
+
+.category-card.clothes .category-label {
+  color: #3a3a3a;
+}
+
+/* PERFUMES — Soft Rose */
+.category-card.perfumes {
+  background: linear-gradient(
+    135deg,
+    #f8e9ee,
+    #eed6dd
+  );
+}
+
+.category-card.perfumes .category-label {
+  color: #3b2a30;
+}
+
+/* SHOES — Cool Stone */
+.category-card.shoes {
+  background: linear-gradient(
+    135deg,
+    #f2f4f6,
+    #e1e5ea
+  );
+}
+
+.category-card.shoes .category-label {
+  color: #2f3440;
+}
+
+/* HOODIES — LUXURY GREY (NOT BLACK) */
+.category-card.hoodies {
+  background: linear-gradient(
+    135deg,
+    #2c2d33,
+    #1f2026
+  );
+
+  box-shadow:
+    0 26px 70px rgba(0,0,0,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+.category-card.hoodies .category-label {
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* SOFT INNER GLOW (PREMIUM POLISH) */
 .category-card::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
+
   background: radial-gradient(
     circle at top,
     rgba(255,255,255,0.35),
     transparent 60%
   );
+
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
