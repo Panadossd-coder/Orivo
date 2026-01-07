@@ -22,7 +22,34 @@
 
   <!-- HERO -->
   <section class="hero" id="heroSection">
+  <!-- === LUX HERO BACKDROP (insert here, above #heroImage) === -->
+  <div class="hero-bg" aria-hidden="true">
+    <!-- canvas for particles / sparkles -->
+    <canvas id="heroCanvas"></canvas>
 
+    <!-- layered gradient shapes (SVG for crisp edges & GPU) -->
+    <svg class="hero-glows" viewBox="0 0 1000 600" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="g1" x1="0" x2="1">
+          <stop offset="0%" stop-color="#e58aa5" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#d16c8a" stop-opacity="0.04"/>
+        </linearGradient>
+        <linearGradient id="g2" x1="0" x2="1">
+          <stop offset="0%" stop-color="#7aa6ff" stop-opacity="0.08"/>
+          <stop offset="100%" stop-color="#7aa6ff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- soft big glow -->
+      <ellipse cx="25%" cy="30%" rx="45%" ry="60%" fill="url(#g1)" class="glow-1"/>
+      <ellipse cx="75%" cy="70%" rx="40%" ry="55%" fill="url(#g2)" class="glow-2"/>
+    </svg>
+
+    <!-- a subtle moving streak (CSS animated) -->
+    <div class="hero-streak hero-streak-1"></div>
+    <div class="hero-streak hero-streak-2"></div>
+  </div>
+  <!-- === end LUX HERO BACKDROP === -->
   
   <img id="heroImage" alt="ORIVO Hero" />
 
