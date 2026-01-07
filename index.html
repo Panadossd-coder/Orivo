@@ -152,6 +152,20 @@
     });
   });
 </script>
+ 
+<script>
+/* Safari BFCache fix — hero relayout */
+window.addEventListener("pageshow", function (event) {
+  if (event.persisted) {
+    const heroImg = document.getElementById("heroImage");
+    if (heroImg) {
+      heroImg.style.display = "none";
+      heroImg.offsetHeight; // force reflow
+      heroImg.style.display = "";
+    }
+  }
+});
+</script>
 
 </body>
 </html>
