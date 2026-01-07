@@ -881,7 +881,7 @@ body.dark .featured-card {
     0 20px 40px rgba(0,0,0,0.08),
     inset 0 0 0 1px rgba(255,255,255,0.6);
 
-  overflow: visible;
+  overflow: hidden;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
@@ -923,18 +923,7 @@ body.dark .featured-card {
   color: var(--text-main);
 }
 
-/* SUBTLE CUT CORNER EFFECT */
-.category-card::after {
-  content: "";
-  position: absolute;
-  bottom: -14px;
-  right: -14px;
-  width: 42px;
-  height: 42px;
 
-  background: var(--bg-main);
-  border-radius: 50%;
-}
 /* ===============================
    CATEGORY COLORS — SOFT IDENTITY
    =============================== */
