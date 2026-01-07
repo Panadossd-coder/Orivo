@@ -1,3 +1,5 @@
+Style.css
+
 Basing on my full css make a full code you the rules 
 
 Style.css
@@ -142,106 +144,6 @@ img {
   overflow: hidden;
 }
 
-/* ===============================
-   LUX HERO BACKDROP — PREMIUM ANIMATIONS
-   Paste this after the hero / #heroImage rules
-   =============================== */
-
-/* container for animated background */
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;                 /* sits behind hero content but above page background */
-  pointer-events: none;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-/* canvas covers hero area */
-#heroCanvas {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 0;
-  mix-blend-mode: screen; /* brightens gently */
-  opacity: 0.85;
-  transform: translateZ(0);
-}
-
-/* SVG glows: keep soft and behind other hero overlays */
-.hero-glows {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  opacity: 0.75;
-  pointer-events: none;
-  transform: translateZ(0);
-}
-
-/* soft glow tuning */
-.hero-glows .glow-1 { filter: blur(48px); transform-origin: center; }
-.hero-glows .glow-2 { filter: blur(56px); transform-origin: center; }
-
-/* moving streaks (subtle, luxurious) */
-.hero-streak {
-  position: absolute;
-  left: -20%;
-  width: 140%;
-  height: 220px;
-  top: 14%;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.07;
-  background: linear-gradient(90deg, rgba(255,255,255,0.22), rgba(255,255,255,0.02));
-  transform: rotate(-6deg) translateZ(0);
-  filter: blur(28px);
-  will-change: transform, opacity;
-}
-
-/* second streak offset */
-.hero-streak-2 {
-  top: 48%;
-  height: 300px;
-  opacity: 0.06;
-  transform: rotate(6deg) translateZ(0);
-}
-
-/* subtle parallax for hero image & glows via CSS vars */
-.hero {
-  --mx: 0; --my: 0;
-}
-.hero .hero-bg,
-.hero #heroImage,
-.hero .hero-overlay,
-.hero h1,
-.hero p,
-.hero .btn {
-  transform: translate3d(calc(var(--mx) * 0.03px), calc(var(--my) * 0.02px), 0);
-  transition: transform 0.12s linear;
-}
-
-/* shimmer on hero badge (polish) */
-#heroBadge {
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  will-change: transform;
-}
-
-/* mobile & reduced-motion: simplify and save perf */
-@media (max-width: 780px), (prefers-reduced-motion: reduce) {
-  #heroCanvas { display: none; }
-  .hero-glows { opacity: 0.6; filter: blur(44px); }
-  .hero-streak { display: none; }
-  .hero { --mx: 0; --my: 0; }
-}
-
-/* tweak contrast on dark theme so glows read better */
-body.dark .hero-glows { opacity: 0.9; }
-body.dark .hero-streak { opacity: 0.08; }
 
 /* ===============================
    HERO GLASS TAG (BADGE)
