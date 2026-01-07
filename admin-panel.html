@@ -369,8 +369,10 @@ function renderFeaturedList() {
 let productImageBase64 = null;
 let products = JSON.parse(localStorage.getItem("orivo_products")) || [];
 
+
 function openProductEditor() {
   productEditor.style.display = "flex";
+  renderProductList();
 }
 
 function closeProductEditor() {
@@ -421,6 +423,52 @@ function addProduct() {
 
   alert("Product added");
 }
+
+function renderProductList() {
+  const list = document.getElementById("productList");
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  if (products.length === 0) {
+    list.innerHTML = "<p style='font-size:13px;color:#888;'>No products yet.</p>";
+    return;
+  }
+
+  products.forEach(product => {
+    const row = document.createElement("div");
+    row.style.display = "flex";
+    row.style.alignItems = "center";
+    row.style.gap = "10px";
+
+    row.innerHTML = `
+      <img src="${product.image}"
+           style="width:44px;height:44px;border-radius:8px;object-fit:cover">
+
+      <div style="flex:1;font-size:13px;">
+        <strong>${product.name}</strong><br>
+        $${product.price} · ${product.category}
+      </div>
+
+      <button onclick="deleteProduct(${product.id})"
+        style="border:none;background:none;color:red;font-size:16px;cursor:pointer;">
+        🗑
+      </button>
+    `;
+
+    list.appendChild(row);
+  });
+}
+
+function deleteProduct(id) {
+  if (!confirm("Delete this product?")) return;
+
+  products = products.filter(p => p.id !== id);
+  localStorage.setItem("orivo_products", JSON.stringify(products));
+
+  renderProductList();
+}
+
 </script>
 
 </body>
