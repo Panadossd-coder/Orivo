@@ -238,7 +238,8 @@ img {
   bottom: 0;                 /* 🔒 hard lock to hero bottom */
 
   width: 100%;
-  height: 70%;               /* 🔒 NEVER reaches buttons */
+  height: auto;
+  max-height: 55svh;   /* 🔒 absolute ceiling */
 
   object-fit: contain;
   object-position: center bottom;
