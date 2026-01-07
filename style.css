@@ -47,19 +47,21 @@ body {
 }
 
 body.dark {
-  /* 🌫 Elegant charcoal (luxury, not black) */
-  --bg-main: #141519;      /* deeper page background */
-  --bg-card: #1f2026;      /* cards stand out more */
+  /* 🌫 Premium Light Graphite (Luxury Grey) */
+  --bg-main: #1c1e22;      /* page background (brighter than before) */
+  --bg-card: #26282e;      /* cards clearly visible */
 
-  --text-main: #f2f2f3;
-  --text-muted: #b3b3ba;
+  --text-main: #f5f5f6;   /* clean white text */
+  --text-muted: #c2c3c8;  /* elegant secondary text */
 
-  --border: #2e2f36;
+  --border: #3a3c44;      /* soft visible borders */
 
+  /* Accent stays refined */
   --accent: #e58aa5;
-  --accent-soft: rgba(229, 138, 165, 0.22);
+  --accent-soft: rgba(229, 138, 165, 0.26);
 
-  --shadow-soft: 0 24px 60px rgba(0,0,0,0.35);
+  /* Softer premium shadow */
+  --shadow-soft: 0 20px 50px rgba(0,0,0,0.28);
 }
 
 /* ===============================
