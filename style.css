@@ -928,84 +928,146 @@ body.dark .featured-card {
 }
 
 /* ===============================
-   CATEGORY COLORS — CLASSY + CONTRAST
+   CATEGORY SECTION — CARDBOARD STYLE (FIXED)
    =============================== */
 
-/* CLOTHES — Warm Ivory */
+.categories {
+  padding: 80px 48px;
+}
+
+.categories h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: var(--text-main);
+}
+
+/* GRID */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* CARD BASE */
+.category-card {
+  position: relative;
+
+  border-radius: 28px;
+  padding: 26px 22px 30px;
+  min-height: 240px;
+
+  /* 🔒 HARD CLIP (Safari fix) */
+  overflow: hidden;
+  isolation: isolate;
+  background-clip: padding-box;
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.12),
+    inset 0 0 0 1px rgba(255,255,255,0.55);
+
+  transition:
+    transform 0.45s cubic-bezier(.22,.61,.36,1),
+    box-shadow 0.45s cubic-bezier(.22,.61,.36,1);
+}
+
+/* REMOVE SAFARI GHOST EDGES */
+.category-card::before,
+.category-card::after {
+  content: none !important;
+}
+
+/* HOVER */
+.category-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 35px 70px rgba(0,0,0,0.22),
+    inset 0 0 0 1px rgba(255,255,255,0.75);
+}
+
+/* IMAGE — FLOATING BUT CONTAINED */
+.category-card img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+
+  position: relative;
+  z-index: 1;
+
+  /* ⬇️ reduced lift to avoid clipping bug */
+  transform: translateY(-28px);
+
+  filter: drop-shadow(0 18px 26px rgba(0,0,0,0.22));
+
+  transition:
+    transform 0.45s cubic-bezier(.22,.61,.36,1),
+    filter 0.45s ease;
+}
+
+.category-card:hover img {
+  transform: translateY(-38px) scale(1.03);
+  filter: drop-shadow(0 26px 36px rgba(0,0,0,0.28));
+}
+
+/* LABEL */
+.category-label {
+  position: absolute;
+  bottom: 22px;
+  left: 22px;
+
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ===============================
+   CATEGORY COLORS — SOFT IDENTITY
+   =============================== */
+
+/* CLOTHES */
 .category-card.clothes {
   background: linear-gradient(
     135deg,
-    #fbf6ef,
-    #efe6dc
+    #f5efe9,
+    #ede6de
   );
 }
-
 .category-card.clothes .category-label {
-  color: #3a3a3a;
+  color: rgba(0,0,0,0.7);
 }
 
-/* PERFUMES — Soft Rose */
+/* PERFUMES */
 .category-card.perfumes {
   background: linear-gradient(
     135deg,
-    #f8e9ee,
-    #eed6dd
+    #f4e6ea,
+    #ecd7dd
   );
 }
-
 .category-card.perfumes .category-label {
-  color: #3b2a30;
+  color: rgba(0,0,0,0.72);
 }
 
-/* SHOES — Cool Stone */
+/* SHOES */
 .category-card.shoes {
   background: linear-gradient(
     135deg,
-    #f2f4f6,
-    #e1e5ea
+    #eef0f2,
+    #e3e6ea
   );
 }
-
 .category-card.shoes .category-label {
-  color: #2f3440;
+  color: rgba(0,0,0,0.75);
 }
 
-/* HOODIES — LUXURY GREY (NOT BLACK) */
+/* HOODIES — DARK LUXURY */
 .category-card.hoodies {
   background: linear-gradient(
     135deg,
     #2c2d33,
-    #1f2026
+    #1e1f25
   );
-
-  box-shadow:
-    0 26px 70px rgba(0,0,0,0.45),
-    inset 0 0 0 1px rgba(255,255,255,0.08);
 }
-
 .category-card.hoodies .category-label {
   color: #ffffff;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-}
-
-/* SOFT INNER GLOW (PREMIUM POLISH) */
-.category-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-
-  background: radial-gradient(
-    circle at top,
-    rgba(255,255,255,0.35),
-    transparent 60%
-  );
-
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
-.category-card:hover::before {
-  opacity: 1;
 }
