@@ -378,7 +378,7 @@ body.dark .hero-overlay {
     var(--bg-main)
   );
 
-  z-index: 3;
+  z-index: 1;
   pointer-events: none;
 }
 
