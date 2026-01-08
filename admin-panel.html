@@ -151,6 +151,9 @@
     <label>Hero Background Image</label>
     <input type="file" id="heroImageInput" accept="image/*" />
 
+    <label style="margin-top:16px;">Hero Background Video (optional)</label>
+    <input type="file" id="heroVideoInput" accept="video/mp4,video/webm" />
+
     <img id="heroPreview" />
 
     <div style="display:flex; gap:12px; margin-top:16px;">
@@ -250,6 +253,7 @@ function logout() {
 
 /* HERO STATE */
 let heroImageBase64 = localStorage.getItem("orivo_hero_image");
+let heroVideoBase64 = localStorage.getItem("orivo_hero_video");
 
 function openHeroEditor() {
   heroEditor.style.display = "flex";
@@ -277,6 +281,19 @@ heroImageInput.addEventListener("change", () => {
   };
   reader.readAsDataURL(file);
 });
+
+
+heroVideoInput.addEventListener("change", () => {
+  const file = heroVideoInput.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    heroVideoBase64 = reader.result;
+  };
+  reader.readAsDataURL(file);
+});
+
 
 function saveHero() {
   localStorage.setItem("orivo_hero_title", heroTitle.value);
