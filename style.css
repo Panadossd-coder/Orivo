@@ -313,7 +313,7 @@ body.dark .hero-overlay {
   bottom: 0;
 
   /* pull badge UP into the image */
-  transform: translateY(-34px);
+  transform: translateY(-18px);
 
   display: flex;
   justify-content: center;
