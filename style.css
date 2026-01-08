@@ -137,6 +137,17 @@ img {
   position: relative;
   overflow: hidden;
 }
+/* === HERO STACK SAFETY (STEP 1) === */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* lock hero children above background */
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
 
 .hero {
   position: relative;
