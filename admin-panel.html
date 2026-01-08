@@ -251,6 +251,33 @@ function logout() {
   window.location.href = "admin.html";
 }
 
+<script>
+/* HERO VIDEO — IndexedDB */
+let heroVideoDB;
+
+const openHeroVideoDB = () => {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("orivoHeroDB", 1);
+
+    request.onupgradeneeded = () => {
+      const db = request.result;
+      if (!db.objectStoreNames.contains("videos")) {
+        db.createObjectStore("videos");
+      }
+    };
+
+    request.onsuccess = () => {
+      heroVideoDB = request.result;
+      resolve(heroVideoDB);
+    };
+
+    request.onerror = () => reject("IndexedDB failed");
+  });
+};
+
+openHeroVideoDB();
+</script>
+
 /* HERO STATE */
 let heroImageBase64 = localStorage.getItem("orivo_hero_image");
 let heroVideoBase64 = localStorage.getItem("orivo_hero_video");
@@ -283,15 +310,20 @@ heroImageInput.addEventListener("change", () => {
 });
 
 
-heroVideoInput.addEventListener("change", () => {
+heroVideoInput.addEventListener("change", async () => {
   const file = heroVideoInput.files[0];
   if (!file) return;
 
-  const reader = new FileReader();
-  reader.onload = () => {
-    heroVideoBase64 = reader.result;
+  const db = await openHeroVideoDB();
+  const tx = db.transaction("videos", "readwrite");
+  const store = tx.objectStore("videos");
+
+  store.put(file, "heroVideo");
+
+  tx.oncomplete = () => {
+    heroVideoBase64 = "indexeddb";
+    alert("Hero video selected");
   };
-  reader.readAsDataURL(file);
 });
 
 
@@ -300,7 +332,7 @@ function saveHero() {
   localStorage.setItem("orivo_hero_subtitle", heroSubtitle.value);
   localStorage.setItem("orivo_hero_badge", heroBadge.value);
   localStorage.setItem("orivo_hero_image", heroImageBase64);
-  localStorage.setItem("orivo_hero_video", heroVideoBase64);
+  localStorage.setItem("orivo_hero_video", "indexeddb");
   alert("Hero updated");
   closeHeroEditor();
 }
