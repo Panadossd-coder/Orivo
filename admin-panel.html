@@ -279,38 +279,12 @@ const openHeroVideoDB = () => {
 openHeroVideoDB();
 </script>
 
-<script>
-/* HERO VIDEO — IndexedDB */
-let heroVideoDB;
-
-const openHeroVideoDB = () => {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open("orivoHeroDB", 1);
-
-    request.onupgradeneeded = () => {
-      const db = request.result;
-      if (!db.objectStoreNames.contains("videos")) {
-        db.createObjectStore("videos");
-      }
-    };
-
-    request.onsuccess = () => {
-      heroVideoDB = request.result;
-      resolve(heroVideoDB);
-    };
-
-    request.onerror = () => reject("IndexedDB failed");
-  });
-};
-
-openHeroVideoDB();
-</script>
-
 
 <script>
 /* HERO STATE */
 let heroImageBase64 = localStorage.getItem("orivo_hero_image");
 let heroVideoBase64 = localStorage.getItem("orivo_hero_video");
+
 function openHeroEditor() {
   heroEditor.style.display = "flex";
   heroTitle.value = localStorage.getItem("orivo_hero_title") || "";
@@ -338,7 +312,6 @@ heroImageInput.addEventListener("change", () => {
   reader.readAsDataURL(file);
 });
 
-
 heroVideoInput.addEventListener("change", async () => {
   const file = heroVideoInput.files[0];
   if (!file) return;
@@ -354,7 +327,6 @@ heroVideoInput.addEventListener("change", async () => {
     alert("Hero video selected");
   };
 });
-
 
 function saveHero() {
   localStorage.setItem("orivo_hero_title", heroTitle.value);
