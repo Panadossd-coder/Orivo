@@ -1,5 +1,6 @@
 /* ===============================
-   ORIVO — DESIGN SYSTEM (STABLE)
+   ORIVO — DESIGN SYSTEM
+   Luxury × Modern Commerce
    =============================== */
 
 /* ---------- FONTS ---------- */
@@ -12,219 +13,349 @@
   box-sizing: border-box;
 }
 
+/* iOS + Safari overflow protection */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #1c1e22;
-  color: #f5f5f6;
-  overflow-x: hidden; /* SINGLE place only */
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* ===============================
-   HEADER
+   THEME VARIABLES
+   =============================== */
+:root {
+  /* Light Mode */
+  --bg-main: #f6f6f4;
+  --bg-card: #ffffff;
+  --text-main: #111111;
+  --text-muted: #6b6b6b;
+  --border: #e5e5e5;
+
+  /* Accent */
+  --accent: #d16c8a;
+  --accent-soft: rgba(209, 108, 138, 0.15);
+
+  /* Effects */
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+body.dark {
+  /* 🌫 Premium Light Graphite */
+  --bg-main: #1c1e22;
+  --bg-card: #26282e;
+
+  --text-main: #f5f5f6;
+  --text-muted: #c2c3c8;
+
+  --border: #3a3c44;
+
+  --accent: #e58aa5;
+  --accent-soft: rgba(229, 138, 165, 0.26);
+
+  --shadow-soft: 0 20px 50px rgba(0,0,0,0.28);
+}
+
+/* ===============================
+   GLOBAL
+   =============================== */
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Prevent sections from breaking edge-to-edge elements */
+section,
+header,
+footer {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+/* ===============================
+   HEADER / NAV
    =============================== */
 .header {
   position: relative;
-  z-index: 10;
+  z-index: 20;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 24px;
-  background: #1c1e22;
-  border-bottom: 1px solid #2a2c33;
+
+  width: 100%;
+  max-width: 100%;
+
+  padding: 22px 48px;
+
+  background: var(--bg-main);
+  border-bottom: 1px solid var(--border);
+
+  overflow-x: hidden;
 }
 
+/* Logo */
 .logo {
   font-family: 'Playfair Display', serif;
   font-size: 26px;
   font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
 }
 
 .nav a {
-  margin-left: 24px;
+  margin-left: 28px;
   font-size: 14px;
-  color: #c2c3c8;
+  font-weight: 500;
+
+  position: relative;
+  color: var(--text-muted);
+
+  white-space: nowrap;
 }
 
+.nav a:hover,
 .nav a.active {
-  color: #fff;
-  border-bottom: 2px solid #e58aa5;
+  color: var(--text-main);
+}
+
+.nav a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    transparent
+  );
 }
 
 /* ===============================
-   HERO — TRUE EDGE-TO-EDGE (iOS SAFE)
+   HEADER — MOBILE SAFETY
    =============================== */
+@media (max-width: 900px) {
+  .header {
+    padding: 20px 24px;
+  }
+
+  .nav a {
+    margin-left: 20px;
+  }
+}
+/* ===============================
+   HERO (HOME) — EDGE TO EDGE (LOCKED)
+   =============================== */
+
 .hero {
   position: relative;
-  width: 100%;
-  min-height: 100svh;
-  overflow: hidden;
+  width: 100vw;
+  height: 100svh;
+  min-height: 72svh;
+  max-height: 900px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   text-align: center;
+
+  overflow: hidden;
 }
 
-/* VIDEO */
+/* ===============================
+   HERO VIDEO — TRUE EDGE TO EDGE
+   =============================== */
+
 #heroVideo {
   position: absolute;
   inset: 0;
+
   width: 100%;
   height: 100%;
+
   object-fit: cover;
-  opacity: 0.6;
-  filter: saturate(1.05) contrast(1.05);
+  object-position: center;
+
   z-index: 0;
   pointer-events: none;
+
+  opacity: 0.6;
+  filter: saturate(1.05) contrast(1.05);
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-/* OVERLAY */
+/* Hide video safely if empty */
+#heroVideo:not([src]) {
+  display: none;
+}
+
+/* ===============================
+   HERO OVERLAY (DEPTH)
+   =============================== */
+
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.35),
-    rgba(0,0,0,0.85)
-  );
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.85)
+    );
+
   z-index: 1;
-}
-
-/* MODEL */
-#heroImage {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  max-height: 65svh;
-  width: auto;
-  max-width: 100%;
-  z-index: 2;
   pointer-events: none;
-  opacity: 0.9;
 }
 
-/* CONTENT */
+/* ===============================
+   HERO CONTENT (TEXT + CTA)
+   =============================== */
+
 .hero-content {
   position: relative;
   z-index: 3;
+
   padding-top: 120px;
+  max-width: 720px;
 }
 
 .hero h1 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(42px, 7vw, 72px);
+  font-weight: 700;
   margin-bottom: 16px;
 }
 
 .hero p {
   max-width: 520px;
   margin: 0 auto 36px;
-  color: #c2c3c8;
+  font-size: 16px;
+  color: var(--text-muted);
 }
 
-/* BUTTONS */
 .hero-actions {
   display: flex;
   justify-content: center;
   gap: 18px;
 }
 
-.btn {
-  padding: 14px 38px;
-  border-radius: 999px;
-  font-size: 14px;
-  cursor: pointer;
+/* ===============================
+   HERO IMAGE — MODEL
+   =============================== */
+
+#heroImage {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  max-width: 100%;
+  max-height: 65svh;
+
+  object-fit: contain;
+  object-position: center bottom;
+
+  z-index: 2;
+  pointer-events: none;
+
+  opacity: 0.9;
+  filter: saturate(1.05) contrast(1.05);
+
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,1) 45%
+  );
+  mask-image: linear-gradient(
+    to top,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,1) 45%
+  );
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, #e58aa5, #f2a1b8);
-  color: #fff;
-  border: none;
-}
+/* ===============================
+   HERO BADGE (GLASS STRIP)
+   =============================== */
 
-.btn-outline {
-  background: transparent;
-  border: 1px solid #3a3c44;
-  color: #fff;
-}
-
-/* BADGE */
 #heroBadge {
   position: absolute;
   bottom: 20px;
   left: 0;
+
   width: 100%;
   height: 64px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   background: rgba(160,160,160,0.28);
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
   z-index: 4;
 }
 
 #heroBadgeText {
   font-family: 'Playfair Display', serif;
-  font-size: 40px;
+  font-size: clamp(36px, 6vw, 48px);
+  font-weight: 700;
   letter-spacing: 0.12em;
-  color: #e58aa5;
+  text-transform: uppercase;
+
+  color: var(--accent);
+  white-space: nowrap;
 }
 
 /* ===============================
-   SECTIONS
+   HERO — MOBILE SAFETY
    =============================== */
-section {
-  padding: 80px 24px;
-}
 
-section h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 32px;
-  margin-bottom: 40px;
-}
-
-/* ===============================
-   CATEGORIES (NO DUPLICATES)
-   =============================== */
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-.category-card {
-  position: relative;
-  height: 240px;
-  border-radius: 28px;
-  padding: 24px;
-  background: #26282e;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  overflow: hidden;
-}
-
-.category-card img {
-  max-height: 150px;
-  object-fit: contain;
-}
-
-.category-label {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  font-size: 18px;
-}
-
-/* ===============================
-   MOBILE
-   =============================== */
 @media (max-width: 600px) {
+  .hero-content {
+    padding-top: 96px;
+  }
+
   .hero-actions {
     flex-direction: column;
   }
 
-  .category-grid {
-    grid-template-columns: 1fr;
+  #heroImage {
+    max-height: 58svh;
   }
 }
