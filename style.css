@@ -302,7 +302,7 @@ body.dark .hero-overlay {
 }
 
 /* ===============================
-   HERO BADGE — BOTTOM LOCK
+   HERO BADGE — IMAGE-LOCKED
    =============================== */
 
 #heroBadgeWrap {
@@ -310,8 +310,11 @@ body.dark .hero-overlay {
   left: 0;
   right: 0;
 
-  /* 🔒 sits just ABOVE the model image */
-  bottom: calc(42svh + 20px);
+  /* 🔒 LOCK TO IMAGE TOP EDGE */
+  bottom: 42svh;
+
+  /* pull badge DOWN so it overlaps image edge */
+  transform: translateY(34px);
 
   display: flex;
   justify-content: center;
@@ -319,7 +322,6 @@ body.dark .hero-overlay {
   z-index: 3;
   pointer-events: none;
 }
-
 /* ===============================
    HERO IMAGE (MODEL)
    =============================== */
