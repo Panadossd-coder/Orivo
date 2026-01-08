@@ -242,3 +242,188 @@ main {
     font-size: 13px;
   }
 }
+
+/* ===============================
+   HERO — HOME (EDGE TO EDGE)
+   =============================== */
+
+.hero {
+  position: relative;
+
+  width: 100vw;
+  height: 100svh;
+  min-height: 72svh;
+  max-height: 900px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  text-align: center;
+  overflow: hidden;
+}
+
+/* ===============================
+   HERO VIDEO — BACKGROUND
+   =============================== */
+
+#heroVideo {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  z-index: 0;
+  pointer-events: none;
+
+  opacity: 0.6;
+  filter: saturate(1.05) contrast(1.05);
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Hide empty video safely */
+#heroVideo:not([src]) {
+  display: none;
+}
+
+/* ===============================
+   HERO OVERLAY (DEPTH)
+   =============================== */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.85)
+  );
+
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===============================
+   HERO TEXT CONTENT
+   =============================== */
+
+#heroTitle,
+#heroSubtitle,
+.hero .btn {
+  position: relative;
+  z-index: 3;
+}
+
+#heroTitle {
+  margin-top: 120px;
+
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 7vw, 72px);
+  font-weight: 700;
+}
+
+#heroSubtitle {
+  max-width: 520px;
+  margin: 16px auto 36px;
+
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+/* Buttons spacing */
+.hero a.btn {
+  margin: 0 6px;
+}
+
+/* ===============================
+   HERO IMAGE — MODEL
+   =============================== */
+
+#heroImage {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  max-width: 100%;
+  max-height: 65svh;
+
+  object-fit: contain;
+  object-position: center bottom;
+
+  z-index: 2;
+  pointer-events: none;
+
+  opacity: 0.92;
+  filter: saturate(1.05) contrast(1.05);
+
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,1) 45%
+  );
+  mask-image: linear-gradient(
+    to top,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,1) 45%
+  );
+}
+
+/* ===============================
+   HERO GLASS BADGE
+   =============================== */
+
+#heroBadgeWrap {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+
+  width: 100%;
+  z-index: 4;
+}
+
+#heroBadge {
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(160,160,160,0.28);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+#heroBadgeText {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 6vw, 48px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* ===============================
+   HERO — MOBILE SAFETY
+   =============================== */
+
+@media (max-width: 600px) {
+  #heroTitle {
+    margin-top: 96px;
+  }
+
+  #heroImage {
+    max-height: 58svh;
+  }
+}
