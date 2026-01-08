@@ -1,12 +1,5 @@
-Style.css
-
-Basing on my full css make a full code you the rules 
-
-Style.css
-
 /* ===============================
-   ORIVO — DESIGN SYSTEM
-   Luxury × Modern Commerce
+   ORIVO — DESIGN SYSTEM (CLEAN)
    =============================== */
 
 /* ---------- FONTS ---------- */
@@ -19,380 +12,171 @@ Style.css
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+html, body {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  line-height: 1.6;
-  transition: background 0.3s ease, color 0.3s ease;
+  background: #1c1e22;
+  color: #f5f5f6;
 }
 
 /* ===============================
-   THEME VARIABLES
-   =============================== */
-:root {
-  /* Light Mode */
-  --bg-main: #f6f6f4;
-  --bg-card: #ffffff;
-  --text-main: #111111;
-  --text-muted: #6b6b6b;
-  --border: #e5e5e5;
-
-  /* Accent */
-  --accent: #d16c8a;
-  --accent-soft: rgba(209, 108, 138, 0.15);
-
-  /* Effects */
-  --shadow-soft: 0 10px 30px rgba(0,0,0,0.06);
-}
-
-body.dark {
-  /* 🌫 Premium Light Graphite (Luxury Grey) */
-  --bg-main: #1c1e22;      /* page background (brighter than before) */
-  --bg-card: #26282e;      /* cards clearly visible */
-
-  --text-main: #f5f5f6;   /* clean white text */
-  --text-muted: #c2c3c8;  /* elegant secondary text */
-
-  --border: #3a3c44;      /* soft visible borders */
-
-  /* Accent stays refined */
-  --accent: #e58aa5;
-  --accent-soft: rgba(229, 138, 165, 0.26);
-
-  /* Softer premium shadow */
-  --shadow-soft: 0 20px 50px rgba(0,0,0,0.28);
-}
-
-/* ===============================
-   GLOBAL
-   =============================== */
-body {
-  background: var(--bg-main);
-  color: var(--text-main);
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-/* ===============================
-   HEADER / NAV
+   HEADER
    =============================== */
 .header {
+  position: relative;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 48px;
-  background: var(--bg-main);
-  border-bottom: 1px solid var(--border);
+  padding: 22px 24px;
+  background: #1c1e22;
+  border-bottom: 1px solid #2a2c33;
 }
 
 .logo {
   font-family: 'Playfair Display', serif;
   font-size: 26px;
   font-weight: 700;
-  letter-spacing: 0.5px;
 }
 
 .nav a {
-  margin-left: 28px;
+  margin-left: 24px;
   font-size: 14px;
-  font-weight: 500;
-  position: relative;
-  color: var(--text-muted);
+  color: #c2c3c8;
 }
 
-.nav a.active,
-.nav a:hover {
-  color: var(--text-main);
-}
-
-.nav a.active::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), transparent);
+.nav a.active {
+  color: #ffffff;
+  border-bottom: 2px solid #e58aa5;
 }
 
 /* ===============================
-   HERO (HOME)
+   HERO — EDGE TO EDGE (REAL)
    =============================== */
 .hero {
-  min-height: 72svh;        /* 🔒 Safari-safe viewport */
-  height: 90svh;
-  max-height: 900px;
-
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  overflow: hidden;
   text-align: center;
-  position: relative;
-  overflow: hidden;
 }
 
-.hero {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero > video {
+/* ---------- VIDEO BACKGROUND ---------- */
+#heroVideo {
   position: absolute;
   inset: 0;
-  width: 100vw;
-  height: 100%;
-}
-
-/* Hide video safely when no source is present */
-#heroVideo:not([src]) {
-  display: none;
-}
-
-/* ===============================
-   HERO GLASS TAG (BADGE)
-   =============================== */
-
-#heroBadge {
-  position: relative;
-
   width: 100%;
-  height: 68px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 0;
-
-  background: rgba(160,160,160,0.32);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.28),
-    0 18px 50px rgba(0,0,0,0.18);
-
-  -webkit-mask-image: linear-gradient(
-    to right,
-    rgba(0,0,0,0),
-    rgba(0,0,0,1) 8%,
-    rgba(0,0,0,1) 92%,
-    rgba(0,0,0,0)
-  );
-  mask-image: linear-gradient(
-    to right,
-    rgba(0,0,0,0),
-    rgba(0,0,0,1) 8%,
-    rgba(0,0,0,1) 92%,
-    rgba(0,0,0,0)
-  );
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  filter: saturate(1.05) contrast(1.05);
+  z-index: 0;
+  pointer-events: none;
 }
 
-#heroBadgeText {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 5vw, 42px); /* 🔥 SAME SCALE AS HERO TITLE */
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-
-  color: rgba(255,255,255,0.85);
-  white-space: nowrap;
+/* ---------- DARK OVERLAY ---------- */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.85)
+  );
+  z-index: 1;
 }
 
-/* subtle left-right motion */
-@keyframes heroBadgeFloat {
-  0%   { transform: translateX(0); }
-  50%  { transform: translateX(24px); }
-  100% { transform: translateX(0); }
+/* ---------- MODEL IMAGE ---------- */
+#heroImage {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 100%;
+  max-height: 65svh;
+  opacity: 0.9;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ---------- HERO CONTENT ---------- */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  padding-top: 120px;
 }
 
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(42px, 6vw, 72px);
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-size: clamp(42px, 7vw, 72px);
+  margin-bottom: 16px;
 }
 
 .hero p {
   max-width: 520px;
-  font-size: 16px;
-  color: var(--text-muted);
-  margin-bottom: 40px;
-}
-.hero {
-  position: relative;
-  overflow: hidden;
+  margin: 0 auto 36px;
+  color: #c2c3c8;
 }
 
-/* ===============================
-   HERO VIDEO — TRUE EDGE TO EDGE
-   =============================== */
-
-#heroVideo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  object-position: center;
-
-  z-index: 0;
-
-  opacity: 0.6;
-  filter: saturate(1.05) contrast(1.05);
-
-  pointer-events: none;
-
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+/* ---------- BUTTONS ---------- */
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
 }
 
-  pointer-events: none;
-
-  /* iOS / Safari stability */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-
-
-/* ===============================
-   HERO IMAGE — MODEL (FIXED)
-   =============================== */
-
-#heroImage {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  width: 100%;
-  max-height: 60svh;
-
-  object-fit: contain;
-  object-position: center bottom;
-
-  z-index: 2;
-  pointer-events: none;
-
-  /* 🔥 MODEL IS NOW CLEAR */
-  opacity: 0.85;
-  filter: saturate(1.05) contrast(1.05);
-
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-
-  /* clean fade */
-  -webkit-mask-image: linear-gradient(
-    to top,
-    rgba(0,0,0,0.9) 0%,
-    rgba(0,0,0,1) 45%
-  );
-  mask-image: linear-gradient(
-    to top,
-    rgba(0,0,0,0.9) 0%,
-    rgba(0,0,0,1) 45%
-  );
-}
-
-
-/* soft fade at bottom to blend with bg */
-.hero::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 140px;
-  background: linear-gradient(
-    to bottom,
-    rgba(246,246,244,0),
-    var(--bg-main)
-  );
-  pointer-events: none;
-}
-
-.hero h1,
-.hero p,
-.hero .btn,
-.hero div {
-  position: relative;
-  z-index: 3;
-}
-
-body.dark .hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-
-  background:
-    radial-gradient(
-      circle at 60% 25%,
-      rgba(229,138,165,0.22),
-      transparent 50%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,0.35),
-      rgba(0,0,0,0.7)
-    );
-}
-
-/* ===============================
-   BUTTONS
-   =============================== */
 .btn {
   padding: 14px 38px;
-  font-size: 14px;
-  font-weight: 500;
   border-radius: 999px;
+  font-size: 14px;
   cursor: pointer;
-  transition: all 0.25s ease;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), #f2a1b8);
+  background: linear-gradient(135deg, #e58aa5, #f2a1b8);
   color: #fff;
   border: none;
-  box-shadow: 0 10px 30px var(--accent-soft);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
 }
 
 .btn-outline {
   background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-main);
+  border: 1px solid #3a3c44;
+  color: #fff;
+}
+
+/* ---------- HERO BADGE ---------- */
+#heroBadge {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(160,160,160,0.28);
+  backdrop-filter: blur(18px);
+  z-index: 4;
+}
+
+#heroBadgeText {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  letter-spacing: 0.12em;
+  color: #e58aa5;
 }
 
 /* ===============================
    SECTION
    =============================== */
 section {
-  padding: 80px 48px;
+  padding: 80px 24px;
 }
 
 section h2 {
@@ -402,689 +186,49 @@ section h2 {
 }
 
 /* ===============================
-   SHOP LAYOUT
+   CATEGORY GRID
    =============================== */
-.shop-layout {
+.category-grid {
   display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 40px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }
 
-/* ---------- FILTER SIDEBAR ---------- */
-.filters {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 24px;
-}
-
-.filters h3 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.filter-group {
-  margin-bottom: 24px;
-}
-
-.filter-group label {
-  display: block;
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: 10px;
-}
-
-/* ===============================
-   PRODUCT GRID
-   =============================== */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
-
-/* ---------- PRODUCT CARD ---------- */
-.product-card {
-  background: var(--bg-card);
-  border-radius: 18px;
-  padding: 16px;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* ===============================
-   PRODUCT CARD — HEIGHT COMPRESSION FIX
-   =============================== */
-
-.product-card {
-  padding: 12px; /* override 16px → reduces card height */
-}
-
-.product-card h4 {
-  margin-top: 4px;
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
-
-.product-card span {
-  line-height: 1.2;
-}
-
-/* Clickable cards (SHOP ONLY) */
-.product-card.is-clickable {
-  cursor: pointer;
-}
-.product-card {
-  display: flex;
-  flex-direction: column;
-}
-/* ---------- CARD ACTIONS (HOVER UI) ---------- */
-.card-actions {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.45),
-    rgba(0,0,0,0.05)
-  );
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 12px;
-  padding: 20px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-  border-radius: 18px;
-}
-
-/* Enable overlay context */
-.product-card {
+.category-card {
   position: relative;
-}
-
-/* Show on hover (desktop only) */
-@media (hover: hover) {
-  .product-card:hover .card-actions {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
-/* Buttons */
-.action-btn {
-  border-radius: 999px;
-  font-size: 13px;
-  padding: 10px 18px;
-  cursor: pointer;
-  border: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.action-btn.primary {
-  background: linear-gradient(135deg, var(--accent), #f2a1b8);
-  color: #fff;
-}
-
-.action-btn.ghost {
-  background: rgba(255,255,255,0.9);
-  color: #111;
-}
-
-.action-btn:hover {
-  transform: translateY(-2px);
-}
-
-/* ---------- PRODUCT IMAGE (FINAL FIX) ---------- */
-/* ---------- PRODUCT IMAGE (EDITORIAL SHOP FIX) ---------- */
-.product-image {
-  width: 100%;
-  aspect-ratio: 4 / 5;   /* 🔥 SHORTER, MODERN */
-  border-radius: 14px;
+  height: 240px;
+  border-radius: 28px;
   overflow: hidden;
-  background: #ececec;
-  margin-bottom: 14px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 24px;
+  background: #26282e;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
+.category-card img {
+  max-height: 150px;
+  margin-bottom: 16px;
 }
 
-.product-card h4 {
-  font-size: 15px;
-  font-weight: 500;
-  margin-bottom: 6px;
-}
-
-.product-card span {
-  font-size: 14px;
-  color: var(--text-muted);
+.category-label {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 18px;
 }
 
 /* ===============================
-   FOOTER
+   MOBILE FIXES
    =============================== */
-.footer {
-  padding: 40px;
-  text-align: center;
-  border-top: 1px solid var(--border);
-  color: var(--text-muted);
-  font-size: 14px;
-}
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 42px;
+  }
 
-/* ===============================
-   RESPONSIVE — MOBILE & TABLET
-   =============================== */
+  .hero-actions {
+    flex-direction: column;
+  }
 
-@media (max-width: 900px) {
-  .shop-layout {
+  .category-grid {
     grid-template-columns: 1fr;
   }
-
-  .header {
-    padding: 20px 24px;
-  }
-
-  section {
-    padding: 60px 24px;
-  }
-
-  .product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-  }
-}
-
-@media (max-width: 600px) {
-  .product-card {
-    padding: 10px; /* 🔥 THIS is what Safari needs */
-  }
-
-  .product-image {
-    aspect-ratio: 4 / 5; /* lock ratio again for iPhone */
-  }
-
-  .product-card h4 {
-    font-size: 14px;
-    margin-bottom: 3px;
-  }
-
-  .product-card span {
-    font-size: 13px;
-  }
-}
-/* ===============================
-   ORIVO — ANIMATIONS & MOTION
-   Premium, subtle, calm
-   =============================== */
-
-/* Fade-up reveal */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Hero soft glow */
-.hero h1 {
-  animation: heroFade 1.2s ease forwards;
-}
-
-.hero p {
-  animation: heroFade 1.4s ease forwards;
-}
-
-@keyframes heroFade {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Button hover polish */
-.btn-primary:hover {
-  box-shadow: 0 18px 40px var(--accent-soft);
-}
-
-/* Card hover refinement */
-.product-card {
-  will-change: transform;
-}
-
-.product-card:hover {
-  transform: translateY(-8px) scale(1.01);
-}
-
-/* Filter hover (shop sidebar) */
-.filters p {
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.filters p:hover {
-  color: var(--accent);
-}
-@media (max-width: 600px) {
-  .product-card {
-    padding: 14px;
-  }
-
-  .product-card h4 {
-    font-size: 14px;
-  }
-
-  .product-card span {
-    font-size: 13px;
-  }
-}
-/* ===============================
-   FEATURED SLIDER — FINAL (CLEAN)
-   =============================== */
-
-.featured-slider {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 20px 0 44px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-.featured-slider::-webkit-scrollbar {
-  display: none;
-}
-
-/* CARD */
-.featured-card {
-  min-width: 230px;
-  scroll-snap-align: center;
-
-  background: rgba(255,255,255,0.65);
-  border-radius: 22px;
-  padding: 14px;
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-
-  box-shadow:
-    0 18px 40px rgba(0,0,0,0.10),
-    inset 0 0 0 1px rgba(255,255,255,0.35);
-
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-body.dark .featured-card {
-  background: rgba(22,22,27,0.55);
-  box-shadow:
-    0 25px 50px rgba(0,0,0,0.5),
-    inset 0 0 0 1px rgba(255,255,255,0.08);
-}
-
-/* IMAGE (ALIVE + FEATURED) */
-.featured-card img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-
-  border-radius: 16px;
-  margin-bottom: 12px;
-
-  transform: translateY(-10px);
-  box-shadow: 0 18px 32px rgba(0,0,0,0.22);
-
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
-}
-
-/* INTERACTION */
-.featured-card:hover {
-  transform: translateY(-6px) scale(1.03);
-}
-
-.featured-card:hover img {
-  transform: translateY(-16px) scale(1.02);
-  box-shadow: 0 30px 50px rgba(0,0,0,0.32);
-}
-
-/* TEXT */
-.featured-card h4 {
-  font-size: 15px;
-  margin-bottom: 4px;
-}
-
-.featured-card span {
-  font-size: 14px;
-  color: var(--text-muted);
-}
-/* ===============================
-   HERO — SUBTLE LIFE (2025 MOTION)
-   =============================== */
-
-
-@keyframes heroGlow {
-  from {
-    background-position: 50% -10%;
-  }
-  to {
-    background-position: 50% 10%;
-  }
-}
-
-#heroImage {
-  animation: heroFadeIn 1.2s ease forwards;
-}
-
-@keyframes heroFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 0.75; } /* FINAL visible strength */
-}
-    
-
-/* text entrance refinement */
-.hero h1,
-.hero p,
-.hero .btn {
-  animation: heroTextIn 0.9s ease both;
-}
-
-.hero p {
-  animation-delay: 0.15s;
-}
-
-.hero .btn {
-  animation-delay: 0.25s;
-}
-
-@keyframes heroTextIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-#heroBadgeText {
-  font-family: 'Playfair Display', serif;
-
-  /* 🔥 EXACT HERO TITLE SCALE */
-  font-size: clamp(42px, 6vw, 72px);
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-
-  /* 🌸 SAME PINK AS BUTTON */
-  color: var(--accent);
-
-  white-space: nowrap;
-
-  animation: badgeSlide 6s ease-in-out infinite;
-}
-
-@keyframes badgeSlide {
-  0%   { transform: translateX(-14px); opacity: 0.6; }
-  50%  { transform: translateX(14px);  opacity: 1; }
-  100% { transform: translateX(-14px); opacity: 0.6; }
-}
-/* ===============================
-   CATEGORY SECTION — PREMIUM CONTRAST FIX
-   =============================== */
-
-.categories {
-  padding: 80px 48px;
-}
-
-.categories h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 32px;
-  margin-bottom: 40px;
-  color: var(--text-main);
-}
-
-/* GRID */
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-}
-
-/* CARD BASE */
-.category-card {
-  position: relative;
-  border-radius: 28px;
-  padding: 28px 22px 32px;
-  min-height: 220px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 22px 50px rgba(0,0,0,0.12),
-    inset 0 0 0 1px rgba(255,255,255,0.65);
-
-  transition:
-    transform 0.45s cubic-bezier(.22,.61,.36,1),
-    box-shadow 0.45s cubic-bezier(.22,.61,.36,1);
-}
-
-/* REMOVE TOP ARTIFACT COMPLETELY */
-.category-card::after {
-  display: none !important;
-}
-
-/* HOVER LIFT */
-.category-card:hover {
-  transform: translateY(-10px);
-  box-shadow:
-    0 36px 80px rgba(0,0,0,0.18),
-    inset 0 0 0 1px rgba(255,255,255,0.8);
-}
-
-/* IMAGE — CLEAN FLOAT (NO CLIP) */
-.category-card img {
-  width: 100%;
-  max-height: 160px;
-  object-fit: contain;
-
-  position: relative;
-  z-index: 2;
-
-  transform: translateY(-32px);
-  filter: drop-shadow(0 22px 36px rgba(0,0,0,0.25));
-
-  transition:
-    transform 0.45s cubic-bezier(.22,.61,.36,1),
-    filter 0.45s ease;
-}
-
-.category-card:hover img {
-  transform: translateY(-46px) scale(1.04);
-  filter: drop-shadow(0 28px 44px rgba(0,0,0,0.3));
-}
-
-/* LABEL */
-.category-label {
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
-
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-/* ===============================
-   CATEGORY SECTION — CARDBOARD STYLE (FIXED)
-   =============================== */
-
-.categories {
-  padding: 80px 48px;
-}
-
-.categories h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 32px;
-  margin-bottom: 40px;
-  color: var(--text-main);
-}
-
-/* GRID */
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-}
-
-/* CARD BASE */
-.category-card {
-  position: relative;
-
-  border-radius: 28px;
-  padding: 26px 22px 30px;
-  min-height: 240px;
-
-  /* 🔒 HARD CLIP (Safari fix) */
-  overflow: hidden;
-  isolation: isolate;
-  background-clip: padding-box;
-
-  box-shadow:
-    0 20px 40px rgba(0,0,0,0.12),
-    inset 0 0 0 1px rgba(255,255,255,0.55);
-
-  transition:
-    transform 0.45s cubic-bezier(.22,.61,.36,1),
-    box-shadow 0.45s cubic-bezier(.22,.61,.36,1);
-}
-
-/* REMOVE SAFARI GHOST EDGES */
-.category-card::before,
-.category-card::after {
-  content: none !important;
-}
-
-/* HOVER */
-.category-card:hover {
-  transform: translateY(-10px);
-  box-shadow:
-    0 35px 70px rgba(0,0,0,0.22),
-    inset 0 0 0 1px rgba(255,255,255,0.75);
-}
-
-/* IMAGE — FLOATING BUT CONTAINED */
-.category-card img {
-  width: 100%;
-  max-height: 150px;
-  object-fit: contain;
-
-  position: relative;
-  z-index: 2;
-
-  /* 🔒 SAFARI FIX */
-  display: block;
-  opacity: 0;
-  visibility: hidden;
-
-  transform: translateY(-28px);
-  filter: drop-shadow(0 18px 26px rgba(0,0,0,0.22));
-
-  transition:
-    opacity 0.25s ease,
-    transform 0.45s cubic-bezier(.22,.61,.36,1),
-    filter 0.45s ease;
-}
-/* SHOW IMAGE ONLY WHEN SRC IS PRESENT */
-.category-card img[src] {
-  opacity: 1;
-  visibility: visible;
-}
-
-.category-card:hover img {
-  transform: translateY(-38px) scale(1.03);
-  filter: drop-shadow(0 26px 36px rgba(0,0,0,0.28));
-}
-
-/* LABEL */
-.category-label {
-  position: absolute;
-  bottom: 22px;
-  left: 22px;
-
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-/* ===============================
-   CATEGORY COLORS — SOFT IDENTITY
-   =============================== */
-
-/* CLOTHES */
-.category-card.clothes {
-  background: linear-gradient(
-    135deg,
-    #f5efe9,
-    #ede6de
-  );
-}
-.category-card.clothes .category-label {
-  color: rgba(0,0,0,0.7);
-}
-
-/* PERFUMES */
-.category-card.perfumes {
-  background: linear-gradient(
-    135deg,
-    #f4e6ea,
-    #ecd7dd
-  );
-}
-.category-card.perfumes .category-label {
-  color: rgba(0,0,0,0.72);
-}
-
-/* SHOES */
-.category-card.shoes {
-  background: linear-gradient(
-    135deg,
-    #eef0f2,
-    #e3e6ea
-  );
-}
-.category-card.shoes .category-label {
-  color: rgba(0,0,0,0.75);
-}
-
-/* HOODIES — DARK LUXURY */
-.category-card.hoodies {
-  background: linear-gradient(
-    135deg,
-    #2c2d33,
-    #1e1f25
-  );
-}
-.category-card.hoodies .category-label {
-  color: #ffffff;
 }
