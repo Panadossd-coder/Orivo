@@ -175,3 +175,184 @@ video {
     gap: 20px;
   }
 }
+
+/* ===============================
+   HERO — EDGE TO EDGE SYSTEM
+   =============================== */
+
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  min-height: 720px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  overflow: hidden;
+}
+
+/* ===============================
+   HERO VIDEO (FULL BLEED)
+   =============================== */
+
+#heroVideo {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  z-index: 0;
+  opacity: 0.55;
+
+  pointer-events: none;
+}
+
+/* Hide if no source */
+#heroVideo:not([src]) {
+  display: none;
+}
+
+/* ===============================
+   HERO OVERLAY (DEPTH CONTROL)
+   =============================== */
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0,0,0,0.15),
+      rgba(0,0,0,0.75)
+    );
+
+  z-index: 1;
+}
+
+/* ===============================
+   HERO IMAGE (MODEL)
+   =============================== */
+
+#heroImage {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  max-height: 68svh;
+  max-width: 100%;
+
+  object-fit: contain;
+  object-position: center bottom;
+
+  z-index: 2;
+  pointer-events: none;
+
+  /* 🔑 OPACITY FIX */
+  opacity: 1;
+
+  /* Smooth fade top */
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0,0,0,1) 60%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to top,
+    rgba(0,0,0,1) 60%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+/* ===============================
+   HERO TEXT
+   =============================== */
+
+.hero h1 {
+  position: relative;
+  z-index: 3;
+
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 700;
+
+  margin-bottom: 16px;
+}
+
+.hero p {
+  position: relative;
+  z-index: 3;
+
+  max-width: 520px;
+  margin: 0 auto 36px;
+
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+/* ===============================
+   HERO CTA BUTTONS
+   =============================== */
+
+.hero .btn {
+  position: relative;
+  z-index: 3;
+}
+
+/* ===============================
+   HERO BADGE (GLASS STRIP)
+   =============================== */
+
+#heroBadgeWrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  z-index: 4;
+}
+
+#heroBadge {
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(140,140,140,0.25);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+#heroBadgeText {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 6vw, 44px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  color: var(--accent);
+}
+
+/* ===============================
+   HERO — MOBILE SAFETY
+   =============================== */
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 640px;
+  }
+
+  #heroImage {
+    max-height: 58svh;
+  }
+}
