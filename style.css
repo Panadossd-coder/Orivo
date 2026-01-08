@@ -359,3 +359,587 @@ footer {
     max-height: 58svh;
   }
 }
+/* ===============================
+   SHOP BY CATEGORY — STRUCTURE
+   =============================== */
+
+.categories {
+  padding: 80px 48px;
+  width: 100%;
+}
+
+.categories h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* GRID */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* CARD */
+.category-card {
+  position: relative;
+  height: 260px;
+
+  border-radius: 28px;
+  padding: 28px;
+
+  background: var(--bg-card);
+  box-shadow: var(--shadow-soft);
+
+  overflow: hidden;
+  isolation: isolate;
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+}
+
+/* IMAGE */
+.category-card img {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+
+  max-height: 160px;
+  transform: translateY(-50%);
+
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* LABEL */
+.category-label {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* ===============================
+   CATEGORY COLORS
+   =============================== */
+
+.category-card.clothes {
+  background: linear-gradient(135deg, #f5efe9, #ede6de);
+}
+
+.category-card.perfumes {
+  background: linear-gradient(135deg, #f4e6ea, #ecd7dd);
+}
+
+.category-card.shoes {
+  background: linear-gradient(135deg, #eef0f2, #e3e6ea);
+}
+
+.category-card.hoodies {
+  background: linear-gradient(135deg, #2c2d33, #1e1f25);
+}
+
+.category-card.hoodies .category-label {
+  color: #fff;
+}
+
+/* ===============================
+   CATEGORY — MOBILE FIX
+   =============================== */
+
+@media (max-width: 600px) {
+  .categories {
+    padding: 60px 24px;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-card {
+    height: 220px;
+  }
+
+  .category-card img {
+    max-height: 130px;
+    right: 16px;
+  }
+}
+
+/* ===============================
+   SHOP — PRODUCT GRID
+   =============================== */
+
+.shop-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+}
+
+/* MOBILE STACK */
+@media (max-width: 900px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===============================
+   PRODUCT GRID
+   =============================== */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* ===============================
+   PRODUCT CARD
+   =============================== */
+
+.product-card {
+  position: relative;
+
+  background: var(--bg-card);
+  border-radius: 18px;
+
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+
+  display: flex;
+  flex-direction: column;
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ===============================
+   PRODUCT IMAGE
+   =============================== */
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+
+  overflow: hidden;
+  background: #e9e9e9;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  display: block;
+}
+
+/* ===============================
+   PRODUCT INFO BAR
+   =============================== */
+
+.product-info {
+  padding: 14px 16px;
+
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-info h4 {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.product-info span {
+  font-size: 14px;
+  opacity: 0.85;
+}
+/* ===============================
+   SHOP — FILTER SIDEBAR
+   =============================== */
+
+.filters {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  padding: 22px;
+
+  box-shadow: var(--shadow-soft);
+}
+
+.filters h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.filter-group p:hover {
+  color: var(--accent);
+}
+
+/* MOBILE — FILTER CARD */
+@media (max-width: 900px) {
+  .filters {
+    margin-bottom: 28px;
+  }
+}
+
+/* ===============================
+   FOOTER
+   =============================== */
+
+.footer {
+  margin-top: 80px;
+  padding: 40px 24px;
+
+  text-align: center;
+
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* SAFETY — NEVER LET FOOTER FLOAT */
+footer {
+  width: 100%;
+  max-width: 100%;
+}
+/* ===============================
+   SHOP — PRODUCT GRID
+   =============================== */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===============================
+   PRODUCT CARD — STRUCTURE
+   =============================== */
+
+.product-card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ===============================
+   PRODUCT IMAGE — HARD FIX
+   =============================== */
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #eaeaea;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  display: block;
+}
+
+/* ===============================
+   PRODUCT INFO (TEXT BELOW IMAGE)
+   =============================== */
+
+.product-info {
+  padding: 16px 18px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-info h4 {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.product-info span {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ===============================
+   PRICE BAR — CLEAN
+   =============================== */
+
+.product-price {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* ===============================
+   SAFETY — iOS / SAFARI
+   =============================== */
+
+.product-card,
+.product-image,
+.product-image img {
+  max-width: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+/* ===============================
+   SHOP BY CATEGORY — GRID
+   =============================== */
+
+.categories {
+  padding: 80px 48px;
+}
+
+@media (max-width: 600px) {
+  .categories {
+    padding: 60px 24px;
+  }
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 600px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===============================
+   CATEGORY CARD — HARD FIX
+   =============================== */
+
+.category-card {
+  position: relative;
+
+  background: var(--bg-card);
+  border-radius: 26px;
+
+  padding: 24px;
+  min-height: 220px;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  box-shadow: var(--shadow-soft);
+}
+
+/* IMAGE — NEVER FLOAT ALONE */
+.category-card img {
+  width: 100%;
+  max-height: 140px;
+
+  object-fit: contain;
+  display: block;
+
+  margin-bottom: 16px;
+}
+
+/* LABEL — ALWAYS ATTACHED */
+.category-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+/* ===============================
+   FEATURED PIECES — SLIDER
+   =============================== */
+
+.featured-slider {
+  display: flex;
+  gap: 20px;
+
+  overflow-x: auto;
+  padding: 20px 0 40px;
+
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+
+.featured-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-card {
+  min-width: 240px;
+  scroll-snap-align: start;
+
+  background: var(--bg-card);
+  border-radius: 22px;
+  overflow: hidden;
+
+  box-shadow: var(--shadow-soft);
+}
+
+.featured-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+
+  object-fit: cover;
+  display: block;
+}
+
+.featured-card h4 {
+  padding: 14px 16px 4px;
+  font-size: 15px;
+}
+
+.featured-card span {
+  padding: 0 16px 16px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ===============================
+   FINAL iOS / SAFARI LOCK
+   =============================== */
+
+body {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+main,
+section,
+footer {
+  width: 100%;
+  max-width: 100%;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+/* ===============================
+   MICRO POLISH — LUXURY FEEL
+   (SAFE ADD-ON)
+   =============================== */
+
+/* Buttons */
+.btn {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Product cards */
+.product-card {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+@media (hover: hover) {
+  .product-card:hover {
+    transform: translateY(-6px);
+  }
+}
+
+/* Category cards */
+.category-card {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+@media (hover: hover) {
+  .category-card:hover {
+    transform: translateY(-6px);
+  }
+}
+
+/* Featured cards */
+.featured-card {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+@media (hover: hover) {
+  .featured-card:hover {
+    transform: translateY(-6px);
+  }
+}
