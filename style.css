@@ -128,7 +128,8 @@ img {
   min-height: 72svh;           /* Safari-safe */
   height: 90svh;
   max-height: 900px;
-
+  
+  padding-bottom: 42svh; /* 🔒 reserves space for model */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -309,8 +310,6 @@ body.dark .hero-overlay {
   position: absolute;
   left: 0;
   right: 0;
-
-  /* 🔒 anchor to IMAGE BOTTOM */
   bottom: 0;
 
   /* pull badge UP into the image */
