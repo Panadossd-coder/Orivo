@@ -317,12 +317,6 @@ body:not(.dark) #heroImage {
 }
 
 
-  /* iOS stability */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
 /* soft fade at bottom to blend with bg */
 .hero::after {
   content: "";
@@ -818,7 +812,7 @@ body.dark .featured-card {
 
 @keyframes heroFadeIn {
   from { opacity: 0; }
-  to   { opacity: 0.42; }
+  to   { opacity: 1; }
 }
     
 
