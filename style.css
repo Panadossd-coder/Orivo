@@ -427,3 +427,116 @@ main {
     max-height: 58svh;
   }
 }
+
+/* ===============================
+   SHOP BY CATEGORY — CLEAN FIX
+   =============================== */
+
+.categories {
+  padding: 80px 48px;
+  width: 100%;
+}
+
+.categories h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+/* GRID */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* CARD */
+.category-card {
+  position: relative;
+
+  height: 240px;
+  border-radius: 28px;
+  padding: 28px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: var(--bg-card);
+  box-shadow: var(--shadow-soft);
+
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+@media (hover: hover) {
+  .category-card:hover {
+    transform: translateY(-6px);
+  }
+}
+
+/* IMAGE — LOCKED INSIDE CARD */
+.category-card img {
+  width: 100%;
+  max-height: 140px;
+
+  object-fit: contain;
+  display: block;
+
+  margin: 0 auto;
+}
+
+/* LABEL — ALWAYS VISIBLE */
+.category-label {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+/* ===============================
+   CATEGORY COLORS (PREMIUM)
+   =============================== */
+
+.category-card.clothes {
+  background: linear-gradient(135deg, #f5efe9, #ede6de);
+}
+
+.category-card.perfumes {
+  background: linear-gradient(135deg, #f4e6ea, #ecd7dd);
+}
+
+.category-card.shoes {
+  background: linear-gradient(135deg, #eef0f2, #e3e6ea);
+}
+
+.category-card.hoodies {
+  background: linear-gradient(135deg, #2c2d33, #1e1f25);
+}
+
+.category-card.hoodies .category-label {
+  color: #ffffff;
+}
+
+/* ===============================
+   CATEGORY — MOBILE SAFETY
+   =============================== */
+
+@media (max-width: 600px) {
+  .categories {
+    padding: 60px 24px;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-card {
+    height: 220px;
+  }
+
+  .category-card img {
+    max-height: 120px;
+  }
+}
