@@ -309,7 +309,7 @@ img {
 }
 
 body.dark #heroImage {
-  opacity: 0.42;
+  opacity: 0.6;
 }
 
 body:not(.dark) #heroImage {
