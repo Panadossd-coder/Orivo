@@ -144,6 +144,17 @@ img {
   overflow: hidden;
 }
 
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero > video {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100%;
+}
 
 /* Hide video safely when no source is present */
 #heroVideo:not([src]) {
@@ -241,14 +252,14 @@ img {
 }
 
 /* ===============================
-   HERO VIDEO — CINEMATIC BACKGROUND
+   HERO VIDEO — CINEMATIC BACKGROUND (FIXED)
    =============================== */
 
 #heroVideo {
   position: absolute;
   inset: 0;
 
-  width: 100%;
+  width: 100vw;
   height: 100%;
 
   object-fit: cover;
@@ -256,10 +267,15 @@ img {
 
   z-index: 0;
 
-  /* subtle luxury tone */
-  #heroVideo {
+  /* 🔥 STRONGER VISIBILITY */
   opacity: 0.6;
   filter: saturate(1.05) contrast(1.05);
+
+  pointer-events: none;
+
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
   pointer-events: none;
@@ -279,8 +295,9 @@ img {
 }
 
 /* ===============================
-   HERO IMAGE — FINAL CORRECT VERSION
+   HERO IMAGE — MODEL (FIXED)
    =============================== */
+
 #heroImage {
   position: absolute;
   left: 0;
@@ -288,40 +305,33 @@ img {
   bottom: 0;
 
   width: 100%;
-  height: auto;
-  max-height: 55svh;
+  max-height: 60svh;
 
   object-fit: contain;
   object-position: center bottom;
 
-  filter: saturate(0.95) contrast(0.98);
-
-  pointer-events: none;
   z-index: 2;
+  pointer-events: none;
+
+  /* 🔥 MODEL IS NOW CLEAR */
+  opacity: 0.85;
+  filter: saturate(1.05) contrast(1.05);
 
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 
- #heroImage {
-  mask-image: linear-gradient(
-    to top,
-    rgba(0,0,0,0.85) 0%,
-    rgba(0,0,0,1) 40%
-  );
+  /* clean fade */
   -webkit-mask-image: linear-gradient(
     to top,
-    rgba(0,0,0,0.85) 0%,
-    rgba(0,0,0,1) 40%
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,1) 45%
   );
-}
-
-body.dark #heroImage {
-  opacity: 0.75;
-}
-
-body:not(.dark) #heroImage {
-  opacity: 0.65;
+  mask-image: linear-gradient(
+    to top,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,1) 45%
+  );
 }
 
 
