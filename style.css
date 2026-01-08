@@ -139,6 +139,25 @@ img {
   overflow: hidden;
 }
 
+/* ===============================
+   HERO CONTENT POSITION (STEP 2)
+   =============================== */
+
+.hero-content {
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding-top: 90px;        /* 🔒 pushes text down from nav */
+  padding-bottom: 140px;    /* 🔒 reserves space for model */
+
+  gap: 18px;
+}
+
 /* lock hero content above backgrounds */
 .hero > * {
   position: relative;
