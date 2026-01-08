@@ -540,3 +540,64 @@ main {
     max-height: 120px;
   }
 }
+
+/* ===============================
+   FEATURED PIECES — LUXURY SLIDER
+   =============================== */
+
+.featured-slider {
+  display: flex;
+  gap: 24px;
+
+  overflow-x: auto;
+  padding: 20px 0 44px;
+
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.featured-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* CARD */
+.featured-card {
+  min-width: 240px;
+  scroll-snap-align: start;
+
+  background: var(--bg-card);
+  border-radius: 22px;
+  overflow: hidden;
+
+  box-shadow: var(--shadow-soft);
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+@media (hover: hover) {
+  .featured-card:hover {
+    transform: translateY(-6px);
+  }
+}
+
+/* IMAGE */
+.featured-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+
+  object-fit: cover;
+  display: block;
+}
+
+/* TEXT */
+.featured-card h4 {
+  padding: 14px 16px 4px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.featured-card span {
+  padding: 0 16px 16px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
