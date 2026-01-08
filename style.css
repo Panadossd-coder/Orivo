@@ -480,3 +480,68 @@ body.dark .category-card img {
     max-height: 120px;
   }
 }
+
+/* ===============================
+   CATEGORY GRID — FIX COLUMNS & SIZE
+   =============================== */
+
+/* Grid spacing */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* Card proportions */
+.category-card {
+  height: 200px; /* ⬅️ was too tall */
+  border-radius: 26px;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Label position */
+.category-label {
+  font-size: 18px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+/* Image fix */
+.category-card img {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+
+  max-height: 120px;
+  transform: translateY(-50%);
+  object-fit: contain;
+
+  opacity: 0.9;
+  z-index: 1;
+}
+
+/* ===============================
+   MOBILE — SINGLE COLUMN & BALANCE
+   =============================== */
+
+@media (max-width: 600px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .category-card {
+    height: 180px; /* shorter on mobile */
+  }
+
+  .category-card img {
+    max-height: 100px;
+  }
+}
