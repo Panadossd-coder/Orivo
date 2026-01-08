@@ -23,42 +23,33 @@ Index.html
   </header>
 
   <!-- HERO -->
-  <section class="hero" id="heroSection">
-
-  <!-- HERO VIDEO (OPTIONAL BACKGROUND) -->
-  <video
-    id="heroVideo"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="metadata"
-  >
-    <!-- source will be injected later -->
-  </video>
-
-  <!-- HERO IMAGE (FALLBACK / OVERLAY) -->
-  <img id="heroImage" alt="ORIVO Hero" />
-
-  <!-- HERO DARK OVERLAY -->
+  <section class="hero">
+  <video id="heroVideo"></video>
   <div class="hero-overlay"></div>
 
-  <h1 id="heroTitle">Wear Your Identity</h1>
-  <p id="heroSubtitle">A modern fashion brand focused on presence...</p>
+  <!-- 🔒 STEP 1: HERO CONTENT WRAPPER -->
+  <div class="hero-content">
 
-  <div style="display:flex; gap:16px; justify-content:center;">
-    <a href="shop.html" class="btn btn-primary">Explore Collection</a>
-    <a href="shop.html" class="btn btn-outline">View Lookbook</a>
+    <h1>PYMZ CLOSET</h1>
+
+    <p>
+      Don't miss out the exclusive discounts And fresh fits, wear your future
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary">Explore Collection</a>
+      <a class="btn btn-outline">View Lookbook</a>
+    </div>
+
+    <div id="heroBadge">
+      <span id="heroBadgeText">STYLE</span>
+    </div>
+
   </div>
-  
-  <!-- HERO GLASS TAG -->
-<div id="heroBadgeWrap">
-  <div id="heroBadge">
-    <span id="heroBadgeText">Wic</span>
-  </div>
-</div>
+
+  <!-- 🔒 MODEL STAYS OUTSIDE -->
+  <img id="heroImage" src="model.png" alt="Model">
 </section>
-<!-- END HERO GLASS TAG -->
 
 <!-- ================= CATEGORY SECTION ================= -->
 <section class="categories">
