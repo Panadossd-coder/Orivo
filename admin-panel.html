@@ -250,6 +250,34 @@ function logout() {
   localStorage.removeItem("orivo_admin");
   window.location.href = "admin.html";
 }
+</script>
+
+<script>
+/* HERO VIDEO — IndexedDB */
+let heroVideoDB;
+
+const openHeroVideoDB = () => {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("orivoHeroDB", 1);
+
+    request.onupgradeneeded = () => {
+      const db = request.result;
+      if (!db.objectStoreNames.contains("videos")) {
+        db.createObjectStore("videos");
+      }
+    };
+
+    request.onsuccess = () => {
+      heroVideoDB = request.result;
+      resolve(heroVideoDB);
+    };
+
+    request.onerror = () => reject("IndexedDB failed");
+  });
+};
+
+openHeroVideoDB();
+</script>
 
 <script>
 /* HERO VIDEO — IndexedDB */
