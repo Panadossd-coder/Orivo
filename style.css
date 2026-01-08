@@ -257,8 +257,10 @@ img {
   z-index: 0;
 
   /* subtle luxury tone */
-  opacity: 0.42;
-  filter: saturate(0.9) contrast(0.95);
+  #heroVideo {
+  opacity: 0.6;
+  filter: saturate(1.05) contrast(1.05);
+}
 
   pointer-events: none;
 
@@ -295,23 +297,22 @@ img {
   filter: saturate(0.95) contrast(0.98);
 
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
 
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 
-  -webkit-mask-image: linear-gradient(
-    to top,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0.6) 20%,
-    rgba(0,0,0,1) 100%
-  );
+ #heroImage {
   mask-image: linear-gradient(
     to top,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0.6) 20%,
-    rgba(0,0,0,1) 100%
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,1) 40%
+  );
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,1) 40%
   );
 }
 
@@ -355,19 +356,14 @@ body.dark .hero-overlay {
 
   background:
     radial-gradient(
-      circle at 70% 30%,
-      rgba(229,138,165,0.35),
-      transparent 45%
-    ),
-    radial-gradient(
-      circle at 30% 70%,
-      rgba(120,120,255,0.25),
+      circle at 60% 25%,
+      rgba(229,138,165,0.22),
       transparent 50%
     ),
     linear-gradient(
       to bottom,
-      rgba(0,0,0,0.65),
-      rgba(0,0,0,0.9)
+      rgba(0,0,0,0.35),
+      rgba(0,0,0,0.7)
     );
 }
 
@@ -793,16 +789,6 @@ body.dark .featured-card {
    HERO — SUBTLE LIFE (2025 MOTION)
    =============================== */
 
-/* soft animated background glow */
-.hero {
-  background:
-    radial-gradient(
-      1200px 500px at 50% -10%,
-      rgba(209,108,138,0.12),
-      transparent 60%
-    );
-  animation: heroGlow 14s ease-in-out infinite alternate;
-}
 
 @keyframes heroGlow {
   from {
