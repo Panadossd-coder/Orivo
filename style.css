@@ -302,6 +302,25 @@ body.dark .hero-overlay {
 }
 
 /* ===============================
+   HERO BADGE — BOTTOM LOCK
+   =============================== */
+
+#heroBadgeWrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  /* 🔒 sits just ABOVE the model image */
+  bottom: calc(42svh + 20px);
+
+  display: flex;
+  justify-content: center;
+
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ===============================
    HERO IMAGE (MODEL)
    =============================== */
 
