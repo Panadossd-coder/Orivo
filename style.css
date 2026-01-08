@@ -276,33 +276,24 @@ img {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;                 /* 🔒 hard lock to hero bottom */
+  bottom: 0;
 
   width: 100%;
   height: auto;
-  max-height: 55svh;   /* 🔒 absolute ceiling */
+  max-height: 55svh;
 
   object-fit: contain;
   object-position: center bottom;
 
-  body.dark #heroImage {
-  opacity: 0.42;
-}
-
-body:not(.dark) #heroImage {
-  opacity: 0.65;
-}
   filter: saturate(0.95) contrast(0.98);
 
   pointer-events: none;
   z-index: 0;
 
-  /* iOS / Safari stability */
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 
-  /* soft fade */
   -webkit-mask-image: linear-gradient(
     to top,
     rgba(0,0,0,0) 0%,
@@ -315,6 +306,14 @@ body:not(.dark) #heroImage {
     rgba(0,0,0,0.6) 20%,
     rgba(0,0,0,1) 100%
   );
+}
+
+body.dark #heroImage {
+  opacity: 0.42;
+}
+
+body:not(.dark) #heroImage {
+  opacity: 0.65;
 }
 
 
