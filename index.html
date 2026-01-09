@@ -43,7 +43,11 @@
 ></video>
 
   <!-- HERO IMAGE (FALLBACK / OVERLAY) -->
-  <img id="heroImage" alt="ORIVO Hero" />
+  <img
+  id="heroImage"
+  alt="ORIVO Hero"
+  style="display:none;"
+/>
 
   <!-- HERO DARK OVERLAY -->
   <div class="hero-overlay"></div>
@@ -141,9 +145,16 @@
     document.getElementById("heroSubtitle").textContent = heroSubtitle;
   }
 
-  if (heroImage) {
-    document.getElementById("heroImage").src = heroImage;
-  }
+  const heroImgEl = document.getElementById("heroImage");
+
+if (heroImage) {
+  heroImgEl.src = heroImage;
+  heroImgEl.style.display = "block";
+} else {
+  heroImgEl.src = "";
+  heroImgEl.style.display = "none";
+}
+
     if (heroBadge) {
     document.getElementById("heroBadgeText").textContent = heroBadge;
   }
