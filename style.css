@@ -138,6 +138,9 @@ img {
 
   position: relative;
   overflow: hidden;
+
+  /* 🔒 SAFARI BFCache LOCK (ADD THIS LINE) */
+  contain: layout paint;
 }
 
 /* ===============================
