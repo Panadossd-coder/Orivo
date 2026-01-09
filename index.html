@@ -23,37 +23,28 @@
   <!-- HERO -->
   <section class="hero" id="heroSection">
 
-  <!-- HERO VIDEO (OPTIONAL BACKGROUND) -->
-  <video
-    id="heroVideo"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="metadata"
-  >
-    <!-- source will be injected later -->
-  </video>
-
-  <!-- HERO IMAGE (FALLBACK / OVERLAY) -->
-  <img id="heroImage" alt="ORIVO Hero" />
-
 <video
   id="heroVideo"
   muted
-  autoplay
   loop
+  autoplay
   playsinline
+  preload="auto"
   style="
     position:absolute;
     inset:0;
     width:100%;
     height:100%;
     object-fit:cover;
-    z-index:-1;
+    z-index:-2;
     display:none;
+    pointer-events:none;
   "
 ></video>
+
+  <!-- HERO IMAGE (FALLBACK / OVERLAY) -->
+  <img id="heroImage" alt="ORIVO Hero" />
+
   <!-- HERO DARK OVERLAY -->
   <div class="hero-overlay"></div>
 
@@ -252,7 +243,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!url) return;
 
   videoEl.src = url;
+  videoEl.muted = true;
+  videoEl.loop = true;
+  videoEl.playsInline = true;
   videoEl.style.display = "block";
+
+  const playPromise = videoEl.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      videoEl.muted = true;
+      videoEl.play();
+    });
+  }
 });
 </script>
 
