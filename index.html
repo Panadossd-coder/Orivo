@@ -190,5 +190,42 @@ window.addEventListener("pageshow", function (event) {
 });
 </script>
 
+<script>
+/* HERO VIDEO — LOAD FROM INDEXEDDB */
+let heroVideoURL = null;
+
+function loadHeroVideo() {
+  return new Promise((resolve) => {
+    const request = indexedDB.open("orivoHeroDB", 1);
+
+    request.onsuccess = () => {
+      const db = request.result;
+
+      if (!db.objectStoreNames.contains("videos")) {
+        resolve(null);
+        return;
+      }
+
+      const tx = db.transaction("videos", "readonly");
+      const store = tx.objectStore("videos");
+      const getReq = store.get("heroVideo");
+
+      getReq.onsuccess = () => {
+        if (getReq.result) {
+          heroVideoURL = URL.createObjectURL(getReq.result);
+          resolve(heroVideoURL);
+        } else {
+          resolve(null);
+        }
+      };
+
+      getReq.onerror = () => resolve(null);
+    };
+
+    request.onerror = () => resolve(null);
+  });
+}
+</script>
+
 </body>
 </html>
