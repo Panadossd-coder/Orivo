@@ -248,5 +248,35 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 </script>
 
+<script>
+/* ===== SAFARI BFCache HERO FIX (FINAL) ===== */
+window.addEventListener("pageshow", function (event) {
+  if (!event.persisted) return; // only when Safari restores from cache
+
+  const hero = document.getElementById("heroSection");
+  const heroImg = document.getElementById("heroImage");
+  const heroVideo = document.getElementById("heroVideo");
+
+  if (!hero) return;
+
+  /* 1️⃣ Force layout recalculation */
+  hero.style.display = "none";
+  hero.offsetHeight; // force reflow
+  hero.style.display = "";
+
+  /* 2️⃣ Reset hero image position */
+  if (heroImg) {
+    heroImg.style.transform = "translateZ(0)";
+    heroImg.style.willChange = "transform";
+  }
+
+  /* 3️⃣ Resume video safely */
+  if (heroVideo && heroVideo.src) {
+    heroVideo.pause();
+    heroVideo.currentTime = 0;
+    heroVideo.play().catch(() => {});
+  }
+});
+</script>
 </body>
 </html>
