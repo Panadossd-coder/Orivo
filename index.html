@@ -150,16 +150,6 @@
 </script>
 
 <script>
-  const heroVideo = localStorage.getItem("orivo_hero_video");
-
-  if (heroVideo) {
-    const videoEl = document.getElementById("heroVideo");
-    videoEl.innerHTML = `<source src="${heroVideo}" type="video/mp4">`;
-    videoEl.load();
-  }
-</script>
-
-<script>
   if (!sessionStorage.getItem("orivo_css_refresh")) {
     sessionStorage.setItem("orivo_css_refresh", "1");
     const links = document.querySelectorAll("link[rel='stylesheet']");
