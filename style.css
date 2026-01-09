@@ -366,6 +366,16 @@ body.dark .hero-overlay {
   );
 }
 
+/* 🔥 HARD HIDE HERO IMAGE WHEN EMPTY */
+#heroImage:not([src]),
+#heroImage[src=""] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
 /* bottom fade into page */
 .hero::after {
   content: "";
