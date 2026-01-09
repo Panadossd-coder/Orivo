@@ -125,11 +125,12 @@ img {
    =============================== */
 
 .hero {
-  min-height: 72svh;           /* Safari-safe */
-  height: 90svh;
+  min-height: 72vh;
+  height: 90vh;
   max-height: 900px;
-  
-  padding-bottom: 42svh; /* 🔒 reserves space for model */
+
+  padding-bottom: 380px; /* 🔒 HARD PIXEL LOCK (Safari-safe) */
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -139,7 +140,6 @@ img {
   position: relative;
   overflow: hidden;
 
-  /* 🔒 SAFARI BFCache LOCK (ADD THIS LINE) */
   contain: layout paint;
 }
 
