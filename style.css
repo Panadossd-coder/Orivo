@@ -125,11 +125,11 @@ img {
    =============================== */
 
 .hero {
-  min-height: 72vh;
-  height: 90vh;
-  max-height: 900px;
+  min-height: 0;
+  height: auto;
+  max-height: none;
 
-   padding-bottom: 0;/* 🔒 HARD PIXEL LOCK (Safari-safe) */
+  padding-bottom: 0;
 
   display: flex;
   flex-direction: column;
