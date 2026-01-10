@@ -145,14 +145,25 @@
     document.getElementById("heroSubtitle").textContent = heroSubtitle;
   }
 
-  const heroImgEl = document.getElementById("heroImage");
+  const heroSection = document.getElementById("heroSection");
+const heroImgEl = document.getElementById("heroImage");
 
-if (heroImage) {
+const hasHeroImage = !!heroImage;
+const hasHeroVideo = localStorage.getItem("orivo_hero_video") === "indexeddb";
+
+if (hasHeroImage) {
   heroImgEl.src = heroImage;
   heroImgEl.style.display = "block";
 } else {
   heroImgEl.src = "";
   heroImgEl.style.display = "none";
+}
+
+/* 🔥 CONTROL HERO SPACING */
+if (!hasHeroImage && !hasHeroVideo) {
+  heroSection.classList.add("no-hero-media");
+} else {
+  heroSection.classList.remove("no-hero-media");
 }
 
     if (heroBadge) {
