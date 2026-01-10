@@ -150,8 +150,12 @@ const heroImgEl = document.getElementById("heroImage");
 const hasHeroImage = heroImage && heroImage.trim() !== "";
 const hasHeroVideo = localStorage.getItem("orivo_hero_video") === "indexeddb";
 
-// 🔥 Toggle image-based spacing
-heroSection.classList.toggle("has-hero-image", hasHeroImage);
+// ✅ hero has media if IMAGE OR VIDEO exists
+const hasHeroMedia = hasHeroImage || hasHeroVideo;
+
+// spacing control
+heroSection.classList.toggle("has-hero-media", hasHeroMedia);
+heroSection.classList.toggle("no-hero-media", !hasHeroMedia);
 if (hasHeroImage) {
   heroImgEl.src = heroImage;
   heroImgEl.style.display = "block";
@@ -167,12 +171,6 @@ heroImgEl.onerror = () => {
   heroSection.classList.add("no-hero-media");
 };
 
-/* 🔥 CONTROL HERO SPACING */
-if (!hasHeroImage && !hasHeroVideo) {
-  heroSection.classList.add("no-hero-media");
-} else {
-  heroSection.classList.remove("no-hero-media");
-}
 
     if (heroBadge) {
     document.getElementById("heroBadgeText").textContent = heroBadge;
