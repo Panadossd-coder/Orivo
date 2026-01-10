@@ -143,9 +143,12 @@ img {
   contain: layout paint;
 }
 
-/* 🔥 Reserve space ONLY when hero image exists */
-.hero.has-hero-image {
-  padding-bottom: 380px; /* Safari-safe image zone */
+/* 🔥 Reserve space when HERO HAS IMAGE OR VIDEO */
+.hero.has-hero-media {
+  min-height: 72svh;
+  height: 90svh;
+  max-height: 900px;
+  padding-bottom: 0;
 }
 
 /* 🔥 COLLAPSE HERO COMPLETELY WHEN NO MEDIA */
@@ -402,18 +405,18 @@ body.dark .hero-overlay {
 
 /* bottom fade into page */
 
-/* bottom fade ONLY when hero image exists */
-.hero.has-hero-image::after {
+/* bottom fade ONLY when hero has media (image OR video) */
+.hero.has-hero-media::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 220px;
+  height: 160px;
 
   background: linear-gradient(
     to bottom,
-    rgba(246,246,244,0),
+    rgba(0,0,0,0),
     var(--bg-main)
   );
 
