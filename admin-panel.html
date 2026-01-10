@@ -352,7 +352,11 @@ function saveHero() {
   localStorage.setItem("orivo_hero_subtitle", heroSubtitle.value);
   localStorage.setItem("orivo_hero_badge", heroBadge.value);
   localStorage.setItem("orivo_hero_image", heroImageBase64);
+  if (heroVideoBase64 === "indexeddb") {
   localStorage.setItem("orivo_hero_video", "indexeddb");
+} else {
+  localStorage.removeItem("orivo_hero_video");
+}
   alert("Hero updated");
   closeHeroEditor();
 }
