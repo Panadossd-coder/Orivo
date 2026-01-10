@@ -143,9 +143,23 @@ img {
   contain: layout paint;
 }
 
-/* 🔥 REMOVE RESERVED SPACE WHEN NO HERO MEDIA */
+/* 🔥 COLLAPSE HERO COMPLETELY WHEN NO MEDIA */
 .hero.no-hero-media {
   padding-bottom: 0 !important;
+  height: auto !important;
+  min-height: unset !important;
+}
+
+.hero.no-hero-media::after {
+  display: none !important;
+}
+
+.hero.no-hero-media .hero-overlay {
+  display: none !important;
+}
+
+.hero.no-hero-media #heroVideo {
+  display: none !important;
 }
 
 /* ===============================
