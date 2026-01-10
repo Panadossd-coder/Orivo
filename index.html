@@ -165,6 +165,13 @@ if (hasHeroImage) {
   heroImgEl.style.display = "none";
 }
 
+// 🔥 HARD SAFARI FIX — hide broken image placeholder
+heroImgEl.onerror = () => {
+  heroImgEl.style.display = "none";
+  heroImgEl.src = "";
+  heroSection.classList.add("no-hero-media");
+};
+
 /* 🔥 CONTROL HERO SPACING */
 if (!hasHeroImage && !hasHeroVideo) {
   heroSection.classList.add("no-hero-media");
