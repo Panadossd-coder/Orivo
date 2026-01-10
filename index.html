@@ -147,11 +147,7 @@
   const heroSection = document.getElementById("heroSection");
 const heroImgEl = document.getElementById("heroImage");
 
-const hasHeroImage =
-  heroImage &&
-  heroImage !== "" &&
-  heroImgEl.complete &&
-  heroImgEl.naturalWidth > 0;
+const hasHeroImage = !!heroImage;
 const hasHeroVideo = localStorage.getItem("orivo_hero_video") === "indexeddb";
 
 // 🔥 Toggle image-based spacing
