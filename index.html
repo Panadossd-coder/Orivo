@@ -255,7 +255,8 @@ function loadHeroVideo() {
 <script>
 document.addEventListener("DOMContentLoaded", async () => {
   const videoEl = document.getElementById("heroVideo");
-  if (!videoEl) return;
+  const heroSection = document.getElementById("heroSection");
+  if (!videoEl || !heroSection) return;
 
   const url = await loadHeroVideo();
   if (!url) return;
@@ -265,6 +266,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   videoEl.loop = true;
   videoEl.playsInline = true;
   videoEl.style.display = "block";
+
+  /* 🔥 FORCE HERO TO EXPAND AFTER VIDEO LOAD */
+  heroSection.classList.add("has-hero-media");
+  heroSection.classList.remove("no-hero-media");
+
+  /* 🔥 SAFARI RELAYOUT */
+  heroSection.style.display = "none";
+  heroSection.offsetHeight; // force reflow
+  heroSection.style.display = "";
 
   const playPromise = videoEl.play();
   if (playPromise !== undefined) {
