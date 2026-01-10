@@ -129,7 +129,7 @@ img {
   height: 90vh;
   max-height: 900px;
 
-  padding-bottom: 380px; /* 🔒 HARD PIXEL LOCK (Safari-safe) */
+   padding-bottom: 0;/* 🔒 HARD PIXEL LOCK (Safari-safe) */
 
   display: flex;
   flex-direction: column;
@@ -141,6 +141,11 @@ img {
   overflow: hidden;
 
   contain: layout paint;
+}
+
+/* 🔥 Reserve space ONLY when hero image exists */
+.hero.has-hero-image {
+  padding-bottom: 380px; /* Safari-safe image zone */
 }
 
 /* 🔥 COLLAPSE HERO COMPLETELY WHEN NO MEDIA */
