@@ -143,6 +143,11 @@ img {
   contain: layout paint;
 }
 
+/* 🔥 REMOVE RESERVED SPACE WHEN NO HERO MEDIA */
+.hero.no-hero-media {
+  padding-bottom: 0 !important;
+}
+
 /* ===============================
    HERO CONTENT POSITION (STEP 2)
    =============================== */
